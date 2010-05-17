@@ -930,7 +930,8 @@ class widget_idxCustomLinks extends WP_Widget {
         foreach ($lines as $link) {
 			
             $li = explode("|", $link);
-            echo '<li><a href="' . $li[1] . '">' . str_replace('_', ' ', $li[0]) . '</a><li>';
+			if($li[1] != '')
+            echo '<li><a href="' . $li[1] . '">' . str_replace('_', ' ', $li[0]) . '</a></li>';
 			
         }
 
