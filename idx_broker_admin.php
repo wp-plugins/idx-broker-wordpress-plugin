@@ -39,9 +39,9 @@ function idx_broker_admin_page() {
 		
 		<p>Use the tool below to add IDX Broker links as Pages in your navigation.  When you are done entering your information and choosing/renaming your links, simply hit the "Save Changes" button to apply your settings.</p>
 		
-		<span style="float:left; font-weight:bold;">On -</span>
-		<span style="float:left; font-weight:bold; margin-left: 7px;">Links to</span>
-		<span style="float:right; font-weight:bold; margin-right: 6px;">Link Title (custom)</span>
+		<span style="float:left; font-weight:bold;">Activate -</span>
+		<span style="float:left; font-weight:bold; margin-left: 7px;">IDX Broker Page Link</span>
+		<span style="float:right; font-weight:bold; margin-right: 6px;">Rename Page Link</span>
 		<div style="clear: both;"></div>
 		
 		<ul>
