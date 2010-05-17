@@ -74,7 +74,12 @@ IDX system links Widget. '/tags/1.1.0.1/screenshot-7.png'
 
 == Changelog ==
 
-= 1.01 - (4/30/10) = 
+= 1.1 =
+
+Added custom links widget from web services pull.
+Added other widgets to bring plugin to 1.0 spec
+
+= 1.01 = 
 
 Added error checking on missing domain entry and malformed or missing CID, with error messages on widget placement/configuration page.
 Added wildcard search form widget to list of avaliable tools.
@@ -84,9 +89,3 @@ Added myAgent badge widget.
 = 1.0 =
 
 Currently in Beta Testing as of 4/29/10
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation."  Arbitrary sections will be shown below the built-in sections outlined above.
