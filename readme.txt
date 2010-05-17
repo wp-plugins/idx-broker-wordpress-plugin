@@ -1,23 +1,44 @@
-=== IDX Broker Wordpress Plugin (BETA) ===
+=== IDX Broker Wordpress Plugin ===
 Author: IDX Broker (Jason Boness)
 Author URL: http://www.idxbroker.com
-Tags: idx, real estate, search, widget, wordpress
+Tags: idx, real estate, search, widget, wordpress, wordpress idx
 Stable tag: 1.1.0.1
 
 == Description ==
 
-Exclusively for IDX Broker Clients. Existing IDX Broker clients may simply enter an IDX Broker client ID and IDX Sub-domain to get started. New IDX Broker clients will receive the required client ID in a welcome email.
+This plugin is exclusively for IDX Broker Clients. It accomplishes three things:
 
-Below are a few benefits:
-•	Easy to Implement - Drag and drop IDX link and quick search form widgets into your theme’s left or right nav. 
-•	Branded Results – Design integrated Results and Details pages always match the branding of your blog or corporate site. 
-•	Tremendous Value – Your current IDX Broker account provides you with full access to the Widget.  You do not have to purchase an additional product to access this plugin.
-•	Largest MLS Coverage – With over 350+ MLS’s data sets covered through our system, we probably have your area already covered.  If not, we are happy to add it for no additional cost.
-•	Powerful SEO – You can own the domain URL that hosts every IDX search, results, and details page. Every details page includes dynamic title and meta tag variables that you only have to setup once for ALL property pages! Or..more than once for testing your SEO theories. SEO is very often about trial and error.  
-•	Integration is Easier - No hand-coding or hand-styling results and details. We wrap your site design once.
-•	More Tools and Resources – This widget is supported exclusively by IDX Broker. CSS controls, iPhone apps, custom subdomains, custom landing pages, lead management, email updates and much more are all available to active subscribers.
+1. Easily drag and drop every IDX Broker Widget into your Wordpress theme.
+2. Easily add IDX links to your menu.
+3. Easily display any neighborhood or subdivision (any custom link) landing pages that you've created using IDX Broker. 
 
-This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the results and details. We handle all the paperwork and automatically display the correct MLS/IDX disclaimers to ensure that you don’t get into trouble with the MLS & Board that provides you with your IDX feed. 
+Your IDX results and details pages are hosted by IDX Broker, not your Wordpress blog. As a result, the IDX results and details pages display automated. This will save you both time and effort. 
+
+Getting Started
+
+Existing IDX Broker clients may simply enter their IDX Broker client ID and IDX subdomain to get started. New IDX Broker clients will receive the required client ID and subdomain in a welcome email.
+
+Indexable Listings
+
+All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and  details pages, and provide you with IDX Broker tools that will make those titles and descriptions update automatically via MLS data. You are also able to customize some URLs, titles, and descriptions to match your keyword strategy. 
+
+Custom Results Landing Pages
+
+We recommend that you add custom content to the subheaders of your IDX results pages in order to encourage the search enginess to differentiate your content from all the other IDX results and details pages that display the same addresses, Cities, and Zips for each MLS region. 
+
+Lead Registration 
+
+You can use IDX Broker to force signup on every 4th or 5th property detail view. Or, if you prefer, require registration once the visitor click the link to your custom results page. 
+
+Lead Management
+
+Anybody who requests property info, fills out your contact form, saves a search, or creates an account with you will show up in the Lead Management tab of IDX Broker. You will also receive an email alert when this occurs.    
+
+General Terms of Use 
+
+This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details pages. 
+
+IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
 
 == Installation ==
 
