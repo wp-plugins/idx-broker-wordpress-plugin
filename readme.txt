@@ -43,19 +43,34 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 == Installation ==
 
 1. Download and extract the idxBroker.zip file.
-2. Upload the uncommpressed idxBroker folder to your `/wp-content/plugins/` directory
+2. Upload the uncompressed idxBroker folder to your `/wp-content/plugins/` directory
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Go to the IDX Broker Plugin Admin page and enter your CID and webite domain.
-5. In the widgets section of your wordpress admin, you can drag the new IDX Broker Widgets to your sidebar.
-6. Once placed inside your sidebar, each widget will have its own options avaliable.
+5. Follow the instructions to add Widgets and Page Links.
 
 == Frequently Asked Questions ==
 
-TBD
+= Do I need an IDX Broker account in order to use this plugin? =
 
+Yes. IDX Broker scripts generate the results and details pages for each MLS/IDX search. 
+
+= Why do I need an IDX Broker account in order to display MLS/IDX property search details - isn't an IDX feed included with my MLS membership? =
+
+The IDX feed is the data from the MLS, not the solution that gives visitors a way to search, save, and contact you about property pages that match the look and feel of your site. 
+
+= My page links and Widgets results display unbranded results and details. How do I ensure that results and details pages match the look and feel of my site? = 
+
+Simply contact us and request a new global wrapper. We will take your site design and match it to the results and details pages in order to make for a seamless link transition from your blog/site to your IDX pages. 
+ 
 == Screenshots ==
 
-TBD
+Featured property slideshow Widget. /tags/1.1.0.1/screenshot-1.png
+myAgent iPhone App Widget. /tags/1.1.0.1/screenshot-2.png
+Custom links Widget. /tags/1.1.0.1/screenshot-3.png
+IDX Menu links. /tags/1.1.0.1/screenshot-4.png
+Plugin Admin screen. /tags/1.1.0.1/screenshot-5.png
+IDX Widget Admin - myAgent iPhone App. /tags/1.1.0.1/screenshot-6.png
+IDX system links Widget. /tags/1.1.0.1/screenshot-7.png
 
 == Changelog ==
 
