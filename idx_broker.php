@@ -926,7 +926,7 @@ class widget_idxCustomLinks extends WP_Widget {
 ?>
 		<ul id="id">
 <?php
-        
+        print_r($lines);
         foreach ($lines as $link) {
 			
             $li = explode("|", $link);
