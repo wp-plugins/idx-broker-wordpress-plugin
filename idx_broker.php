@@ -19,7 +19,7 @@ register_deactivation_hook( __FILE__, 'idx_broker_remove');
 
 function idx_broker_install() {
 	add_option("idx_broker_cid", '', '', 'yes');		// client identification number
-	//add_option("idx_broker_pass", '', '', 'yes');		// client password
+	add_option("idx_broker_pass", '', '', 'yes');		// client password
 	add_option("idx_broker_domain", '', '', 'yes');		// domain of client website
 	add_option("idx_broker_basicSearchLink", '', '', 'yes');
 	add_option("idx_broker_basicSearchLabel", '', '', 'yes');
@@ -40,7 +40,7 @@ function idx_broker_install() {
 function idx_broker_remove() {
 	// removes options on plugin uninstallation
 	delete_option('idx_broker_cid');
-	//delete_option('idx_broker_pass');
+	delete_option('idx_broker_pass');
 	delete_option('idx_broker_domain');
 	delete_option("idx_broker_basicSearchLink");
 	delete_option("idx_broker_basicSearchLabel");
