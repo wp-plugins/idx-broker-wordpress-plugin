@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: IDX Broker
-Plugin URI: http://www.idxbroker.com/wp_plugin/
+Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
 Version: 1.1
 Author: IDX, Inc.

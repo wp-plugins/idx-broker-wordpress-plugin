@@ -64,20 +64,20 @@ Simply contact us and request a new global wrapper. We will take your site desig
  
 == Screenshots ==
 
-1. Featured property slideshow Widget. 
-2. myAgent iPhone App Widget. 
-3. Custom links Widget. 
-4. IDX Menu links. 
-5. Plugin Admin screen. 
-6. IDX Widget Admin - myAgent iPhone App. 
-7. IDX system links Widget. 
+Featured property slideshow Widget. '/tags/1.1.0.1/screenshot-1.png'
+myAgent iPhone App Widget. '/tags/1.1.0.1/screenshot-2.png'
+Custom links Widget. '/tags/1.1.0.1/screenshot-3.png'
+IDX Menu links. '/tags/1.1.0.1/screenshot-4.png'
+Plugin Admin screen. '/tags/1.1.0.1/screenshot-5.png'
+IDX Widget Admin - myAgent iPhone App. '/tags/1.1.0.1/screenshot-6.png'
+IDX system links Widget. '/tags/1.1.0.1/screenshot-7.png'
 
 == Changelog ==
 
 = 1.1 =
 
 Added custom links widget from web services pull.
-Added other widgets to bring plugin to 1.0 spec
+Added other widgets to bring plugin to 1.1 spec
 
 = 1.01 = 
 
