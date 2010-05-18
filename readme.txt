@@ -64,13 +64,13 @@ Simply contact us and request a new global wrapper. We will take your site desig
  
 == Screenshots ==
 
-Featured property slideshow Widget. '/tags/1.1.0.1/screenshot-1.png'
-myAgent iPhone App Widget. '/tags/1.1.0.1/screenshot-2.png'
-Custom links Widget. '/tags/1.1.0.1/screenshot-3.png'
-IDX Menu links. '/tags/1.1.0.1/screenshot-4.png'
-Plugin Admin screen. '/tags/1.1.0.1/screenshot-5.png'
-IDX Widget Admin - myAgent iPhone App. '/tags/1.1.0.1/screenshot-6.png'
-IDX system links Widget. '/tags/1.1.0.1/screenshot-7.png'
+1. Featured property slideshow Widget. 'screenshot-1.png' screenshot-1.png
+2. myAgent iPhone App Widget. 'screenshot-2.png'
+3. Custom links Widget. 'screenshot-3.png'
+4. IDX Menu links. 'screenshot-4.png'
+5. Plugin Admin screen. 'screenshot-5.png'
+6. IDX Widget Admin - myAgent iPhone App. 'screenshot-6.png'
+7. IDX system links Widget. 'screenshot-7.png'
 
 == Changelog ==
 
