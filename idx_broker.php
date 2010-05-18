@@ -19,7 +19,7 @@ register_deactivation_hook( __FILE__, 'idx_broker_remove');
 
 function idx_broker_install() {
 	add_option("idx_broker_cid", '', '', 'yes');		// client identification number
-	add_option("idx_broker_pass", '', '', 'yes');		// client identification number
+	//add_option("idx_broker_pass", '', '', 'yes');		// client password
 	add_option("idx_broker_domain", '', '', 'yes');		// domain of client website
 	add_option("idx_broker_basicSearchLink", '', '', 'yes');
 	add_option("idx_broker_basicSearchLabel", '', '', 'yes');
@@ -40,7 +40,7 @@ function idx_broker_install() {
 function idx_broker_remove() {
 	// removes options on plugin uninstallation
 	delete_option('idx_broker_cid');
-	delete_option('idx_broker_pass');
+	//delete_option('idx_broker_pass');
 	delete_option('idx_broker_domain');
 	delete_option("idx_broker_basicSearchLink");
 	delete_option("idx_broker_basicSearchLabel");
@@ -112,6 +112,15 @@ class widget_idxLinks extends WP_Widget {
 			<?php if ($instance['userSignup'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSignup.php">User Signup</a></li><?php } ?>
 			<?php if ($instance['emailUpdates'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSaveUpdates.php">Email Updates</a></li><?php } ?>
 			<?php if ($instance['rosterPage'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Roster Page</a></li><?php } ?>
+			<?php if ($instance['listingId'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Listing ID Search</a></li><?php } ?>
+			<?php if ($instance['openHouses'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Open Houses</a></li><?php } ?>
+			<?php if ($instance['suppListings'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Supplemental Listings</a></li><?php } ?>
+			<?php if ($instance['soldPend'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Sold/Pending Listings</a></li><?php } ?>
+			<?php if ($instance['mortCalc'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Mortgage Calculator</a></li><?php } ?>
+			<?php if ($instance['homeVal'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Home Valuation Request</a></li><?php } ?>
+			<?php if ($instance['agentLogin'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Agent Login</a></li><?php } ?>
+			<?php if ($instance['idxSitemap'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">IDX Sitemap</a></li><?php } ?>
+			<?php if ($instance['searchCity'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Search by City</a></li><?php } ?>
 		</ul>
 		<?php echo $after_widget;
 	}
@@ -133,36 +142,102 @@ class widget_idxLinks extends WP_Widget {
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
 		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		
+		// basic search
 		echo '<input type="checkbox" name="' . $this->get_field_name("basicSearch") . '" id="' . $this->get_field_id("basicSearch") . 'value="on" ';
 		if ($instance["basicSearch"] == 'on' ) {echo "checked = 'checked'";}
-		echo ' /> Basic Search Link<br />';	
+		echo ' /> Basic Search Link<br />';
+		
+		// advanced search
 		echo '<input type="checkbox" name="' . $this->get_field_name("advancedSearch") . '" id="' . $this->get_field_id("advancedSearch") . 'value="on" ';
 		if ($instance["advancedSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Advanced Search Link<br />';
+		
+		// map search
 		echo '<input type="checkbox" name="' . $this->get_field_name("mapSearch") . '" id="' . $this->get_field_id("mapSearch") . 'value="on" ';
 		if ($instance["mapSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Map Search Link<br />';
+		
+		// address search
 		echo '<input type="checkbox" name="' . $this->get_field_name("addressSearch") . '" id="' . $this->get_field_id("addressSearch") . 'value="on" ';
 		if ($instance["addressSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Address Search Link<br />';
+		
+		// featured properties
 		echo '<input type="checkbox" name="' . $this->get_field_name("featured") . '" id="' . $this->get_field_id("featured") . 'value="on" ';
 		if ($instance["featured"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Featured Properties Link<br />';
+		
+		// contact page
 		echo '<input type="checkbox" name="' . $this->get_field_name("contact") . '" id="' . $this->get_field_id("contact") . 'value="on" ';
 		if ($instance["contact"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Contact Page Link<br />';
+		
+		// user login
 		echo '<input type="checkbox" name="' . $this->get_field_name("userLogin") . '" id="' . $this->get_field_id("userLogin") . 'value="on" ';
 		if ($instance["userLogin"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> User Login Link<br />';
+		
+		// user signup
 		echo '<input type="checkbox" name="' . $this->get_field_name("userSignup") . '" id="' . $this->get_field_id("userSignup") . 'value="on" ';
 		if ($instance["userSignup"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> User Signup Link<br />';
+		
+		// email updates
 		echo '<input type="checkbox" name="' . $this->get_field_name("emailUpdates") . '" id="' . $this->get_field_id("emailUpdates") . 'value="on" ';
 		if ($instance["emailUpdates"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Email Updates Link<br />';
+		
+		// roster page
 		echo '<input type="checkbox" name="' . $this->get_field_name("rosterPage") . '" id="' . $this->get_field_id("rosterPage") . 'value="on" ';
 		if ($instance["rosterPage"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Roster Page Link<br />';
+		
+		// listing id
+		echo '<input type="checkbox" name="' . $this->get_field_name("listingId") . '" id="' . $this->get_field_id("listingId") . 'value="on" ';
+		if ($instance["listingId"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Listing ID Link<br />';
+		
+		// open houses
+		echo '<input type="checkbox" name="' . $this->get_field_name("openHouses") . '" id="' . $this->get_field_id("openHouses") . 'value="on" ';
+		if ($instance["openHouses"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Open Houses Link<br />';
+		
+		// supplemental listings
+		echo '<input type="checkbox" name="' . $this->get_field_name("suppListings") . '" id="' . $this->get_field_id("suppListings") . 'value="on" ';
+		if ($instance["suppListings"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Supplemental Listings Link<br />';
+		
+		// sold/pending 
+		echo '<input type="checkbox" name="' . $this->get_field_name("soldPend") . '" id="' . $this->get_field_id("soldPend") . 'value="on" ';
+		if ($instance["soldPend"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Sold/Pending Link<br />';
+		
+		// mortgage calculator
+		echo '<input type="checkbox" name="' . $this->get_field_name("mortCalc") . '" id="' . $this->get_field_id("mortCalc") . 'value="on" ';
+		if ($instance["mortCalc"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Mortgage Calculator Link<br />';
+		
+		// home valuation
+		echo '<input type="checkbox" name="' . $this->get_field_name("homeVal") . '" id="' . $this->get_field_id("homeVal") . 'value="on" ';
+		if ($instance["homeVal"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Home Valuation Request Link<br />';
+		
+		// agent login
+		echo '<input type="checkbox" name="' . $this->get_field_name("agentLogin") . '" id="' . $this->get_field_id("agentLogin") . 'value="on" ';
+		if ($instance["agentLogin"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Agent Login Link<br />';
+		
+		// idx sitemap
+		echo '<input type="checkbox" name="' . $this->get_field_name("idxSitemap") . '" id="' . $this->get_field_id("idxSitemap") . 'value="on" ';
+		if ($instance["idxSitemap"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> IDX Sitemap Link<br />';
+		
+		// search by city
+		echo '<input type="checkbox" name="' . $this->get_field_name("searchCity") . '" id="' . $this->get_field_id("searchCity") . 'value="on" ';
+		if ($instance["searchCity"] == 'on' ) {echo "checked = 'checked'";}
+		echo ' /> Search by City Link<br />';
+		
 		echo '</div>';
 	}
 }

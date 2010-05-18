@@ -74,6 +74,10 @@ IDX system links Widget. '/tags/1.1.0.1/screenshot-7.png'
 
 == Changelog ==
 
+= 1.1.0.2 =
+
+Commented out password field (for future use), added more system links in the system links widget.
+
 = 1.1 =
 
 Added custom links widget from web services pull.
