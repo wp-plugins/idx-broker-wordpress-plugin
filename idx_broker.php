@@ -112,15 +112,15 @@ class widget_idxLinks extends WP_Widget {
 			<?php if ($instance['userSignup'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSignup.php">User Signup</a></li><?php } ?>
 			<?php if ($instance['emailUpdates'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSaveUpdates.php">Email Updates</a></li><?php } ?>
 			<?php if ($instance['rosterPage'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Roster Page</a></li><?php } ?>
-			<?php if ($instance['listingId'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Listing ID Search</a></li><?php } ?>
-			<?php if ($instance['openHouses'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Open Houses</a></li><?php } ?>
-			<?php if ($instance['suppListings'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Supplemental Listings</a></li><?php } ?>
-			<?php if ($instance['soldPend'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Sold/Pending Listings</a></li><?php } ?>
-			<?php if ($instance['mortCalc'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Mortgage Calculator</a></li><?php } ?>
-			<?php if ($instance['homeVal'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Home Valuation Request</a></li><?php } ?>
-			<?php if ($instance['agentLogin'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Agent Login</a></li><?php } ?>
-			<?php if ($instance['idxSitemap'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">IDX Sitemap</a></li><?php } ?>
-			<?php if ($instance['searchCity'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Search by City</a></li><?php } ?>
+			<?php if ($instance['listingId'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/listingIDSearch.php">Listing ID Search</a></li><?php } ?>
+			<?php if ($instance['openHouses'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/featuredOpenHouses.php">Open Houses</a></li><?php } ?>
+			<?php if ($instance['suppListings'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/supplemental.php">Supplemental Listings</a></li><?php } ?>
+			<?php if ($instance['soldPend'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/soldPending.php">Sold/Pending Listings</a></li><?php } ?>
+			<?php if ($instance['mortCalc'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/mortgage.php">Mortgage Calculator</a></li><?php } ?>
+			<?php if ($instance['homeVal'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/homeValue.php">Home Valuation Request</a></li><?php } ?>
+			<?php if ($instance['agentLogin'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/login.php">Agent Login</a></li><?php } ?>
+			<?php if ($instance['idxSitemap'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/sitemap.php">IDX Sitemap</a></li><?php } ?>
+			<?php if ($instance['searchCity'] == 'on') { ?><li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/searchByCity.php">Search by City</a></li><?php } ?>
 		</ul>
 		<?php echo $after_widget;
 	}

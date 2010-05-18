@@ -16,10 +16,10 @@ function idx_broker_admin_page() {
 				<label for="idx_broker_cid">Customer Identification Number (CID): </label><a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
 				<input style="float: right;" name="idx_broker_cid" type="text" id="idx_broker_cid" value="<?php echo get_option('idx_broker_cid'); ?>" />
 			</li>
-			<!--<li style="height: 25px;">-->
-			<!--	<label for="idx_broker_pass">Your IDX Broker Password:</label> <a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>-->
-			<!--	<input style="float: right;" name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php //echo get_option('idx_broker_pass'); ?>" />-->
-			<!--</li>-->
+			<li style="height: 25px;">
+				<label for="idx_broker_pass">Your IDX Broker Password:</label> <a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<input style="float: right;" name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php echo get_option('idx_broker_pass'); ?>" />
+			</li>
 			<li style="height: 25px;">
 				<label for="idx_broker_domain">Your Website Domain (subdomain.domain.com):</label> <a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
 				<input style="float: right;" name="idx_broker_domain" type="text" id="idx_broker_domain" size="30" value="<?php echo get_option('idx_broker_domain'); ?>" />
@@ -90,7 +90,7 @@ function idx_broker_admin_page() {
 		</ul>
 		
 		<input type="hidden" name="action" value="update" />
-		<input type="hidden" name="page_options" value="idx_broker_cid,<!--idx_broker_pass-->,idx_broker_domain,idx_broker_basicSearchLink,idx_broker_basicSearchLabel,idx_broker_advancedSearchLink,idx_broker_advancedSearchLabel,idx_broker_mapSearchLink,idx_broker_mapSearchLabel,idx_broker_addressSearchLink,idx_broker_addressSearchLabel,idx_broker_listingSearchLink,idx_broker_listingSearchLabel,idx_broker_featuredLink,idx_broker_featuredLabel,idx_broker_soldPendLink,idx_broker_soldPendLabel" />		
+		<input type="hidden" name="page_options" value="idx_broker_cid,idx_broker_pass,idx_broker_domain,idx_broker_basicSearchLink,idx_broker_basicSearchLabel,idx_broker_advancedSearchLink,idx_broker_advancedSearchLabel,idx_broker_mapSearchLink,idx_broker_mapSearchLabel,idx_broker_addressSearchLink,idx_broker_addressSearchLabel,idx_broker_listingSearchLink,idx_broker_listingSearchLabel,idx_broker_featuredLink,idx_broker_featuredLabel,idx_broker_soldPendLink,idx_broker_soldPendLabel" />		
 		<p>
 			<span style="float: left; color:#21759B; font-weight: bold; " id="status"></span>
 			<input style="float: right;" type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
