@@ -249,44 +249,6 @@ class widget_idxLinks extends WP_Widget {
 
 add_action('widgets_init', create_function('', 'return register_widget("widget_idxLinks");'));
 
-/*		simplle console
- *
- */
-
-class widget_console extends WP_Widget {
-	
-	function widget_console() {
-		
-		$widget_ops = array( 'classname' => 'widget_console', 'description' => __( "Console" ) );
-		$this->WP_Widget('console', __('Console'), $widget_ops);
-		
-	}
-	function widget($args, $instance) {
-		
-		extract($args);
-		
-		echo $before_widget;
-		echo $before_title;
-		echo 'Console';
-		echo $after_title;
-		
-		// place console code here
-
-		echo $after_widget;
-
-	}
-	
-	function update($new_instance, $old_instance) {
-		return $new_instance;
-	}
-	
-	function form($instance) {
-		echo idx_get_wrapper('header');
-	}
-}
-
-add_action('widgets_init', create_function('', 'return register_widget("widget_console");'));
-
 
 /*		widget_idxSlideshow();
  *
