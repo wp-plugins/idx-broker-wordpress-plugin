@@ -56,6 +56,11 @@ function idx_broker_remove() {
 	delete_option("idx_broker_featuredLabel");
 	delete_option("idx_broker_soldPendLink");
 	delete_option("idx_broker_soldPendLabel");
+	
+	
+	// @todo
+	// add main nav sanitation code
+	
 }
 
 if ( is_admin() ){
@@ -880,6 +885,40 @@ function idxUpdateLinks() {
 
 add_action('wp_ajax_idxUpdateLinks', 'idxUpdateLinks' );
 
+function idxUpdateWrapper () {
+	
+	$url = "http://www.idxbroker.com/wordpress/";
+	
+	$curl_handle = curl_init();
+    curl_setopt( $curl_handle, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+    curl_setopt( $curl_handle, CURLOPT_URL, $url );
+    curl_setopt( $curl_handle, CURLOPT_FOLLOWLOCATION, true );
+    curl_setopt( $curl_handle, CURLOPT_ENCODING, "" );
+    curl_setopt( $curl_handle, CURLOPT_AUTOREFERER, true );
+	curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
+    curl_setopt( $curl_handle, CURLOPT_MAXREDIRS, 10 );
+	$wrapper = curl_exec($curl_handle);
+	curl_close($curl_handle);
+	
+	$header = substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
+	$footer = substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
+	
+	$headerFile = "../wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php";
+	$fhHead = fopen($headerFile, 'w') or die("Can't open file");
+	fwrite($fhHead, $header);
+	fclose($fhHead);
+	
+	$footerFile = "../wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php";
+	$fhFoot = fopen($footerFile, 'w') or die("Can't open file");
+	fwrite($fhFoot, $footer);
+	fclose($fhFoot);
+	
+	die();
+	
+}
+
+add_action('wp_ajax_idxUpdateWrapper', 'idxUpdateWrapper' );
+
 function errorCheck() {
 	
 	// get values of options
@@ -1088,5 +1127,14 @@ function idx_filter_links_to_pages ($link, $post) {
 }
 
 add_filter( 'page_link', 'idx_filter_links_to_pages', 20, 2 );
+
+
+function idx_start () {
+	 echo '<div id="idxStart" style="display: none;"></div>';
+}
+
+function idx_stop () {
+	echo '<div id="idxStop" style="display: none;"></div>';
+}
 
 ?>

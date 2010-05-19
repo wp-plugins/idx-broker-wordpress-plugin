@@ -94,6 +94,7 @@ function idx_broker_admin_page() {
 		<p>
 			<span style="float: left; color:#21759B; font-weight: bold; " id="status"></span>
 			<input style="float: right;" type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
+			<input id="updateWrapper" type="submit" style='float: right;' value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" />
 			<div style="clear:both;"></div>
 		</p>	
 	

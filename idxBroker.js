@@ -2,13 +2,15 @@ jQuery(document).ready(function(){
     
     // when the save changes button is clicked
     
+    var ajax_load = "<img src='/images/ajax-loader.gif' />";
+    var ajaxPath = jQuery('#saveChanges').attr('ajax');
+    
     jQuery('#saveChanges').click(function(event){
 
         // prevent the default action as we need to save the links to the db first.
         event.preventDefault();
         
         // place a typical ajax loading gif on the screen so the user knows that something is actually happening
-        var ajax_load = "<img src='/images/ajax-loader.gif' />";
 
         // give the user a pseudo status console so they know something is happening
         var status = jQuery(this).siblings('#status')
@@ -35,7 +37,6 @@ jQuery(document).ready(function(){
         var soldPendLabel = jQuery('.idx_broker_soldPendLabel').val();
 
         // get the path of the ajax handling script from a custom attribute on the save changes button
-        var ajaxPath = jQuery(this).attr('ajax');
 
         // place our ajax request
         jQuery.get(
@@ -58,10 +59,30 @@ jQuery(document).ready(function(){
                 "soldPendLabel": soldPendLabel
             },
             function(responseText){
-                // when the ajax is complete, then change the state of teh psuedo status console and submit the form like normal
+                // when the ajax is complete, then change the state of the psuedo status console and submit the form like normal
                 status.html(ajax_load+'Saving Options...');
                 jQuery('#idxOptions').submit();	
             }
         );
     });
+    
+    jQuery('#updateWrapper').click(function(event){
+        
+        event.preventDefault();
+        var blogUrl = jQuery(this).attr('ajax');
+        var status = jQuery(this).siblings('#status')
+        status.html(ajax_load+'Updating Wrapper...');
+        
+        jQuery.get(
+            ajaxPath,
+            {
+                "action": "idxUpdateWrapper",
+                "blogUrl": blogUrl
+            },
+            function(responseText){
+                status.html('Updated Wrapper...');
+            }
+        );
+    });
+    
 });
