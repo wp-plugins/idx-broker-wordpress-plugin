@@ -2,8 +2,8 @@ jQuery(document).ready(function(){
     
     // when the save changes button is clicked
     
-    ajax_load = "<img src='/images/ajax-loader.gif' />";
-    ajaxPath = jQuery('#saveChanges').attr('ajax');
+    var ajax_load = "<img src='/images/ajax-loader.gif' />";
+    var ajaxPath = jQuery('#saveChanges').attr('ajax');
     
     jQuery('#saveChanges').click(function(event){
 
@@ -70,17 +70,18 @@ jQuery(document).ready(function(){
         
         event.preventDefault();
         var blogUrl = jQuery(this).attr('ajax');
-        jQuery('#status').fadeIn('fast').html(ajax_load+'Updating Wrapper...');
+        jQuery('#wrapperStatus').fadeIn('fast').html(ajax_load+'Updating Wrapper...');
         
         jQuery.get(
             ajaxPath,
             {
-                "action": "idxUpdateWrapper",
-                "blogUrl": blogUrl
+                "action": "idxUpdateWrapper"
             },
             function(responseText){
-                jQuery('#status').html('Updated Wrapper...').fadeOut('slow');
+                jQuery('#wrapperStatus').html('Updated Wrapper...').fadeOut('slow');
+                jQuery('#updateWrapper').val('Wrapper Updated!');
             }
         );
-    }); 
+    });
+    
 });

@@ -102,6 +102,7 @@ function idx_broker_admin_page() {
 	<p>
 		If you have made changes to the appearance of your theme, widget settings, or other design changes you will need to update the wrapper files that the IDX Broker server will use to match your design.  Simply click the 'Update IDX Wrapper' button below and the files will be updated for you.
 	</p>
+	<span style="float: left; color:#21759B; font-weight: bold; " id="wrapperStatus"></span>
 	<input id="updateWrapper" type="submit" style='float: right;' value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" />
 	<div style="clear:both;"></div>
 	<p>

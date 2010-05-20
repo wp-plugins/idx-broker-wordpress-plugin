@@ -9,7 +9,7 @@ Author URI: http://www.idxbroker.com
 License: GPL
 */
 
-// ini_set('display_errors', 1);
+ ini_set('display_errors', 1);
 
 /* Runs when plugin is activated */
 register_activation_hook(__FILE__,'idx_broker_install'); 
@@ -248,6 +248,7 @@ class widget_idxLinks extends WP_Widget {
 }
 
 add_action('widgets_init', create_function('', 'return register_widget("widget_idxLinks");'));
+
 
 /*		widget_idxSlideshow();
  *
@@ -903,15 +904,14 @@ function idxUpdateWrapper () {
 	$header = substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
 	$footer = substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
 	
-	$headerFile = "../wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php";
-	$fhHead = fopen($headerFile, 'w') or die("Can't open file");
-	fwrite($fhHead, $header);
-	fclose($fhHead);
+	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
+	$headerFile = $wrapperDir."/header.php";
+	$footerFile = $wrapperDir."/footer.php";
 	
-	$footerFile = "../wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php";
-	$fhFoot = fopen($footerFile, 'w') or die("Can't open file");
-	fwrite($fhFoot, $footer);
-	fclose($fhFoot);
+	chmod($wrapperDir, 0777);
+	
+	file_put_contents($headerFile, $header) or die("Could not save header...");
+	file_put_contents($footerFile, $footer) or die("Could not save footer...");
 	
 	die();
 	
