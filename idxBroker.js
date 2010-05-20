@@ -2,8 +2,8 @@ jQuery(document).ready(function(){
     
     // when the save changes button is clicked
     
-    ajax_load = "<img src='/images/ajax-loader.gif' />";
-    ajaxPath = jQuery('#saveChanges').attr('ajax');
+    var ajax_load = "<img src='/images/ajax-loader.gif' />";
+    var ajaxPath = jQuery('#saveChanges').attr('ajax');
     
     jQuery('#saveChanges').click(function(event){
 
@@ -82,5 +82,6 @@ jQuery(document).ready(function(){
                 jQuery('#status').html('Updated Wrapper...').fadeOut('slow');
             }
         );
-    }); 
+    });
+    
 });
