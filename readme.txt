@@ -1,7 +1,10 @@
 === IDX Broker Wordpress Plugin ===
-Author: IDX Broker (Jason Boness)
+Author: IDX Broker
+Contributors: highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx
+Requires at least: 2.8
+Tested up to: 2.9.2
 Stable tag: 1.2.0.1
 
 == Description ==
@@ -19,7 +22,7 @@ Getting Started
 Existing IDX Broker clients may simply enter their IDX Broker client ID and IDX subdomain to get started. New IDX Broker clients will receive the required client ID and subdomain in a welcome email.
 
 Indexable Listings
-
+IDE
 All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and  details pages, and provide you with IDX Broker tools that will make those titles and descriptions update automatically via MLS data. You are also able to customize some URLs, titles, and descriptions to match your keyword strategy. 
 
 Custom Results Landing Pages
@@ -71,6 +74,13 @@ Simply contact us and request a new global wrapper. We will take your site desig
 5. Plugin Admin screen. 'screenshot-5.png'
 6. IDX Widget Admin - myAgent iPhone App. 'screenshot-6.png'
 7. IDX system links Widget. 'screenshot-7.png'
+
+== Upgrade Notice ==
+
+= 1.2 =
+
+Allows automatic header and footer include generation for the IDX Broker system
+
 
 == Changelog ==
 
