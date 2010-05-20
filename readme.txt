@@ -2,7 +2,7 @@
 Author: IDX Broker
 Contributors: highjump76
 Author URL: http://www.idxbroker.com
-Tags: idx, real estate, search, widget, wordpress, wordpress idx
+Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8
 Tested up to: 2.9.2
 Stable tag: 1.2.0.1
