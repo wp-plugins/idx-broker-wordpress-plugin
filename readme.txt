@@ -2,7 +2,7 @@
 Author: IDX Broker (Jason Boness)
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx
-Stable tag: 1.2.0.0
+Stable tag: 1.1.0.2
 
 == Description ==
 
