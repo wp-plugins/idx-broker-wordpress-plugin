@@ -4,7 +4,7 @@ function idx_broker_admin_page() {
 
 <script src="<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/idxBroker.js" type="text/javascript"></script>
 
-<div class="wrap" style="width: 700px;">
+<div class="wrap" style="width: 800px;">
 	<h2>IDX Broker Plugin Options</h2>
 	
 	<h3>General Settings</h3>
@@ -94,12 +94,27 @@ function idx_broker_admin_page() {
 		<p>
 			<span style="float: left; color:#21759B; font-weight: bold; " id="status"></span>
 			<input style="float: right;" type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
-			<input id="updateWrapper" type="submit" style='float: right;' value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" />
+
 			<div style="clear:both;"></div>
-		</p>	
-	
+		</p>
 	</form>
 	
+	<p>
+		If you have made changes to the appearance of your theme, widget settings, or other design changes you will need to update the wrapper files that the IDX Broker server will use to match your design.  Simply click the 'Update IDX Wrapper' button below and the files will be updated for you.
+	</p>
+	<input id="updateWrapper" type="submit" style='float: right;' value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" />
+	<div style="clear:both;"></div>
+	<p>
+		Here are the include paths to your IDX Wrappers for the IDX System:
+	</p>
+	<div>
+		<p style="font-weight: bold;">Header File:</p>
+		<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
+	</div>
+	<div>
+		<p style="font-weight: bold;">Footer File:</p>
+		<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
+	</div>
 	
 </div>
 

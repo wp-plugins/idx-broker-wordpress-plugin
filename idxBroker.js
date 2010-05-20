@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
 
         // give the user a pseudo status console so they know something is happening
         var status = jQuery(this).siblings('#status')
-        status.html(ajax_load+'Saving Links...');
+        status.fadeIn('fast').html(ajax_load+'Saving Links...');
 
         // get info from the page so that we can build out our ajax request
         
@@ -70,8 +70,7 @@ jQuery(document).ready(function(){
         
         event.preventDefault();
         var blogUrl = jQuery(this).attr('ajax');
-        var status = jQuery(this).siblings('#status')
-        status.html(ajax_load+'Updating Wrapper...');
+        jQuery('#status').fadeIn('fast').html(ajax_load+'Updating Wrapper...');
         
         jQuery.get(
             ajaxPath,
@@ -80,9 +79,8 @@ jQuery(document).ready(function(){
                 "blogUrl": blogUrl
             },
             function(responseText){
-                status.html('Updated Wrapper...');
+                jQuery('#status').html('Updated Wrapper...').fadeOut('slow');
             }
         );
-    });
-    
+    }); 
 });
