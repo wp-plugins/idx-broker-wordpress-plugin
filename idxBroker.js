@@ -1,10 +1,30 @@
 jQuery(document).ready(function(){
     
-    // when the save changes button is clicked
-    
+    // ajax loading gif
     var ajax_load = "<img src='/images/ajax-loader.gif' />";
+    
+    // path to the admin ajax file
     var ajaxPath = jQuery('#saveChanges').attr('ajax');
     
+    // url of the blog
+    var blogUrl = jQuery('#blogUrl').attr('ajax');
+    
+    // expand collapse the advanced section
+    
+    jQuery('.expand').attr({ title: "Click to Expand/Collapse" });
+    
+    jQuery('#advancedHead').click(function() {
+        jQuery(this).next().slideToggle('fast');
+        var content = jQuery(this).find('.expand').html();
+        if (content == '[+]') {
+            jQuery(this).find('.expand').html('[-]');
+        } else {
+            jQuery(this).find('.expand').html('[+]');
+        }
+    });
+    
+    // when the save changes button is clicked
+
     jQuery('#saveChanges').click(function(event){
 
         // prevent the default action as we need to save the links to the db first.
@@ -66,20 +86,27 @@ jQuery(document).ready(function(){
         );
     });
     
+    // fire the update wrapper function
+    
     jQuery('#updateWrapper').click(function(event){
         
         event.preventDefault();
-        var blogUrl = jQuery(this).attr('ajax');
+        var blogUrl = jQuery(this).attr('ajax') + '/';
         jQuery('#wrapperStatus').fadeIn('fast').html(ajax_load+'Updating Wrapper...');
-        
+
         jQuery.get(
             ajaxPath,
             {
-                "action": "idxUpdateWrapper"
+                "action": "idxUpdateWrapper",
+                "url": blogUrl
             },
             function(responseText){
-                jQuery('#wrapperStatus').html('Updated Wrapper...').fadeOut('slow');
-                jQuery('#updateWrapper').val('Wrapper Updated!');
+                
+                if(responseText != '0'){
+                    jQuery('#wrapperStatus').html('Verified!').css('color', 'green');
+                } else {
+                    jQuery('#wrapperStatus').html('!Error <a href="http://www.idxbroker.com/support/kb/questions/291/">How do I fix this?</a>').css('color', 'red');
+                }
             }
         );
     });

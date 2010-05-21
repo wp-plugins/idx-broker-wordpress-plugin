@@ -10,6 +10,7 @@ function idx_broker_admin_page() {
 	<h3>General Settings</h3>
 	
 	<form method="post" action="options.php" id="idxOptions">
+		<div id="blogUrl" style="display: none;" ajax="<?php bloginfo('wpurl'); ?>"></div>
 		<?php wp_nonce_field('update-options'); ?>
 		<ul>
 			<li style="height: 25px;">
@@ -99,22 +100,31 @@ function idx_broker_admin_page() {
 		</p>
 	</form>
 	
-	<p>
-		If you have made changes to the appearance of your theme, widget settings, or other design changes you will need to update the wrapper files that the IDX Broker server will use to match your design.  Simply click the 'Update IDX Wrapper' button below and the files will be updated for you.
-	</p>
-	<span style="float: left; color:#21759B; font-weight: bold; " id="wrapperStatus"></span>
-	<input id="updateWrapper" type="submit" style='float: right;' value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" />
-	<div style="clear:both;"></div>
-	<p>
-		Here are the include paths to your IDX Wrappers for the IDX System:
-	</p>
-	<div>
-		<p style="font-weight: bold;">Header File:</p>
-		<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
+	<div id="advancedHead" style="cursor: pointer;">
+		<span class="expand">[+] </span> Advanced
 	</div>
-	<div>
-		<p style="font-weight: bold;">Footer File:</p>
-		<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
+	
+	<div id="advanced" style="display: none; padding-bottom: 15px;">
+		<p>
+			For Advanced Users Only: This section provides you with the tools necessary to synchronize your IDX pages with changes made to your theme. Read <a href="http://www.idxbroker.com/support/kb/questions/288/">this article</a> for detailed instructions.
+		</p>
+		
+		<div id="id">
+			Step 1: <input id="updateWrapper" type="submit" style=''value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" /><span style="color:#21759B; font-weight: bold;" id="wrapperStatus"></span>
+		</div>
+		
+		<div id="id">
+			Step 2: Copy and paste the Header and Footer URLs below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/290/">How do I do this?</a>
+			<div>
+				<p style="font-weight: bold;">Header File:</p>
+				<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
+			</div>
+			<div>
+				<p style="font-weight: bold;">Footer File:</p>
+				<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
+			</div>	
+		</div>
+
 	</div>
 	
 </div>

@@ -9,7 +9,7 @@ Author URI: http://www.idxbroker.com
 License: GPL
 */
 
- ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 
 /* Runs when plugin is activated */
 register_activation_hook(__FILE__,'idx_broker_install'); 
@@ -886,14 +886,104 @@ function idxUpdateLinks() {
 
 add_action('wp_ajax_idxUpdateLinks', 'idxUpdateLinks' );
 
+
+/*
+*	We need to place a flag to let us know where to start the removal of the
+*	content area to replace with IDX content.  To do so we just echo an empty
+*	div that is set to display: none
+*/
+
+function idx_start () {
+	
+	return '<div id="idxStart" style="display: none;"></div>';
+
+}
+
+/*
+*	We need to place a flag to let us know where to end the removal of the
+*	content area to replace with IDX content.  To do so we just echo an empty
+*	div that is set to display: none
+*/
+
+function idx_stop () {
+	
+	return '<div id="idxStop" style="display: none;"></div>';
+
+}
+
+
 function idxUpdateWrapper () {
 	
-	$url = "http://www.idxbroker.com/wordpress/";
+	/*
+	*	Get the raw wrapper string
+	*/
+	
+	$wrapper = getWrapper($_GET['url']);
+	
+	/*
+	*	Parse the wrapper to find the header and footer strings
+	*/
+	
+	$header = parseWrapper($wrapper, 'header');
+	$footer = parseWrapper($wrapper, 'footer');
+	
+	/*
+	*	Set up our wrapper file paths and file names
+	*/
+	
+	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
+	$headerFile = $wrapperDir."/header.php";
+	$footerFile = $wrapperDir."/footer.php";
+	
+	/*
+	*	Save the header file
+	*/
+	
+	if(file_put_contents($headerFile, $header)) {
+		
+		/*
+		*	Save the footer file
+		*/
+		
+		if(file_put_contents($footerFile, $footer)) {
+			
+			die('1');
+			
+			/*
+			*	Couldn't save footer, die with false
+			*/
+			
+		} else {
+			
+			die('0');
+			
+		}
+		
+	/*
+	*	Couldn't save header, die with false
+	*/
+		
+	} else {
+		
+		die('0');
+		
+	}
+	
+}
+
+add_action('wp_ajax_idxUpdateWrapper', 'idxUpdateWrapper' );
+
+// curls the full index page code
+
+function getWrapper($url) {
+	
+	/*
+	*	cUrl the index page of the plog to get the raw html code
+	*/
 	
 	$curl_handle = curl_init();
     curl_setopt( $curl_handle, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
     curl_setopt( $curl_handle, CURLOPT_URL, $url );
-    curl_setopt( $curl_handle, CURLOPT_FOLLOWLOCATION, true );
     curl_setopt( $curl_handle, CURLOPT_ENCODING, "" );
     curl_setopt( $curl_handle, CURLOPT_AUTOREFERER, true );
 	curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
@@ -901,23 +991,128 @@ function idxUpdateWrapper () {
 	$wrapper = curl_exec($curl_handle);
 	curl_close($curl_handle);
 	
-	$header = substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
-	$footer = substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
+	/*
+	*	check to see if our idx stop and stop functions are present, if so return
+	*	the raw wrapper, if not then return false
+	*/
+	
+	if (checkWrapper($wrapper)) {
+		return $wrapper;
+	} else {
+		return false;
+	}
+	
+}
+
+/*
+*	Takes full page code and parses out the header and footer code
+*/
+
+
+function parseWrapper($wrapper, $section) {
+	
+	if ($section == 'header') {
+		
+		/*
+		*	To parse out the string we have to get around earlier versions of php. First we reverse the
+		*	string and look for our reversed start flag.  Then we need to reverse the string back to normal
+		*	and cut out the actual flag from the code. Return the header.
+		*	
+		*/
+		
+		return substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
+		
+	} else if ($section == 'footer') {
+		
+		/*
+		*	This is the same process as returning the header, except we dont need to reverse the string, as
+		*	our flag will be at the beginning of the code block. Return the footer.
+		*/
+		
+		return substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
+		
+	} else {
+		
+		/*
+		*	If the required header/footer parameter is not provided then just die().
+		*/
+		
+		die();
+		
+	}
+	
+}
+
+/*
+*	Checks to see if wrapper has required stop and start function in place,
+*	if so return true, if not return false
+*/ 
+
+function checkWrapper($wrapper) {
+	
+	/*
+	*	Check to see if the start flag is present, if so move on
+	*/
+
+	if( stristr($wrapper, idx_start() )) {
+		
+		/*
+		*	Check to see if the stop flag is present, if so return true
+		*/
+		
+		if(stristr($wrapper, idx_stop() )) {
+			
+			return true;
+		
+		/*
+		*	Stop flag is not present, return false
+		*/
+		
+		} else {
+			
+			return false;
+		
+		}
+		
+	/*
+	*	Start flag is not present, return false
+	*/
+		
+	} else {
+		
+		return false;
+	
+	}
+	
+}
+
+function adminCheckWrapper() {
 	
 	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
 	$headerFile = $wrapperDir."/header.php";
 	$footerFile = $wrapperDir."/footer.php";
 	
-	chmod($wrapperDir, 0777);
-	
-	file_put_contents($headerFile, $header) or die("Could not save header...");
-	file_put_contents($footerFile, $footer) or die("Could not save footer...");
-	
-	die();
+	if(filesize($headerFile) > 0){
+		
+		if(filesize($footerFile) > 0){
+			
+			die('1');
+			
+		} else {
+			
+			die('0');
+			
+		}
+		
+	} else {
+		
+		die('0');
+		
+	}
 	
 }
 
-add_action('wp_ajax_idxUpdateWrapper', 'idxUpdateWrapper' );
+add_action('wp_ajax_adminCheckWrapper', 'adminCheckWrapper' );
 
 function errorCheck() {
 	
@@ -1127,14 +1322,5 @@ function idx_filter_links_to_pages ($link, $post) {
 }
 
 add_filter( 'page_link', 'idx_filter_links_to_pages', 20, 2 );
-
-
-function idx_start () {
-	 echo '<div id="idxStart" style="display: none;"></div>';
-}
-
-function idx_stop () {
-	echo '<div id="idxStop" style="display: none;"></div>';
-}
 
 ?>
