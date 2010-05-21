@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.1.0.2
+Stable tag: 1.2.0.1
 
 == Description ==
 
