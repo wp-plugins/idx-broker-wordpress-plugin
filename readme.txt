@@ -13,7 +13,8 @@ This plugin is exclusively for IDX Broker Clients. It accomplishes three things:
 
 1. Easily drag and drop every IDX Broker Widget into your Wordpress theme.
 2. Easily add IDX links to your menu.
-3. Easily display any neighborhood or subdivision (any custom link) landing pages that you've created using IDX Broker. 
+3. Easily display any neighborhood or subdivision (any custom link) landing pages that you've created using IDX Broker.
+4. Once you have created the look and functionality that you want, syncing your page wrapper to IDX is as easy as a single button click with automatic wrapper creation.
 
 Your IDX results and details pages are hosted by IDX Broker, not your Wordpress blog. As a result, the IDX results and details pages display automated. This will save you both time and effort. 
 
@@ -67,19 +68,19 @@ Simply contact us and request a new global wrapper. We will take your site desig
  
 == Screenshots ==
 
-1. Featured property slideshow Widget. 'screenshot-1.png' screenshot-1.png
-2. myAgent iPhone App Widget. 'screenshot-2.png'
-3. Custom links Widget. 'screenshot-3.png'
-4. IDX Menu links. 'screenshot-4.png'
+1. Featured property slideshow Widget - 'screenshot-1.png'
+2. myAgent iPhone App Widget - 'screenshot-2.png'
+3. Custom links Widget - 'screenshot-3.png'
+4. IDX Menu links - 'screenshot-4.png'
 5. Plugin Admin screen. 'screenshot-5.png'
 6. IDX Widget Admin - myAgent iPhone App. 'screenshot-6.png'
-7. IDX system links Widget. 'screenshot-7.png'
+7. IDX automatic wrapper generation - 'screenshot-7.png'
 
 == Upgrade Notice ==
 
 = 1.2 =
 
-Allows automatic header and footer include generation for the IDX Broker system
+Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
