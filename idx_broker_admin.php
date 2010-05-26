@@ -141,14 +141,14 @@ function idx_broker_admin_page() {
 					*	in the wordpress table to turn it on or off.  
 					*/
 					
-					if(!get_option("idx_broker_".$elements[0])) {
+					if(!get_option("idx_custom_".$elements[0])) {
 						
 						/*
 						*	If the option is not returned then we know that it doesn't exist and that we need to
 						*	create it.
 						*/
 						
-						add_option("idx_broker_".$elements[0], "", "", "yes"); 
+						add_option("idx_custom_".$elements[0], "", "", "yes"); 
 						
 					}
 					
@@ -159,12 +159,12 @@ function idx_broker_admin_page() {
 					*	checked="checked"
 					*/
 					
-					$checkOption = (get_option("idx_broker_".$elements[0]) == 'on')?'checked="checked"':'';
+					$checkOption = (get_option("idx_custom_".$elements[0]) == 'on')?'checked="checked"':'';
 	
 ?>
 					<li style="height: 20px;">
-						<input type="checkbox" name="idx_broker_<? echo $elements[0]; ?>" id="idx_broker_<? echo $elements[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $elements[1]; ?>" />
-						<label for="idx_broker_<? echo $elements[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $elements[0]); ?></label>
+						<input type="checkbox" name="idx_custom_<? echo $elements[0]; ?>" id="idx_custom_<? echo $elements[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $elements[1]; ?>" />
+						<label for="idx_custom_<? echo $elements[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $elements[0]); ?></label>
 					</li>
 <?php
 					/*
@@ -173,7 +173,7 @@ function idx_broker_admin_page() {
 					*	and is used by WP to know which settings to set.
 					*/
 					
-					$forPageOptions .= 'idx_broker_'.$elements[0].',';
+					$forPageOptions .= 'idx_custom_'.$elements[0].',';
 	
 				}
 			}
