@@ -78,14 +78,6 @@ Simply contact us and request a new global wrapper. We will take your site desig
 
 == Upgrade Notice ==
 
-= 1.2.1 =
-
-Added the ability to add custom links into the main navigation.
-Cleaned up admin styling.
-Added custom link cleaning.
-Better commenting on code.
-Better function division.
-
 = 1.2 =
 
 Allows automatic header and footer include generation for the IDX Broker system.
