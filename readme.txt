@@ -23,7 +23,7 @@ Getting Started
 Existing IDX Broker clients may simply enter their IDX Broker client ID and IDX subdomain to get started. New IDX Broker clients will receive the required client ID and subdomain in a welcome email.
 
 Indexable Listings
-IDE
+
 All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and  details pages, and provide you with IDX Broker tools that will make those titles and descriptions update automatically via MLS data. You are also able to customize some URLs, titles, and descriptions to match your keyword strategy. 
 
 Custom Results Landing Pages
