@@ -7,7 +7,7 @@ function idx_broker_admin_page() {
 <div class="wrap" style="width: 800px;">
 	<h2>IDX Broker Plugin Options</h2>
 	
-	<h3>General Settings</h3>
+	<h3 style="border-bottom: 1px solid #ccc;">General Settings</h3>
 	
 	<form method="post" action="options.php" id="idxOptions">
 		<div id="blogUrl" style="display: none;" ajax="<?php bloginfo('wpurl'); ?>"></div>
@@ -27,12 +27,12 @@ function idx_broker_admin_page() {
 			</li>
 		</ul>
 	
-		<h3>Widgets</h3>
+		<h3 style="border-bottom: 1px solid #ccc;">Widgets</h3>
 		
 		<p><a href="widgets.php">Click here</a> to visit the Widgets page and add IDX Broker widgets to your sidebar(s).</p>
 	
 		
-		<h3>Menu Links Tool</h3>
+		<h3 style="border-bottom: 1px solid #ccc;">Menu Links Tool</h3>
 		
 		<p>Many Realtors&reg; add 2-3 links to their site or blog.  Often it's basic or map search, followed by a link to your active listings (Featured Properties).</p>
 		
@@ -91,18 +91,102 @@ function idx_broker_admin_page() {
 		</ul>
 		
 		<input type="hidden" name="action" value="update" />
-		<input type="hidden" name="page_options" value="idx_broker_cid,idx_broker_pass,idx_broker_domain,idx_broker_basicSearchLink,idx_broker_basicSearchLabel,idx_broker_advancedSearchLink,idx_broker_advancedSearchLabel,idx_broker_mapSearchLink,idx_broker_mapSearchLabel,idx_broker_addressSearchLink,idx_broker_addressSearchLabel,idx_broker_listingSearchLink,idx_broker_listingSearchLabel,idx_broker_featuredLink,idx_broker_featuredLabel,idx_broker_soldPendLink,idx_broker_soldPendLabel" />		
+		<input type="hidden" name="customLinks" id="customLinks" value="<? echo $forPageOptions; ?>" />
 		<p>
-			<span style="float: left; color:#21759B; font-weight: bold; " id="status"></span>
+			<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
 			<input style="float: right;" type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
-
 			<div style="clear:both;"></div>
 		</p>
-	</form>
+
+	<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
+		<span class="expand">[+]</span> Custom Links
+	</h3>
 	
-	<div id="advancedHead" style="cursor: pointer;">
-		<span class="expand">[+] </span> Advanced
+	<div id="customLinks" style="display: none; padding-bottom: 15px;">
+		<p>You can add your IDX Broker custom links to your main navigation in this area.  Simply check or uncheck the links to add or remove them, and click the save changes button above. Links can be build in the <a href="http://www.idxco.com/mgmt/">IDX Broker Admin</a>.</p>  
+		<ul>
+<?php
+			/*
+			*	We want the client the ability to place any custom built links in the system
+			*	in the main navigation.  First lets grab them.
+			*/
+
+			$savedSearches = idx_web_services( 'listSavedSearches' );
+			
+			/*
+			*	Now we need to explode the pipe seperated list into individual link - title pairs.
+			*	Then we end up with and extra element, so we need to pop it off the end of the array.
+			*/
+
+			$links = explode("\n", $savedSearches);
+			array_pop($links);
+			
+			/*
+			*	Only enter the next loop if the count of the links is more than 0	
+			*/
+			
+			if(count($links) > 0) {
+			
+				/*
+				*	Now that we have seperated the list into individual array elements, we need to loop
+				*	over them and seperate again by the pipe character ->  link_name | http://link.tiny.url
+				*/
+
+				foreach ($links as $link){
+					
+					$elements = explode("|", $link);
+					
+					/*
+					*	Now we need to do a check to see if we have already added an option for the custom link
+					*	in the wordpress table to turn it on or off.  
+					*/
+					
+					if(!get_option("idx_broker_".$elements[0])) {
+						
+						/*
+						*	If the option is not returned then we know that it doesn't exist and that we need to
+						*	create it.
+						*/
+						
+						add_option("idx_broker_".$elements[0], "", "", "yes"); 
+						
+					}
+					
+					/*
+					*	Now we have gathered all our info, and set up options if they didn't exist, now we
+					*	need to display the custom link and a checkbox to allow the user to toggle it on
+					*	or off.  First we gather the setting, and if it's on then we need to display
+					*	checked="checked"
+					*/
+					
+					$checkOption = (get_option("idx_broker_".$elements[0]) == 'on')?'checked="checked"':'';
+	
+?>
+					<li style="height: 20px;">
+						<input type="checkbox" name="idx_broker_<? echo $elements[0]; ?>" id="idx_broker_<? echo $elements[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $elements[1]; ?>" />
+						<label for="idx_broker_<? echo $elements[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $elements[0]); ?></label>
+					</li>
+<?php
+					/*
+					*	Before we exit our loop, we need to add to a string that will hold the names off all these
+					*	options that need to be set.  This string is needed for the hidden input 'page_options'
+					*	and is used by WP to know which settings to set.
+					*/
+					
+					$forPageOptions .= 'idx_broker_'.$elements[0].',';
+	
+				}
+			}
+?>
+		</ul>
+		<p>If you have removed custom links in the <a href="http://www.idxco.com/mgmt/">IDX Broker Admin</a> that were in your main navigation, you may need to clear them if they remain in your navigation.  Simply click the 'Clear Old Custom Links' to remove them.</p>
+		<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
+		<input style="float: right;" type="submit" value="<?php _e('Clear Old Custom Links') ?>" id="clearLinks" />
+		<div style="clear:both;"></div>
 	</div>
+	<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
+		<span class="expand">[+]</span> Advanced
+	</h3>
 	
 	<div id="advanced" style="display: none; padding-bottom: 15px;">
 		<p>
@@ -126,7 +210,8 @@ function idx_broker_admin_page() {
 		</div>
 
 	</div>
-	
+	<input type="hidden" name="page_options" value="<? echo $forPageOptions; ?>idx_broker_cid,idx_broker_pass,idx_broker_domain,idx_broker_basicSearchLink,idx_broker_basicSearchLabel,idx_broker_advancedSearchLink,idx_broker_advancedSearchLabel,idx_broker_mapSearchLink,idx_broker_mapSearchLabel,idx_broker_addressSearchLink,idx_broker_addressSearchLabel,idx_broker_listingSearchLink,idx_broker_listingSearchLabel,idx_broker_featuredLink,idx_broker_featuredLabel,idx_broker_soldPendLink,idx_broker_soldPendLabel" />
+	</form>
 </div>
 
 <?php

@@ -3,24 +3,41 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.2
+Version: 1.2.1
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
 */
 
+/*
+*	Used for debugging purposes
+*/
+
 //ini_set('display_errors', 1);
 
-/* Runs when plugin is activated */
+/*
+*	Runs when plugin is activated
+*/
+
 register_activation_hook(__FILE__,'idx_broker_install'); 
 
-/* Runs on plugin deactivation*/
+/*
+*	Runs on plugin deactivation
+*/
+
 register_deactivation_hook( __FILE__, 'idx_broker_remove');
 
+/*
+*	This function runs on plugin activation.  It sets up all options that will need to be
+*	saved that we know of on install, including cid, pass, domain, and main nav links from
+* 	the idx broker system.
+*/
+
 function idx_broker_install() {
-	add_option("idx_broker_cid", '', '', 'yes');		// client identification number
-	add_option("idx_broker_pass", '', '', 'yes');		// client password
-	add_option("idx_broker_domain", '', '', 'yes');		// domain of client website
+	
+	add_option("idx_broker_cid", '', '', 'yes');		
+	add_option("idx_broker_pass", '', '', 'yes');		
+	add_option("idx_broker_domain", '', '', 'yes');		
 	add_option("idx_broker_basicSearchLink", '', '', 'yes');
 	add_option("idx_broker_basicSearchLabel", '', '', 'yes');
 	add_option("idx_broker_advancedSearchLink", '', '', 'yes');
@@ -36,6 +53,13 @@ function idx_broker_install() {
 	add_option("idx_broker_soldPendLink", '', '', 'yes');
 	add_option("idx_broker_soldPendLabel", '', '', 'yes');
 }
+
+/*
+*	This function runs on plugin deactivation.  It removes all options that were used to
+*	save that we knew of on install, including cid, pass, domain, and main nav links from
+* 	the idx broker system.  We also need to remove all links in the main table that were
+* 	added through the admin.
+*/
 
 function idx_broker_remove() {
 	// removes options on plugin uninstallation
@@ -63,13 +87,921 @@ function idx_broker_remove() {
 	
 }
 
+/*
+*	This runs if we are in the admin.  We include a seperate file for the admin interfac: idx_broker_admin.php
+*/
+
 if ( is_admin() ){
+	
 	function idx_broker_admin() {
-		include('idx_broker_admin.php');				// file that provides the admin interface
+		
+		include('idx_broker_admin.php');
+
 		add_options_page('IDX Broker Plugin Options', 'IDX Broker Plugin', 'administrator', 'idx-broker', 'idx_broker_admin_page');
 	}
+	
+	/*
+	*	This adds the IDX Broker Admin page link in the WP admin interface
+	*/
+	
 	add_action('admin_menu', 'idx_broker_admin');	
 }
+
+/*		idxUpdateLinks();
+ *
+ *		Manages IDX links in the header nav.
+ *		
+ */
+
+function idxUpdateLinks() {
+	
+	/*
+	*	The global WP object
+	*/
+	
+	global $wpdb;
+	
+	/*
+	*	 These arrays how the current state of the links in the admin, and also the labels
+	*	 of each of the links if the client wants to customize them, passed through a $_GET
+	*	 ajax call.  We build these out to easily loop through them all.
+	*/
+	
+	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'] );
+	$labels = array( 'basic' => $_GET['basicLabel'],'advanced' => $_GET['advancedLabel'], 'map' => $_GET['mapLabel'], 'address' => $_GET['addressLabel'], 'listing' => $_GET['listingLabel'], 'featured' => $_GET['featuredLabel'], 'soldPend' => $_GET['soldPendLabel'] );
+
+	/*
+	*	Loop through all the link so we can manage them one by one.
+	*/
+
+	foreach($links as $type => $state) {
+		
+		/*
+		*	Were going to add a prefix here so that we can easily distinguish
+		*	these links later in the table to clean them out or whatever we
+		*	would want to do with them.
+		*/
+		
+		$where = 'idx_main_'.$type;
+		
+		/*
+		*	If the value of the link's checkbox is true.
+		*/
+		
+		if ($state == "true") {
+			
+			/*
+			*	Do different things based on what link we are going to work with.  If a custom label is not set
+			*	then we set a default one.  We also need to build out each link URL from the settings in the
+			*	admin.
+			*/
+			
+			switch($type){
+				
+				/*
+				* Basic Search Link
+				*/
+				
+				case "basic":
+					$label = ($labels[$type] != '')?$labels[$type]:"Basic Search";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/basicSearch.php";
+					break;
+				
+				/*
+				*	Advanced Search Link
+				*/
+				
+				case "advanced":
+					
+					$label = ($labels[$type] != '')?$labels[$type]:"Advanced Search";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/advancedSearch.php";
+					break;
+				
+				/*
+				*	Map Search Link
+				*/
+				
+				case "map":
+					
+					$label = ($labels[$type] != '')?$labels[$type]:"Map Search";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/mapSearch.php";
+					break;
+				
+				/*
+				* 	Address Search Link
+				*/
+				
+				case "address":
+					
+					$label = ($labels[$type] != '')?$labels[$type]:"Address Search";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/addressSearch.php";
+					break;
+				
+				/*
+				*	Listing Search Link
+				*/
+				
+				case "listing":
+					
+					$label = ($labels[$type] != '')?$labels[$type]:"Listing Search";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/listingIDSearch.php";
+					break;
+				
+				/*
+				*	Featured Properties Link
+				*/
+				
+				case "featured":
+					
+					$label = ($labels[$type] != '')?$labels[$type]:"Featured Properties";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/featured.php";
+					break;
+				
+				/*
+				* 	Sold and Pending Link
+				*/
+				
+				case "soldPend":
+					
+					$label = ($labels[$type] != '')?$labels[$type]:"Sold/Pending Properties";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/soldPending.php";
+					break;
+				
+			}
+			
+			/*
+			*	 So in order to know which type of query to do, we need to see if
+			*	 the link already exists in the table. If so, then we UPDATE, if not
+			*	 then we need to INSERT INTO.
+			*/
+			
+			$current = mysql_query( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$where' " );
+			$row = mysql_fetch_array($current);
+			
+			/*
+			*	The number of rows returned is more than none, so we do an UPDATE. We need to
+			*	write into two tables as required by WP and our filter.
+			*/
+			
+			if(mysql_num_rows($current) > 0){
+				
+				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $where, $row[ID] ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $url, $row[ID] ) );
+			
+			/*
+			* 	There are no rows returned, so the links don't exist yet, so we need to INSERT INTO.
+			*/
+			
+			} else {
+				
+				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $where ) );
+				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $url, mysql_insert_id() ) );
+				
+			}
+			
+		/*
+		* 	The current state of the checkbox is FALSE, so we need to check if the link
+		* 	is inside the table already.
+		*/
+			
+		} else {
+			
+			/*
+			*	Query the table to see if the links already exist.
+			*/
+			
+			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$where' " );
+			$row = mysql_fetch_array($current);
+			
+			/*
+			*	If the link exists and the client has unchecked it then we know we
+			*	need to delete it from both tables.
+			*/
+			
+			if(mysql_num_rows($current) > 0){
+				
+				mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
+				mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
+				
+			}
+		}
+	}
+	
+	/*
+	*	End without returning anything (AJAX)
+	*/
+	
+	
+	die();
+	
+}
+
+/*
+*	This function will allow users to place custom IDX Broker links into their
+*	main navigation.  This function is called via the admin page and admin-ajax.php 
+*/
+
+function idxUpdateCustomLinks () {
+	
+	/*
+	*	The global wp object
+	*/
+	
+	global $wpdb;
+	
+	/*
+	*	Loop through all the $_GET variables as key -> value pairs
+	*/
+
+	foreach($_GET as $key => $value) {
+		
+		/*
+		*	If we find a key whose value is set to true.
+		*/
+		
+		if($value == 'true'){
+			
+			/*
+			*	Take the key and convert all underscores to spaces.  Then we need to cut
+			*	off the first 11 characters 'idx_broker_' as that was used as a key
+			*	in the admin to save the link states.
+			*/
+			
+			$label = substr(str_replace('_', ' ', $key),11,strlen($key));
+			
+			/*
+			*	Now we can look up the url by using the key with the suffix 'Url' added,
+			*	this is also in our $_GET string.
+			*/
+			
+			$url = $_GET[$key.'Url'];
+			
+			/*
+			*	Now we need to look in the table and see if this entry already exists,
+			*	if it does then we just need to UPDATE, if not, then we INSERT.
+			*/
+			
+			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$key' " );
+			$row = mysql_fetch_array($current);
+
+			if(mysql_num_rows($current) > 0){
+				
+				/*
+				*	The entry already exists, so we can just UPDATE with the new information.
+				*/
+				
+				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $key, $row[ID] ) );
+				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $url, $row[ID] ) );
+				
+			} else {
+				
+				/*
+				*	The entry didn't exist, so we will need to INSERT the new entry.
+				*/
+				
+				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $key ) );
+				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $url, mysql_insert_id() ) );
+				
+			}
+			
+			/*
+			*	If we find a key whose value is false.
+			*/
+			
+		} else {
+			
+			/*
+			*	Lets look up the ID of the entry so we can delete it, if it exists.
+			*/
+			
+			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$key' " );
+			$row = mysql_fetch_array($current);
+			
+			/*
+			*	We found a matching entry
+			*/
+			
+			if(mysql_num_rows($current) > 0){
+				
+				/*
+				*	Delete the unwanted entry in the table.
+				*/
+				
+				mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
+				mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
+
+				
+			}
+		}
+
+		
+	}
+	
+	die();
+	
+}
+
+/*
+*	idx_clearCustomLinks()
+*	We need a way to clear out the custom links as they are managed from the middleware.  This is
+*	because they may be removed in the middleware, but the settings will still remain in the wp
+*	pages, but the controls will disappear in the admin.
+*/
+
+
+function idx_clearCustomLinks () {
+	
+	/*
+	*	First lets get an array of our current custom links, so that we
+	*	can compare the current ones, with what is saved in the wp_posts table.
+	*/
+	
+	$currentCustomLinks = idx_getCustomLinks();
+	
+	/*
+	*	All of our custom links in the db are keyed with an idx_broker_ prefix.  So first
+	*	lets grab all the links we have placed in the table.
+	*/
+	
+	$links = mysql_query( "SELECT `post_name`, `ID` FROM wp_posts" );
+	
+	/*
+	*	Loop through all the posts
+	*/
+	
+	while ($row = mysql_fetch_array($links)) {
+		
+		/*
+		*	Look at the post name and grab the first 11 characters, if it matches the
+		*	key that we have placed on all custom links then we have found one.
+		*/
+		
+		if(substr($row['post_name'], 0, 11) == 'idx_broker_'){
+			
+			/*
+			*	Now that we have found a custom link that has been saved in the table,
+			*	we need to compare it with our current custom links.  So we'll loop over the
+			*	curretnCustomLinks array and do a comparison.
+			*/
+			
+			foreach($currentCustomLinks as $linkInfo){
+				
+				/*
+				*	The first element in each array element is the link name.  To clean up the
+				*	code lets create a variable with the key added to the front for comparison.
+				*/
+				
+				$checkKey = 'idx_broker_' . $linkInfo[0];
+				
+				/*
+				*	Now check the current table custom link with the current links array.  If they
+				*	match then we know we need to leave this custom link alone so that the user
+				*	can manage it through the WP Plugin Admin
+				*/
+				
+				if($checkKey == $row['post_name']){
+					
+					/*
+					*	Build out an array of links that need to stay after our comparison.
+					*/
+					
+					$leaveCustomLink[] = $row['post_name'];
+					
+				}
+			}
+		}
+	}
+	
+	/*
+	*	Query for the links in the table again.
+	*/
+	
+	$links = mysql_query( "SELECT `post_name`, `ID` FROM `wp_posts`" );
+	
+	/*
+	*	Loop through the results of the query.
+	*/
+	
+	while ($row = mysql_fetch_array($links)) {
+		
+		/*
+		*	Check to see if the link is a main link, if not, loop through the custom links that we need to keep,
+		*	declare a variable that will tell us if we need to delete the link.
+		*/
+		
+		if(substr($row['post_name'], 0, 9) == 'idx_main_'){
+			
+			$leaveThisLink = TRUE;
+			
+		} else {
+			
+			$leaveThisLink = FALSE;
+			
+			foreach($leaveCustomLink as $key => $linkName){
+			
+				/*
+				*	Compare what we need to keep to what we have in the table results, and also check to see
+				*	if it's a main link, as we want to keep these.
+				*
+				*/
+		
+				if($row['post_name'] ==  $linkName){
+					
+					/*
+					*	If we find a match then we set a variable telling us that we don't need
+					*	to delete this particular table entry. 
+					*/
+					
+					$leaveThisLink = TRUE;
+					
+				}
+			}
+		}
+		
+		/*
+		*	If we didn't find this link in the saved link array, and we didn't set
+		*	the leaveThisLink variable to TRUE, then delete the link from both tables.
+		*/
+		
+		if (!$leaveThisLink) {
+			
+			mysql_query( "DELETE FROM `wp_posts` WHERE `post_name` = '$row[post_name]' " );
+			mysql_query( "DELETE FROM `wp_postmeta` WHERE `post_id` = '$row[ID]' " );
+			
+		}
+	}
+	
+	/*
+	*	Done, die without returning anything!
+	*/
+	
+	die();
+	
+}
+
+/*
+*	idx_getCustomLinks()
+*	Using our web services function, lets get the custom links built in the middleware,
+*	clean and prepare them, and return them in a new array for use.
+*/
+
+
+function idx_getCustomLinks () {
+
+	/*
+	*	First we need to grab a string of current custom links
+	*	with our web services script.
+	*/
+	
+	$savedSearches = idx_web_services( 'listSavedSearches' );
+	
+	/*
+	*	Build the initial array by seperating by the new link character '\n'
+	*/
+	
+	$lines = explode("\n",$savedSearches);
+	
+	/*
+	*	Loop over the array and seperate the link name and the link url by
+	*	the pipe character "|".  We will save all the links and urls in
+	*	a new array $customLinks.
+	*/
+
+    foreach ($lines as $link) {
+			
+		$customLinks[] = explode("|", $link);
+	
+	}
+	
+	/*
+	*	We always have an extra '/n' in the inital array, so we need to
+	*	pop it off the end as it's useless.
+	*/
+	
+	array_pop($customLinks);
+	
+	/*
+	*	Return our new array of custom links.
+	*/
+	
+	return $customLinks;
+	
+}
+
+
+/*
+*	We need to place a flag to let us know where to start the removal of the
+*	content area to replace with IDX content.  To do so we just echo an empty
+*	div that is set to display: none
+*/
+
+function idx_start () {
+	
+	return '<div id="idxStart" style="display: none;"></div>';
+
+}
+
+/*
+*	We need to place a flag to let us know where to end the removal of the
+*	content area to replace with IDX content.  To do so we just echo an empty
+*	div that is set to display: none
+*/
+
+function idx_stop () {
+	
+	return '<div id="idxStop" style="display: none;"></div>';
+
+}
+
+
+function idxUpdateWrapper () {
+	
+	/*
+	*	Get the raw wrapper string
+	*/
+	
+	$wrapper = getWrapper($_GET['url']);
+	
+	/*
+	*	Parse the wrapper to find the header and footer strings
+	*/
+	
+	$header = parseWrapper($wrapper, 'header');
+	$footer = parseWrapper($wrapper, 'footer');
+	
+	/*
+	*	Set up our wrapper file paths and file names
+	*/
+	
+	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
+	$headerFile = $wrapperDir."/header.php";
+	$footerFile = $wrapperDir."/footer.php";
+	
+	/*
+	*	Save the header file
+	*/
+	
+	if(file_put_contents($headerFile, $header)) {
+		
+		/*
+		*	Save the footer file
+		*/
+		
+		if(file_put_contents($footerFile, $footer)) {
+			
+			die('1');
+			
+			/*
+			*	Couldn't save footer, die with false
+			*/
+			
+		} else {
+			
+			die('0');
+			
+		}
+		
+	/*
+	*	Couldn't save header, die with false
+	*/
+		
+	} else {
+		
+		die('0');
+		
+	}
+	
+}
+
+// curls the full index page code
+
+function getWrapper($url) {
+	
+	/*
+	*	cUrl the index page of the plog to get the raw html code
+	*/
+	
+	$curl_handle = curl_init();
+    curl_setopt( $curl_handle, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+    curl_setopt( $curl_handle, CURLOPT_URL, $url );
+    curl_setopt( $curl_handle, CURLOPT_ENCODING, "" );
+    curl_setopt( $curl_handle, CURLOPT_AUTOREFERER, true );
+	curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
+    curl_setopt( $curl_handle, CURLOPT_MAXREDIRS, 10 );
+	$wrapper = curl_exec($curl_handle);
+	curl_close($curl_handle);
+	
+	/*
+	*	check to see if our idx stop and stop functions are present, if so return
+	*	the raw wrapper, if not then return false
+	*/
+	
+	if (checkWrapper($wrapper)) {
+		return $wrapper;
+	} else {
+		return false;
+	}
+	
+}
+
+/*
+*	Takes full page code and parses out the header and footer code
+*/
+
+
+function parseWrapper($wrapper, $section) {
+	
+	if ($section == 'header') {
+		
+		/*
+		*	To parse out the string we have to get around earlier versions of php. First we reverse the
+		*	string and look for our reversed start flag.  Then we need to reverse the string back to normal
+		*	and cut out the actual flag from the code. Return the header.
+		*	
+		*/
+		
+		return substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
+		
+	} else if ($section == 'footer') {
+		
+		/*
+		*	This is the same process as returning the header, except we dont need to reverse the string, as
+		*	our flag will be at the beginning of the code block. Return the footer.
+		*/
+		
+		return substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
+		
+	} else {
+		
+		/*
+		*	If the required header/footer parameter is not provided then just die().
+		*/
+		
+		die();
+		
+	}
+	
+}
+
+/*
+*	Checks to see if wrapper has required stop and start function in place,
+*	if so return true, if not return false
+*/ 
+
+function checkWrapper($wrapper) {
+	
+	/*
+	*	Check to see if the start flag is present, if so move on
+	*/
+
+	if( stristr($wrapper, idx_start() )) {
+		
+		/*
+		*	Check to see if the stop flag is present, if so return true
+		*/
+		
+		if(stristr($wrapper, idx_stop() )) {
+			
+			return true;
+		
+		/*
+		*	Stop flag is not present, return false
+		*/
+		
+		} else {
+			
+			return false;
+		
+		}
+		
+	/*
+	*	Start flag is not present, return false
+	*/
+		
+	} else {
+		
+		return false;
+	
+	}
+	
+}
+
+/*
+*	adminCheckWrapper()
+*	This function checks to see if we have succesfully added content to
+*	the header.php and footer.php files in the wrapper directory.  Returns
+*	1 on success, 0 on no change.
+*/
+
+function adminCheckWrapper() {
+	
+	/*
+	*	These is the declaration of the wrapper directory, and the file names
+	*	of the header and footer files.
+	*/
+	
+	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
+	$headerFile = $wrapperDir."/header.php";
+	$footerFile = $wrapperDir."/footer.php";
+	
+	/*
+	*	If the file size of the header file is greater than 0.
+	*/
+	
+	if(filesize($headerFile) > 0){
+		
+		/*
+		*	If the file size of the footer file is greater than 0.
+		*/
+		
+		if(filesize($footerFile) > 0){
+			
+			/*
+			*	Both the header and the footer have a filesize that
+			*	is greater than 0, die and return TRUE.
+			*/
+			
+			die('1');
+			
+		} else {
+			
+			die('0');
+			
+		}
+		
+	} else {
+		
+		die('0');
+		
+	}
+	
+}
+
+
+function errorCheck() {
+	
+	/*
+	*	Grab the options for the WP table
+	*/
+	
+	$cid = get_option('idx_broker_cid');
+	$domain = get_option('idx_broker_domain');
+	
+	/*
+	*	We will hold our errors in this array.
+	*/
+	
+	$errors = array();
+	
+	/*
+	*	Check to see if the CID is emtpy, if it's numeric, and if
+	*	it's comprized of 4 digits.
+	*/
+	
+	if (empty($cid) || !is_numeric($cid) ||  (strlen($cid) != 4)) {
+		
+		/*
+		*	Add a string to the error array as we have something wrong with the CID.
+		*/
+		
+		$errors[] = "Please check your Client Identification (CID) in the IDX Broker Plugin Settings for errors.";
+		
+	}
+	
+	/*
+	*	Check to see if the domain is empty
+	*/
+	
+	if (empty($domain)) {
+		
+		/*
+		*	Add a string to the error array as the domain string is empty.
+		*/
+		
+		$errors[] = "Please enter the full domain of IDX hosted pages in the IDX Broker Plugin Settings.";
+		
+	}
+	
+	/*
+	*	Loop over the errors array.
+	*/
+	
+	foreach ($errors as $error){
+		
+		$errorOutput .= "<div style='color: red; margin: 10px 0; font-weight: bold'>".$error."</div";
+		
+	}
+	
+	/*
+	*	Echo anything that is in the errors array out.
+	*/
+	
+	echo $errorOutput;
+	
+}
+
+function idx_web_services( $getService ) {
+
+	// Require the NuSOAP code
+	require_once('nusoap.php');
+	
+	// Create the client instance
+	$host = 'https://idxco.com/services/clientWSDL_1-3.php';
+	$client = new nusoap_client($host);
+	
+	// Check for an error
+	$err = $client->getError();
+	
+	if ($err) {
+		
+		// Display the error
+		echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
+		// At this point, you know the call that follows will fail
+		
+	}
+	
+	// Call the SOAP method
+	$result = $client->call($getService, array('cid' => get_option('idx_broker_cid'),'password' => get_option('idx_broker_pass')));
+	
+	// Check for a fault
+	if ($client->fault) {
+		
+		echo '<h2>Fault</h2><pre>';
+		print_r($result);
+		echo '</pre>';
+		
+	} else {
+		
+		// Check for errors
+		$err = $client->getError();
+		
+		if ($err) {
+			
+			// Display the error
+			echo '<h2>Error</h2><pre>' . $err . '</pre>';
+			
+		} else {
+			
+			return $result;
+		
+		}
+	}
+}
+
+/*
+*	Following three functions mimic the page_links_to plugin and allow the
+*	addition of system and custom links to be added to the main navigation
+*	area.
+*/
+
+function idx_get_post_meta_by_key( $key ) {
+	
+	global $wpdb;
+	return $wpdb->get_results( $wpdb->prepare( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $key ) );
+	
+}
+
+function idx_get_page_links_to_meta () {
+	
+	global $wpdb, $page_links_to_cache, $blog_id;
+
+	if ( !isset( $page_links_to_cache[$blog_id] ) )
+		$links_to = idx_get_post_meta_by_key( '_links_to' );
+	else
+		return $page_links_to_cache[$blog_id];
+
+	if ( !$links_to ) {
+		
+		$page_links_to_cache[$blog_id] = false;
+		return false;
+	
+	}
+
+	foreach ( (array) $links_to as $link )
+		$page_links_to_cache[$blog_id][$link->post_id] = $link->meta_value;
+
+	return $page_links_to_cache[$blog_id];
+	
+}
+
+function idx_filter_links_to_pages ($link, $post) {
+	
+	$page_links_to_cache = idx_get_page_links_to_meta();
+
+	// Really strange, but page_link gives us an ID and post_link gives us a post object
+	$id = ( $post->ID ) ? $post->ID : $post;
+
+	if ( $page_links_to_cache[$id] )
+		$link = esc_url( $page_links_to_cache[$id] );
+
+	return $link;
+
+}
+
+/*
+*	--------- IDX Broker Widgets Section -----------
+*/
+
 
 /*		widget_idxLinks();
  *
@@ -80,12 +1012,20 @@ if ( is_admin() ){
 
 class widget_idxLinks extends WP_Widget {
 	
+	/*
+	*	Constructor for the widget.
+	*/
+	
 	function widget_idxLinks() {
 		
 		$widget_ops = array( 'classname' => 'widget_idxLinks', 'description' => __( "IDX System Links" ) );
 		$this->WP_Widget('idxLinks', __('IDX System Links'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
 	
 	function widget($args, $instance) {
 		
@@ -247,8 +1187,6 @@ class widget_idxLinks extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_idxLinks");'));
-
 
 /*		widget_idxSlideshow();
  *
@@ -259,12 +1197,21 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
 
 class widget_idxSlideshow extends WP_Widget {
 	
+	/*
+	*	Constructor for the widget.
+	*/
+	
 	function widget_idxSlideshow() {
 		
 		$widget_ops = array( 'classname' => 'widget_idxSlideshow', 'description' => __( "IDX Property Slideshow" ) );
 		$this->WP_Widget('idxSlideshow', __('IDX Property Slideshow'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
+	
 	function widget($args, $instance) {
 		
 		extract($args);
@@ -312,8 +1259,6 @@ class widget_idxSlideshow extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_idxSlideshow");'));
-
 /*		widget_idxQs();
  *
  *		Provides a widget to place a property Quick Search Form in two customizable formats, narrow and wide.
@@ -322,12 +1267,20 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
 
 class widget_idxQs extends WP_Widget {
 	
+	/*
+	*	Constructor for the widget.
+	*/
+	
 	function widget_idxQs() {
 		
 		$widget_ops = array( 'classname' => 'widget_idxQs', 'description' => __( "IDX Quick Search" ) );
 		$this->WP_Widget('idxQs', __('IDX Quick Search'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
 	
 	function widget($args, $instance) {
 		
@@ -413,8 +1366,6 @@ class widget_idxQs extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_idxQs");'));
-
 /*		widget_idxFeatAgent();
  *
  *		Provides a widget to place a featured agent section.  Most useful in a IDX Broker multiuser account.
@@ -423,12 +1374,20 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
 
 class widget_idxFeatAgent extends WP_Widget {
 	
+	/*
+	*	Constructor for the widget.
+	*/
+	
 	function widget_idxFeatAgent() {
 		
 		$widget_ops = array( 'classname' => 'widget_idxFeatAgent', 'description' => __( "IDX Featured Agent" ) );
 		$this->WP_Widget('idxFeatAgent', __('IDX Featured Agent'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
 	
 	function widget($args, $instance) {
 		
@@ -479,8 +1438,6 @@ class widget_idxFeatAgent extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_idxFeatAgent");'));
-
 /*		widget_idxWildcardSearch();
  *
  *		Provides a widget to place a wildcard search form.
@@ -489,12 +1446,20 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
 
 class widget_idxWildcardSearch extends WP_Widget {
 	
+	/*
+	*	Constructor for the widget.
+	*/
+	
 	function widget_idxWildcardSearch() {
 		
 		$widget_ops = array( 'classname' => 'widget_idxWildcardSearch', 'description' => __( "IDX Wildcard Search" ) );
 		$this->WP_Widget('widget_idxWildcardSearch', __('IDX Wildcard Search'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
 	
 	function widget($args, $instance) {
 		
@@ -549,8 +1514,6 @@ class widget_idxWildcardSearch extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_idxWildcardSearch");'));
-
 /*		widget_myAgentBadge();
  *
  *		Provides a widget to place a myAgent iphone app badge with embedded agent code.
@@ -558,6 +1521,10 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
  */
 
 class widget_myAgentBadge extends WP_Widget {
+		
+	/*
+	*	Constructor for the widget.
+	*/
 	
 	function widget_myAgentBadge() {
 		
@@ -565,6 +1532,10 @@ class widget_myAgentBadge extends WP_Widget {
 		$this->WP_Widget('myAgentBadge', __('IDX myAgent Badge'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
 	
 	function widget($args, $instance) {
 		
@@ -694,8 +1665,6 @@ class widget_myAgentBadge extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_myAgentBadge");'));
-
 /*		widget_idxLeadLogin();
  *
  *		Provides a widget for client leads to login to their listings manager account.
@@ -704,12 +1673,20 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_m
 
 class widget_idxLeadLogin extends WP_Widget {
 	
+	/*
+	*	Constructor for the widget.
+	*/
+	
 	function widget_idxLeadLogin() {
 		
 		$widget_ops = array( 'classname' => 'widget_idxLeadLogin', 'description' => __( "IDX Lead Login" ) );
 		$this->WP_Widget('idxLeadLogin', __('IDX Lead Login'), $widget_ops);
 		
 	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
 	
 	function widget($args, $instance) {
 		
@@ -778,422 +1755,6 @@ class widget_idxLeadLogin extends WP_Widget {
 	}
 }
 
-add_action('widgets_init', create_function('', 'return register_widget("widget_idxLeadLogin");'));
-
-/*		idxUpdateLinks();
- *
- *		Manages IDX links in the header nav.
- *		
- */
-
-function idxUpdateLinks() {
-	
-	global $wpdb;
-	
-	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'] );
-	$labels = array( 'basic' => $_GET['basicLabel'],'advanced' => $_GET['advancedLabel'], 'map' => $_GET['mapLabel'], 'address' => $_GET['addressLabel'], 'listing' => $_GET['listingLabel'], 'featured' => $_GET['featuredLabel'], 'soldPend' => $_GET['soldPendLabel'] );
-
-	foreach($links as $type => $state) {
-		
-		$where = 'idx_'.$type;
-		
-		if ($state == "true") {
-			
-			switch($type){
-				
-				case "basic":
-					$label = ($labels[$type] != '')?$labels[$type]:"Basic Search";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/basicSearch.php";
-					break;
-				
-				case "advanced":
-					
-					$label = ($labels[$type] != '')?$labels[$type]:"Advanced Search";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/advancedSearch.php";
-					break;
-				
-				case "map":
-					
-					$label = ($labels[$type] != '')?$labels[$type]:"Map Search";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/mapSearch.php";
-					break;
-				
-				case "address":
-					
-					$label = ($labels[$type] != '')?$labels[$type]:"Address Search";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/addressSearch.php";
-					break;
-				
-				case "listing":
-					
-					$label = ($labels[$type] != '')?$labels[$type]:"Listing Search";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/listingIDSearch.php";
-					break;
-				
-				case "featured":
-					
-					$label = ($labels[$type] != '')?$labels[$type]:"Featured Properties";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/featured.php";
-					break;
-				
-				case "soldPend":
-					
-					$label = ($labels[$type] != '')?$labels[$type]:"Sold/Pending Properties";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/soldPending.php";
-					break;
-				
-			}
-			
-			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$where' " );
-			$row = mysql_fetch_array($current);
-			
-			if(mysql_num_rows($current) > 0){
-				
-				//mysql_query( "UPDATE wp_posts SET post_title='$label', post_type='page', post_name='$where' WHERE ID ='$row[ID]'" );
-				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $where, $row[ID] ) );
-				//mysql_query( "UPDATE wp_postmeta SET meta_key = '_links_to', meta_value = '$url' WHERE post_id = '$row[ID]' " );
-				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $url, $row[ID] ) );
-			
-			} else {
-				
-				//mysql_query( "INSERT INTO wp_posts SET post_title='$label', post_type='page', post_name='$where'" );
-				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $where ) );
-				//mysql_query( "INSERT INTO wp_postmeta SET meta_key = '_links_to', meta_value = '$url', post_id = '".mysql_insert_id()."'" );
-				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $url, mysql_insert_id() ) );
-				
-			}
-			
-		} else {
-			
-			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$where' " );
-			//$current = $wpdb->query( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_name = %s", $where ) );
-			$row = mysql_fetch_array($current);
-			
-			if(mysql_num_rows($current) > 0){
-				
-				mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
-				//$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->posts WHERE ID = %d", $row[ID] ) );
-				mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
-				//$wpdb->query( $wpdb->prepare( "DELETE FROM $wpdb->postmeta WHERE post_id = %d", $row[ID] ) );
-				
-			}
-		}
-	}
-	
-	die();
-	
-}
-
-add_action('wp_ajax_idxUpdateLinks', 'idxUpdateLinks' );
-
-
-/*
-*	We need to place a flag to let us know where to start the removal of the
-*	content area to replace with IDX content.  To do so we just echo an empty
-*	div that is set to display: none
-*/
-
-function idx_start () {
-	
-	return '<div id="idxStart" style="display: none;"></div>';
-
-}
-
-/*
-*	We need to place a flag to let us know where to end the removal of the
-*	content area to replace with IDX content.  To do so we just echo an empty
-*	div that is set to display: none
-*/
-
-function idx_stop () {
-	
-	return '<div id="idxStop" style="display: none;"></div>';
-
-}
-
-
-function idxUpdateWrapper () {
-	
-	/*
-	*	Get the raw wrapper string
-	*/
-	
-	$wrapper = getWrapper($_GET['url']);
-	
-	/*
-	*	Parse the wrapper to find the header and footer strings
-	*/
-	
-	$header = parseWrapper($wrapper, 'header');
-	$footer = parseWrapper($wrapper, 'footer');
-	
-	/*
-	*	Set up our wrapper file paths and file names
-	*/
-	
-	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
-	$headerFile = $wrapperDir."/header.php";
-	$footerFile = $wrapperDir."/footer.php";
-	
-	/*
-	*	Save the header file
-	*/
-	
-	if(file_put_contents($headerFile, $header)) {
-		
-		/*
-		*	Save the footer file
-		*/
-		
-		if(file_put_contents($footerFile, $footer)) {
-			
-			die('1');
-			
-			/*
-			*	Couldn't save footer, die with false
-			*/
-			
-		} else {
-			
-			die('0');
-			
-		}
-		
-	/*
-	*	Couldn't save header, die with false
-	*/
-		
-	} else {
-		
-		die('0');
-		
-	}
-	
-}
-
-add_action('wp_ajax_idxUpdateWrapper', 'idxUpdateWrapper' );
-
-// curls the full index page code
-
-function getWrapper($url) {
-	
-	/*
-	*	cUrl the index page of the plog to get the raw html code
-	*/
-	
-	$curl_handle = curl_init();
-    curl_setopt( $curl_handle, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
-    curl_setopt( $curl_handle, CURLOPT_URL, $url );
-    curl_setopt( $curl_handle, CURLOPT_ENCODING, "" );
-    curl_setopt( $curl_handle, CURLOPT_AUTOREFERER, true );
-	curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
-    curl_setopt( $curl_handle, CURLOPT_MAXREDIRS, 10 );
-	$wrapper = curl_exec($curl_handle);
-	curl_close($curl_handle);
-	
-	/*
-	*	check to see if our idx stop and stop functions are present, if so return
-	*	the raw wrapper, if not then return false
-	*/
-	
-	if (checkWrapper($wrapper)) {
-		return $wrapper;
-	} else {
-		return false;
-	}
-	
-}
-
-/*
-*	Takes full page code and parses out the header and footer code
-*/
-
-
-function parseWrapper($wrapper, $section) {
-	
-	if ($section == 'header') {
-		
-		/*
-		*	To parse out the string we have to get around earlier versions of php. First we reverse the
-		*	string and look for our reversed start flag.  Then we need to reverse the string back to normal
-		*	and cut out the actual flag from the code. Return the header.
-		*	
-		*/
-		
-		return substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
-		
-	} else if ($section == 'footer') {
-		
-		/*
-		*	This is the same process as returning the header, except we dont need to reverse the string, as
-		*	our flag will be at the beginning of the code block. Return the footer.
-		*/
-		
-		return substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
-		
-	} else {
-		
-		/*
-		*	If the required header/footer parameter is not provided then just die().
-		*/
-		
-		die();
-		
-	}
-	
-}
-
-/*
-*	Checks to see if wrapper has required stop and start function in place,
-*	if so return true, if not return false
-*/ 
-
-function checkWrapper($wrapper) {
-	
-	/*
-	*	Check to see if the start flag is present, if so move on
-	*/
-
-	if( stristr($wrapper, idx_start() )) {
-		
-		/*
-		*	Check to see if the stop flag is present, if so return true
-		*/
-		
-		if(stristr($wrapper, idx_stop() )) {
-			
-			return true;
-		
-		/*
-		*	Stop flag is not present, return false
-		*/
-		
-		} else {
-			
-			return false;
-		
-		}
-		
-	/*
-	*	Start flag is not present, return false
-	*/
-		
-	} else {
-		
-		return false;
-	
-	}
-	
-}
-
-function adminCheckWrapper() {
-	
-	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
-	$headerFile = $wrapperDir."/header.php";
-	$footerFile = $wrapperDir."/footer.php";
-	
-	if(filesize($headerFile) > 0){
-		
-		if(filesize($footerFile) > 0){
-			
-			die('1');
-			
-		} else {
-			
-			die('0');
-			
-		}
-		
-	} else {
-		
-		die('0');
-		
-	}
-	
-}
-
-add_action('wp_ajax_adminCheckWrapper', 'adminCheckWrapper' );
-
-function errorCheck() {
-	
-	// get values of options
-	$cid = get_option('idx_broker_cid');
-	$domain = get_option('idx_broker_domain');
-	
-	// array that holds our errors
-	$errors = array();
-	
-	// check 
-	if (empty($cid) || !is_numeric($cid) ||  (strlen($cid) != 4)) {
-		
-		$errors[] = "Please check your Client Identification (CID) in the IDX Broker Plugin Settings for errors.";
-		
-	}
-	
-	if (empty($domain)) {
-		
-		$errors[] = "Please enter the full domain of IDX hosted pages in the IDX Broker Plugin Settings.";
-		
-	}
-	
-	foreach ($errors as $error){
-		
-		$errorOutput .= "<div style='color: red; margin: 10px 0; font-weight: bold'>".$error."</div";
-		
-	}
-	
-	echo $errorOutput;
-	
-}
-
-function idx_web_services( $getService ) {
-
-	// Require the NuSOAP code
-	require_once('nusoap.php');
-	
-	// Create the client instance
-	$host = 'https://idxco.com/services/clientWSDL_1-3.php';
-	$client = new nusoap_client($host);
-	
-	// Check for an error
-	$err = $client->getError();
-	
-	if ($err) {
-		
-		// Display the error
-		echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
-		// At this point, you know the call that follows will fail
-		
-	}
-	
-	// Call the SOAP method
-	$result = $client->call($getService, array('cid' => get_option('idx_broker_cid'),'password' => get_option('idx_broker_pass')));
-	
-	// Check for a fault
-	if ($client->fault) {
-		
-		echo '<h2>Fault</h2><pre>';
-		print_r($result);
-		echo '</pre>';
-		
-	} else {
-		
-		// Check for errors
-		$err = $client->getError();
-		
-		if ($err) {
-			
-			// Display the error
-			echo '<h2>Error</h2><pre>' . $err . '</pre>';
-			
-		} else {
-			
-			return $result;
-		
-		}
-	}
-}
-
 /*		widget_idxLeadLogin();
  *
  *		Provides a widget for client leads to login to their listings manager account.
@@ -1229,7 +1790,6 @@ class widget_idxCustomLinks extends WP_Widget {
 		echo $after_title;
 		
 		$savedSearches = idx_web_services( 'listSavedSearches' );
-	
 		$lines = explode("\n",$savedSearches);
 
 ?>
@@ -1274,52 +1834,32 @@ class widget_idxCustomLinks extends WP_Widget {
 	}
 }
 
+/*
+*	Add all actions to the WP system that are IDX Broker Widgets
+*/
+
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxLinks");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxSlideshow");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxQs");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxFeatAgent");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxWildcardSearch");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_myAgentBadge");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxLeadLogin");'));
 add_action('widgets_init', create_function('', 'return register_widget("widget_idxCustomLinks");'));
 
+/*
+*	Add all ajax actions to the WP system.
+*/
 
-function idx_get_post_meta_by_key( $key ) {
-	
-	global $wpdb;
-	return $wpdb->get_results( $wpdb->prepare( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $key ) );
-	
-}
+add_action('wp_ajax_idxUpdateLinks', 'idxUpdateLinks' );
+add_action('wp_ajax_idxUpdateCustomLinks', 'idxUpdateCustomLinks' );
+add_action('wp_ajax_idx_clearCustomLinks', 'idx_clearCustomLinks' );
+add_action('wp_ajax_idxUpdateWrapper', 'idxUpdateWrapper' );
+add_action('wp_ajax_adminCheckWrapper', 'adminCheckWrapper' );
 
-function idx_get_page_links_to_meta () {
-	
-	global $wpdb, $page_links_to_cache, $blog_id;
-
-	if ( !isset( $page_links_to_cache[$blog_id] ) )
-		$links_to = idx_get_post_meta_by_key( '_links_to' );
-	else
-		return $page_links_to_cache[$blog_id];
-
-	if ( !$links_to ) {
-		
-		$page_links_to_cache[$blog_id] = false;
-		return false;
-	
-	}
-
-	foreach ( (array) $links_to as $link )
-		$page_links_to_cache[$blog_id][$link->post_id] = $link->meta_value;
-
-	return $page_links_to_cache[$blog_id];
-	
-}
-
-function idx_filter_links_to_pages ($link, $post) {
-	
-	$page_links_to_cache = idx_get_page_links_to_meta();
-
-	// Really strange, but page_link gives us an ID and post_link gives us a post object
-	$id = ( $post->ID ) ? $post->ID : $post;
-
-	if ( $page_links_to_cache[$id] )
-		$link = esc_url( $page_links_to_cache[$id] );
-
-	return $link;
-
-}
+/*
+*	Add all filters to the WP system.
+*/
 
 add_filter( 'page_link', 'idx_filter_links_to_pages', 20, 2 );
 

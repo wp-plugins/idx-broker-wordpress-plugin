@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8
 Tested up to: 2.9.2
-Stable tag: 1.2
+Stable tag: 1.2.1
 
 == Description ==
 
@@ -77,6 +77,14 @@ Simply contact us and request a new global wrapper. We will take your site desig
 7. IDX automatic wrapper generation - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+
+Added the ability to add custom links into the main navigation.
+Cleaned up admin styling.
+Added custom link cleaning.
+Better commenting on code.
+Better function division.
 
 = 1.2 =
 

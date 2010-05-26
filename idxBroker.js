@@ -13,7 +13,7 @@ jQuery(document).ready(function(){
     
     jQuery('.expand').attr({ title: "Click to Expand/Collapse" });
     
-    jQuery('#advancedHead').click(function() {
+    jQuery('.expandable').click(function() {
         jQuery(this).next().slideToggle('fast');
         var content = jQuery(this).find('.expand').html();
         if (content == '[+]') {
@@ -33,7 +33,7 @@ jQuery(document).ready(function(){
         // place a typical ajax loading gif on the screen so the user knows that something is actually happening
 
         // give the user a pseudo status console so they know something is happening
-        var status = jQuery(this).siblings('#status')
+        var status = jQuery(this).siblings('.status')
         status.fadeIn('fast').html(ajax_load+'Saving Links...');
 
         // get info from the page so that we can build out our ajax request
@@ -56,7 +56,19 @@ jQuery(document).ready(function(){
         var featuredLabel = jQuery('.idx_broker_featuredLabel').val();
         var soldPendLabel = jQuery('.idx_broker_soldPendLabel').val();
 
-        // get the path of the ajax handling script from a custom attribute on the save changes button
+        // need to get the custom links from the form, if any
+        
+        var customLinksString = 'action=idxUpdateCustomLinks&';
+
+        jQuery('.customLink').each(function(){
+            var linkName = jQuery(this).attr('name');
+            var linkState = jQuery(this).is(':checked');
+            var linkUrl = jQuery(this).attr('url');
+            customLinksString += linkName+'='+linkState+'&';
+            customLinksString += linkName+'Url'+'='+linkUrl+'&';
+        });
+        
+        customLinksString = customLinksString.substring(0, customLinksString.length-1);
 
         // place our ajax request
         jQuery.get(
@@ -79,11 +91,39 @@ jQuery(document).ready(function(){
                 "soldPendLabel": soldPendLabel
             },
             function(responseText){
-                // when the ajax is complete, then change the state of the psuedo status console and submit the form like normal
-                status.html(ajax_load+'Saving Options...');
+                jQuery.get(
+                    ajaxPath,
+                    customLinksString,
+                    function(responseText){
+                        // when the ajax is complete, then change the state of the psuedo status console and submit the form like normal
+                        status.html(ajax_load+'Saving Options...');
+                        jQuery('#idxOptions').submit();	
+                    }
+                );
+
+            }
+        );
+    });
+    
+    jQuery('#clearLinks').click(function(event){
+        
+        event.preventDefault();
+        
+        var status = jQuery(this).siblings('.status')
+        status.fadeIn('fast').html(ajax_load+'Cleaning Links...');
+        
+        jQuery.get(
+            ajaxPath,
+            {
+                "action": "idx_clearCustomLinks"
+            },
+            function(responseText){
+                alert('All old links that are no longer in the IDX Broker Admin area have been removed from your navigation.')
+                status.fadeOut();
                 jQuery('#idxOptions').submit();	
             }
         );
+            
     });
     
     // fire the update wrapper function
@@ -110,5 +150,4 @@ jQuery(document).ready(function(){
             }
         );
     });
-    
 });
