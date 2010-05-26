@@ -323,7 +323,7 @@ function idxUpdateCustomLinks () {
 			
 			/*
 			*	Take the key and convert all underscores to spaces.  Then we need to cut
-			*	off the first 11 characters 'idx_broker_' as that was used as a key
+			*	off the first 11 characters 'idx_custom_' as that was used as a key
 			*	in the admin to save the link states.
 			*/
 			
@@ -341,7 +341,7 @@ function idxUpdateCustomLinks () {
 			*	if it does then we just need to UPDATE, if not, then we INSERT.
 			*/
 			
-			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$key' " );
+			$current = mysql_query( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$key' " );
 			$row = mysql_fetch_array($current);
 
 			if(mysql_num_rows($current) > 0){
@@ -419,7 +419,7 @@ function idx_clearCustomLinks () {
 	$currentCustomLinks = idx_getCustomLinks();
 	
 	/*
-	*	All of our custom links in the db are keyed with an idx_broker_ prefix.  So first
+	*	All of our custom links in the db are keyed with an idx_custom_ prefix.  So first
 	*	lets grab all the links we have placed in the table.
 	*/
 	
@@ -436,7 +436,7 @@ function idx_clearCustomLinks () {
 		*	key that we have placed on all custom links then we have found one.
 		*/
 		
-		if(substr($row['post_name'], 0, 11) == 'idx_broker_'){
+		if(substr($row['post_name'], 0, 11) == 'idx_custom_'){
 			
 			/*
 			*	Now that we have found a custom link that has been saved in the table,
@@ -451,7 +451,7 @@ function idx_clearCustomLinks () {
 				*	code lets create a variable with the key added to the front for comparison.
 				*/
 				
-				$checkKey = 'idx_broker_' . $linkInfo[0];
+				$checkKey = 'idx_custom_' . $linkInfo[0];
 				
 				/*
 				*	Now check the current table custom link with the current links array.  If they
@@ -476,13 +476,15 @@ function idx_clearCustomLinks () {
 	*	Query for the links in the table again.
 	*/
 	
-	$links = mysql_query( "SELECT `post_name`, `ID` FROM `wp_posts`" );
+	$links = mysql_query( "SELECT `post_name`, `ID` FROM `wp_posts` WHERE `post_name` LIKE 'idx_custom_%'" );
 	
 	/*
 	*	Loop through the results of the query.
 	*/
 	
 	while ($row = mysql_fetch_array($links)) {
+		
+		echo $row['post_name'];
 		
 		/*
 		*	Check to see if the link is a main link, if not, loop through the custom links that we need to keep,
