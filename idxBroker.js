@@ -118,7 +118,7 @@ jQuery(document).ready(function(){
                 "action": "idx_clearCustomLinks"
             },
             function(responseText){
-                alert('All old links that are no longer in the IDX Broker Admin area have been removed from your navigation.');
+                alert('All old links that are no longer in the IDX Broker Admin area have been removed from your navigation.')
                 status.fadeOut();
                 jQuery('#idxOptions').submit();	
             }

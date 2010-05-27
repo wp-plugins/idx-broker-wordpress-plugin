@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
 Tested up to: 2.9.2
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 == Description ==
 
@@ -80,6 +80,10 @@ Yes. IDX Broker manages your IDX feed by building forms, results, and property d
 7. IDX automatic wrapper generation - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.2.2 =
+
+Cleaned up options page and options registration scripts for forward WP compatability and MU compatability.
 
 = 1.2.1 =
 

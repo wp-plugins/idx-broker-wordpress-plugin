@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.2.1
+Version: 1.2.2
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
@@ -15,17 +15,8 @@ License: GPL
 
 //ini_set('display_errors', 1);
 
-/*
-*	Runs when plugin is activated
-*/
-
-register_activation_hook(__FILE__,'idx_broker_install'); 
-
-/*
-*	Runs on plugin deactivation
-*/
-
-register_deactivation_hook( __FILE__, 'idx_broker_remove');
+add_action('admin_menu', 'idx_broker_menu');
+add_action('admin_menu', 'idx_broker_options_init' );
 
 /*
 *	This function runs on plugin activation.  It sets up all options that will need to be
@@ -33,79 +24,243 @@ register_deactivation_hook( __FILE__, 'idx_broker_remove');
 * 	the idx broker system.
 */
 
-function idx_broker_install() {
+function idx_broker_options_init(){
 	
-	add_option("idx_broker_cid", '', '', 'yes');		
-	add_option("idx_broker_pass", '', '', 'yes');		
-	add_option("idx_broker_domain", '', '', 'yes');		
-	add_option("idx_broker_basicSearchLink", '', '', 'yes');
-	add_option("idx_broker_basicSearchLabel", '', '', 'yes');
-	add_option("idx_broker_advancedSearchLink", '', '', 'yes');
-	add_option("idx_broker_advancedSearchLabel", '', '', 'yes');
-	add_option("idx_broker_mapSearchLink", '', '', 'yes');
-	add_option("idx_broker_mapSearchLabel", '', '', 'yes');
-	add_option("idx_broker_addressSearchLink", '', '', 'yes');
-	add_option("idx_broker_addressSearchLabel", '', '', 'yes');
-	add_option("idx_broker_listingSearchLink", '', '', 'yes');
-	add_option("idx_broker_listingSearchLabel", '', '', 'yes');
-	add_option("idx_broker_featuredLink", '', '', 'yes');
-	add_option("idx_broker_featuredLabel", '', '', 'yes');
-	add_option("idx_broker_soldPendLink", '', '', 'yes');
-	add_option("idx_broker_soldPendLabel", '', '', 'yes');
-}
-
-/*
-*	This function runs on plugin deactivation.  It removes all options that were used to
-*	save that we knew of on install, including cid, pass, domain, and main nav links from
-* 	the idx broker system.  We also need to remove all links in the main table that were
-* 	added through the admin.
-*/
-
-function idx_broker_remove() {
-	// removes options on plugin uninstallation
-	delete_option('idx_broker_cid');
-	delete_option('idx_broker_pass');
-	delete_option('idx_broker_domain');
-	delete_option("idx_broker_basicSearchLink");
-	delete_option("idx_broker_basicSearchLabel");
-	delete_option("idx_broker_advancedSearchLink");
-	delete_option("idx_broker_advancedSearchLabel");
-	delete_option("idx_broker_mapSearchLink");
-	delete_option("idx_broker_mapSearchLabel");
-	delete_option("idx_broker_addressSearchLink");
-	delete_option("idx_broker_addressSearchLabel");
-	delete_option("idx_broker_listingSearchLink");
-	delete_option("idx_broker_listingSearchLabel");
-	delete_option("idx_broker_featuredLink");
-	delete_option("idx_broker_featuredLabel");
-	delete_option("idx_broker_soldPendLink");
-	delete_option("idx_broker_soldPendLabel");
-	
-	
-	// @todo
-	// add main nav sanitation code
-	
-}
-
-/*
-*	This runs if we are in the admin.  We include a seperate file for the admin interfac: idx_broker_admin.php
-*/
-
-if ( is_admin() ){
-	
-	function idx_broker_admin() {
-		
-		include('idx_broker_admin.php');
-
-		add_options_page('IDX Broker Plugin Options', 'IDX Broker Plugin', 'administrator', 'idx-broker', 'idx_broker_admin_page');
-	}
+	//register our settings
+	register_setting( 'idx-settings-group', "idx_broker_cid" );		
+	register_setting( 'idx-settings-group', "idx_broker_pass" );		
+	register_setting( 'idx-settings-group', "idx_broker_domain" );		
+	register_setting( 'idx-settings-group', "idx_broker_basicSearchLink" );
+	register_setting( 'idx-settings-group', "idx_broker_basicSearchLabel" );
+	register_setting( 'idx-settings-group', "idx_broker_advancedSearchLink" );
+	register_setting( 'idx-settings-group', "idx_broker_advancedSearchLabel" );
+	register_setting( 'idx-settings-group', "idx_broker_mapSearchLink" );
+	register_setting( 'idx-settings-group', "idx_broker_mapSearchLabel" );
+	register_setting( 'idx-settings-group', "idx_broker_addressSearchLink" );
+	register_setting( 'idx-settings-group', "idx_broker_addressSearchLabel" );
+	register_setting( 'idx-settings-group', "idx_broker_listingSearchLink" );
+	register_setting( 'idx-settings-group', "idx_broker_listingSearchLabel" );
+	register_setting( 'idx-settings-group', "idx_broker_featuredLink" );
+	register_setting( 'idx-settings-group', "idx_broker_featuredLabel" );
+	register_setting( 'idx-settings-group', "idx_broker_soldPendLink" );
+	register_setting( 'idx-settings-group', "idx_broker_soldPendLabel" );
 	
 	/*
-	*	This adds the IDX Broker Admin page link in the WP admin interface
-	*/
+	 *	Since we have custom links that can be added and deleted inside
+	 *	the IDX Broker admin, we need to grab them and set up the options
+	 *	to control them here.  First let's grab them.
+	 */
 	
-	add_action('admin_menu', 'idx_broker_admin');	
+	$customLinks = idx_getCustomLinks();
+	
+	/*
+	 *	Next loop through each one and set up the option.
+	 */
+	
+	foreach($customLinks as $link) {
+		
+		$tempName = 'idx_custom_'.$link[0];
+		register_setting( 'idx-settings-group', "$tempName" );
+		
+	}
+	
 }
+
+/*
+ *	This adds the options page to the WP admin.
+ */
+
+function idx_broker_menu() {
+
+	add_options_page('IDX Broker Plugin Options', 'IDX Broker Plugin', 'administrator', 'idx-broker', 'idx_broker_admin_page');
+	
+}
+
+/*
+ *	This is tiggered and is run by idx_broker_menu, it's the actual IDX Broker Admin page and display.
+ */
+
+
+function idx_broker_admin_page() {
+	
+	if (!current_user_can('manage_options'))  {
+		wp_die( __('You do not have sufficient permissions to access this page.') );
+	}
+	
+?>
+
+<script src="<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/idxBroker.js" type="text/javascript"></script>
+
+<div class="wrap" style="width: 800px;">
+	<h2>IDX Broker Plugin Options</h2>
+	<h3 style="border-bottom: 1px solid #ccc;">General Settings</h3>
+	
+	<form method="post" action="options.php" id="idxOptions">
+		<div id="blogUrl" style="display: none;" ajax="<?php bloginfo('wpurl'); ?>"></div>
+		<ul>
+			<li style="height: 25px;">
+				<label for="idx_broker_cid">Customer Identification Number (CID): </label>
+				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<input style="float: right;" name="idx_broker_cid" type="text" id="idx_broker_cid" value="<?php echo get_option('idx_broker_cid'); ?>" />
+			</li>
+			<li style="height: 25px;">
+				<label for="idx_broker_pass">Your IDX Broker Password:</label>
+				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<input style="float: right;" name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php echo get_option('idx_broker_pass'); ?>" />
+			</li>
+			<li style="height: 25px;">
+				<label for="idx_broker_domain">Your Website Domain (subdomain.domain.com):</label>
+				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<input style="float: right;" name="idx_broker_domain" type="text" id="idx_broker_domain" size="30" value="<?php echo get_option('idx_broker_domain'); ?>" />
+			</li>
+		</ul>
+	
+		<h3 style="border-bottom: 1px solid #ccc;">Widgets</h3>
+		
+		<p><a href="widgets.php">Click here</a> to visit the Widgets page and add IDX Broker widgets to your sidebar(s).</p>
+	
+		
+		<h3 style="border-bottom: 1px solid #ccc;">Menu Links Tool</h3>
+		
+		<p>Many Realtors&reg; add 2-3 links to their site or blog.  Often it's basic or map search, followed by a link to your active listings (Featured Properties).</p>
+		
+		<p>IDX Broker generates the content for these pages automatically using MLS data that is updated every 24 hours. To see if IDX Broker offers coverage in your area, <a href="http://www.idxbroker.com">click here</a>. </p>
+		
+		<p>Use the tool below to add IDX Broker links as Pages in your navigation.  When you are done entering your information and choosing/renaming your links, simply hit the "Save Changes" button to apply your settings.</p>
+		
+		<span style="float:left; font-weight:bold;">Activate -</span>
+		<span style="float:left; font-weight:bold; margin-left: 7px;">IDX Broker Page Link</span>
+		<span style="float:right; font-weight:bold; margin-right: 6px;">Rename Page Link</span>
+		<div style="clear: both;"></div>
+		
+		<ul>
+			<li style="height: 20px;">
+				<?php $basicCheck = (get_option('idx_broker_basicSearchLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_basicSearchLink" id="idx_broker_basicSearchLink" <? echo $basicCheck; ?>" class="idx_broker_basicSearchLink" />
+				<label for="idx_broker_basicSearchLink" style="padding-left:2px;">- Basic Search</label>
+				<input style="float: right;" class="idx_broker_basicSearchLabel" name="idx_broker_basicSearchLabel" type="text" id="idx_broker_basicSearchLabel" value="<?php echo get_option('idx_broker_basicSearchLabel'); ?>" />
+			</li>
+			<li style="height: 20px;">
+				<?php $advancedCheck = (get_option('idx_broker_advancedSearchLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_advancedSearchLink" id="idx_broker_advancedSearchLink" <? echo $advancedCheck; ?> class="idx_broker_advancedSearchLink" />
+				<label for="idx_broker_advancedSearchLink" style="padding-left: 2px;">- Advanced Search</label>
+				<input style="float: right;" class="idx_broker_advancedSearchLabel" name="idx_broker_advancedSearchLabel" type="text" id="idx_broker_advancedSearchLabel" value="<?php echo get_option('idx_broker_advancedSearchLabel'); ?>" />
+			</li>
+			<li style="height: 20px;">
+				<?php $mapCheck = (get_option('idx_broker_mapSearchLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_mapSearchLink" id="idx_broker_mapSearchLink" <? echo $mapCheck; ?> class="idx_broker_mapSearchLink" />
+				<label for="idx_broker_mapSearchLink" style="padding-left: 2px;">- Map Search</label>
+				<input style="float: right;" class="idx_broker_mapSearchLabel" name="idx_broker_mapSearchLabel" type="text" id="idx_broker_mapSearchLabel" value="<?php echo get_option('idx_broker_mapSearchLabel'); ?>" />
+			</li>
+			<li style="height: 20px;">
+				<?php $addressCheck = (get_option('idx_broker_addressSearchLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_addressSearchLink" id="idx_broker_addressSearchLink" <? echo $addressCheck; ?> class="idx_broker_addressSearchLink" />
+				<label for="idx_broker_addressSearchLink" style="padding-left: 2px;">- Address Search</label>
+				<input style="float: right;" class="idx_broker_addressSearchLabel" name="idx_broker_addressSearchLabel" type="text" id="idx_broker_addressSearchLabel" value="<?php echo get_option('idx_broker_addressSearchLabel'); ?>" />
+			</li>
+			<li style="height: 20px;">
+				<?php $listingCheck = (get_option('idx_broker_listingSearchLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_listingSearchLink" id="idx_broker_listingSearchLink" <? echo $listingCheck; ?> class="idx_broker_listingSearchLink" />
+				<label for="idx_broker_listingSearchLink" style="padding-left: 2px;">- Listing Search</label>
+				<input style="float: right;" class="idx_broker_listingSearchLabel" name="idx_broker_listingSearchLabel" type="text" id="idx_broker_listingSearchLabel" value="<?php echo get_option('idx_broker_listingSearchLabel'); ?>" />
+			</li>
+			<li style="height: 20px;">
+				<?php $featuredCheck = (get_option('idx_broker_featuredLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_featuredLink" id="idx_broker_featuredLink" <? echo $addressCheck; ?> class="idx_broker_featuredLink" />
+				<label for="idx_broker_featuredLink" style="padding-left: 2px;">- Featured Properties</label>
+				<input style="float: right;" class="idx_broker_featuredLabel" name="idx_broker_featuredLabel" type="text" id="idx_broker_featuredLabel" value="<?php echo get_option('idx_broker_featuredLabel'); ?>" />
+			</li>
+			<li style="height: 20px;">
+				<?php $soldPendCheck = (get_option('idx_broker_soldPendLink') == 'on')?'checked="checked"':''; ?>
+				<input type="checkbox" name="idx_broker_soldPendLink" id="idx_broker_soldPendLink" <? echo $soldPendCheck; ?> class="idx_broker_soldPendLink" />
+				<label for="idx_broker_soldPendLink" style="padding-left: 2px;">- Sold/Pending Properties</label>
+				<input style="float: right;" class="idx_broker_soldPendLabel" name="idx_broker_soldPendLabel" type="text" id="idx_broker_soldPendLabel" value="<?php echo get_option('idx_broker_soldPendLabel'); ?>" />
+			</li>
+		</ul>
+		<p>
+			<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
+			<input style="float: right;" type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
+			<div style="clear:both;"></div>
+		</p>
+		<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
+			<span class="expand">[+]</span> Custom Links
+		</h3>
+		<div id="customLinks" style="display: none; padding-bottom: 15px;">
+			<p>You can add your IDX Broker custom links to your main navigation in this area.  Simply check or uncheck the links to add or remove them, and click the save changes button above. Links can be build in the <a href="http://www.idxco.com/mgmt/">IDX Broker Admin</a>.</p>  
+			<ul>
+<?php
+				/*
+				*	We want the client the ability to place any custom built links in the system
+				*	in the main navigation.  First lets grab them.
+				*/
+	
+				$customLinks = idx_getCustomLinks();
+				
+				if(count($customLinks) > 0) {
+				
+					/*
+					*	Now that we have seperated the list into individual array elements, we need to loop
+					*	over them and seperate again by the pipe character ->  link_name | http://link.tiny.url
+					*/
+	
+					foreach ($customLinks as $link){
+						
+						/*
+						*	Now we have gathered all our info, now we
+						*	need to display the custom link and a checkbox to allow the user to toggle it on
+						*	or off.  First we gather the setting, and if it's on then we need to display
+						*	checked="checked"
+						*/
+						
+						$checkOption = (get_option("idx_custom_".$link[0]) == 'on')?'checked="checked"':'';
+?>
+						<li style="height: 20px;">
+							<input type="checkbox" name="idx_custom_<? echo $link[0]; ?>" id="idx_custom_<? echo $link[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $link[1]; ?>" />
+							<label for="idx_custom_<? echo $link[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $link[0]); ?></label>
+						</li>
+<?php
+					}
+				}
+?>
+			</ul>
+			<p>If you have removed custom links in the <a href="http://www.idxco.com/mgmt/">IDX Broker Admin</a> that were in your main navigation, you may need to clear them if they remain in your navigation.  Simply click the 'Clear Old Custom Links' to remove them.</p>
+			<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
+			<input style="float: right;" type="submit" value="<?php _e('Clear Old Custom Links') ?>" id="clearLinks" />
+			<div style="clear:both;"></div>
+		</div>
+		<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
+			<span class="expand">[+]</span> Advanced
+		</h3>
+		
+		<div id="advanced" style="display: none; padding-bottom: 15px;">
+			<p>
+				For Advanced Users Only: This section provides you with the tools necessary to synchronize your IDX pages with changes made to your theme. Read <a href="http://www.idxbroker.com/support/kb/questions/288/">this article</a> for detailed instructions.
+			</p>
+			
+			<div id="id">
+				Step 1: <input id="updateWrapper" type="submit" style=''value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" /><span style="color:#21759B; font-weight: bold;" id="wrapperStatus"></span>
+			</div>
+			
+			<div id="id">
+				Step 2: Copy and paste the Header and Footer URLs below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/290/">How do I do this?</a>
+				<div>
+					<p style="font-weight: bold;">Header File:</p>
+					<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
+				</div>
+				<div>
+					<p style="font-weight: bold;">Footer File:</p>
+					<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
+				</div>	
+			</div>
+		</div>
+		<?php settings_fields( 'idx-settings-group' ); ?>
+	</form>
+</div>
+
+<?php
+
+}
+
 
 /*		idxUpdateLinks();
  *
@@ -323,7 +478,7 @@ function idxUpdateCustomLinks () {
 			
 			/*
 			*	Take the key and convert all underscores to spaces.  Then we need to cut
-			*	off the first 11 characters 'idx_custom_' as that was used as a key
+			*	off the first 11 characters 'idx_broker_' as that was used as a key
 			*	in the admin to save the link states.
 			*/
 			
@@ -341,7 +496,7 @@ function idxUpdateCustomLinks () {
 			*	if it does then we just need to UPDATE, if not, then we INSERT.
 			*/
 			
-			$current = mysql_query( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$key' " );
+			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$key' " );
 			$row = mysql_fetch_array($current);
 
 			if(mysql_num_rows($current) > 0){
