@@ -14,31 +14,29 @@ This plugin is exclusively for IDX Broker Clients. It accomplishes three things:
 1. Easily drag and drop every IDX Broker Widget into your Wordpress theme.
 2. Easily add IDX links to your menu.
 3. Easily display any neighborhood or subdivision (any custom link) landing pages that you've created using IDX Broker.
-4. Once you have created the look and functionality that you want, syncing your page wrapper to IDX is as easy as a single button click with automatic wrapper creation.
 
-Your IDX results and details pages are hosted by IDX Broker, not your Wordpress blog. As a result, the IDX results and details pages display automated. This will save you both time and effort. 
+Your IDX results and details pages are hosted by IDX Broker, not your Wordpress blog. This means that you will not need to hand-code or remember any WordPress tags in order to use this plugin. Once you add Widgets and page links to your Menu and/or Sidebar, you will have the (advanced) option of synchronizing your WordPress blog with your IDX pages. The synchronization functionality is only useful if your IDX pages need to match your WordPress blog. <b>Do not synchronize if your WordPress blog is not your MLS approved IDX website.</b>
 
-Getting Started
+Most of your IDX lead capture, iPhone app settings, lead routing, listing email updates, etc. are to be managed using your IDX Broker Admin, not via Admin for this WordPress Plugin. We believe most Plugin clients will appreciate that we have not reproduced an entire IDX back-office solution within Wordpress. The IDX feature set is far too robust build and support for each new and future version of WordPress. 
 
-Existing IDX Broker clients may simply enter their IDX Broker client ID and IDX subdomain to get started. New IDX Broker clients will receive the required client ID and subdomain in a welcome email.
+With that said, we have provided you with the tools that you need to get started with Wordpress, and provide an easy path for those who are new to IDX and WordPress, and who simply need to build a site quickly in WordPress and integrate that site design into IDX search teaser pages, custom sign-up forms, etc.
 
-Indexable Listings
+If you are a WordPress theme designer or IDX reseller and wish to use this Plugin, keep in mind that the plugin is designed primarily for novice users. Any custom Widgets, CSS, and other customization needs to be handled within the HTML code for each Theme. There is one exception - the 'advanced' settings provide you with a way to <a href="http://www.idxbroker.com/support/kb/questions/291/">synchronize WordPress with IDX pages</a> using the click of a mouse.      
+<b>Getting Started</b>
 
-All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and  details pages, and provide you with IDX Broker tools that will make those titles and descriptions update automatically via MLS data. You are also able to customize some URLs, titles, and descriptions to match your keyword strategy. 
+Existing IDX Broker clients may simply enter their IDX Broker client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. 
 
-Custom Results Landing Pages
+<b>What is Available?</b>
 
-We recommend that you add custom content to the subheaders of your IDX results pages in order to encourage the search enginess to differentiate your content from all the other IDX results and details pages that display the same addresses, Cities, and Zips for each MLS region. 
+Indexable IDX - All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and details pages. We also provide you with a way to edit URL paths, add subheader content, custom title/description tags, and make your IDX pages unique. 
 
-Lead Registration 
+Custom Results Landing Pages - We recommend that you add custom content to the subheaders of your IDX results pages in order to encourage the search enginess to differentiate your content from all the other IDX results and details pages that display the same addresses, Cities, and Zips for each MLS region. 
 
-You can use IDX Broker to force signup on every 4th or 5th property detail view. Or, if you prefer, require registration once the visitor click the link to your custom results page. 
+Lead Registration - You can use IDX Broker to force signup on every 4th or 5th property detail view. Or, if you prefer, require registration once the visitor click the link to your custom results page. 
 
-Lead Management
+Lead Management - Anybody who requests property info, fills out your contact form, saves a search, or creates an account with you will show up in the Lead Management tab of IDX Broker. You will also receive an email alert when this occurs.    
 
-Anybody who requests property info, fills out your contact form, saves a search, or creates an account with you will show up in the Lead Management tab of IDX Broker. You will also receive an email alert when this occurs.    
-
-General Terms of Use 
+<b>General Terms of Use</b> 
 
 This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details pages. 
 
@@ -58,9 +56,9 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 IDX is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker™ connects to this data feed automatically, maps the necessary fields, and adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
 
 = How many blogs/websites can I integrate with IDX Broker? =
-Each IDX Broker account can be tied to a single website design. That may be this blog, or your corporate site, or your personal site. It's up to your as a Realtor&reg;. Note that the website hosting the design for IDX pages must be approved by your local MLS(s). IDX, Inc will manage that verification process for you. 
+Features provided by this Plugin - Widgets, links, and custom links may be placed onto ANY WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. 
 
-Features provided by this Plugin are an exception - Widgets, links, and custom links may be placed onto ANY WordPress website or blog, regardless of MLS approval. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. 
+Note that the website hosting the design for IDX pages must be approved by your local MLS(s).  
 
 = Do I need an IDX Broker account in order to use this plugin? =
 
