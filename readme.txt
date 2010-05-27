@@ -3,7 +3,7 @@ Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
-Requires at least: 2.8
+Requires at least: 2.8.2
 Tested up to: 2.9.2
 Stable tag: 1.2.1
 
@@ -46,25 +46,25 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 
 == Installation ==
 
-1. Download and extract the idxBroker.zip file.
-2. Upload the uncompressed idxBroker folder to your `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
-4. Go to the IDX Broker Plugin Admin page and enter your CID and webite domain.
-5. Follow the instructions to add Widgets and Page Links.
+1. Download and extract the IDX Broker plugin. You may also install directly by going to your WP-Admin page and then Plugins > Add New. Search for 'idxbroker' under new plugins and click to install directly.
+2. Upload the uncompressed folder to your `/wp-content/plugins/` directory.
+3. Activate the plugin through the Plugins menu in WordPress.
+4. You will need an IDX Broker account (MLS approval required), for the Plugin to work. Go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
+5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links).
 
 == Frequently Asked Questions ==
 
+= How does IDX work? =
+IDX is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker™ connects to this data feed automatically, maps the necessary fields, and adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
+
+= How many blogs/websites can I integrate with IDX Broker? =
+Each IDX Broker account can be tied to a single website design. That may be this blog, or your corporate site, or your personal site. It's up to your as a Realtor&reg;. Note that the website hosting the design for IDX pages must be approved by your local MLS(s). IDX, Inc will manage that verification process for you. 
+
+Features provided by this Plugin are an exception - Widgets, links, and custom links may be placed onto ANY WordPress website or blog, regardless of MLS approval. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. 
+
 = Do I need an IDX Broker account in order to use this plugin? =
 
-Yes. IDX Broker scripts generate the results and details pages for each MLS/IDX search. 
-
-= Why do I need an IDX Broker account in order to display MLS/IDX property search details - isn't an IDX feed included with my MLS membership? =
-
-The IDX feed is the data from the MLS, not the solution that gives visitors a way to search, save, and contact you about property pages that match the look and feel of your site. 
-
-= My page links and Widgets results display unbranded results and details. How do I ensure that results and details pages match the look and feel of my site? = 
-
-Simply contact us and request a new global wrapper. We will take your site design and match it to the results and details pages in order to make for a seamless link transition from your blog/site to your IDX pages. 
+Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_qanda.php">Read more about IDX Broker and IDX Feeds.</a>
  
 == Screenshots ==
 
