@@ -85,6 +85,17 @@ Yes. IDX Broker manages your IDX feed by building forms, results, and property d
 
 Cleaned up options page and options registration scripts for forward WP compatability and MU compatability.
 
+= 1.2 =
+
+Allows automatic header and footer include generation for the IDX Broker system.
+
+
+== Changelog ==
+
+= 1.2.2 =
+
+Cleaned up options page and options registration scripts for forward WP compatability and MU compatability.
+
 = 1.2.1 =
 
 Added the ability to add custom links into the main navigation.
@@ -92,13 +103,6 @@ Cleaned up admin styling.
 Added custom link cleaning.
 Better commenting on code.
 Better function division.
-
-= 1.2 =
-
-Allows automatic header and footer include generation for the IDX Broker system.
-
-
-== Changelog ==
 
 = 1.2 =
 
