@@ -81,6 +81,10 @@ Yes. IDX Broker manages your IDX feed by building forms, results, and property d
 
 == Upgrade Notice ==
 
+= 1.2.3 =
+
+Better front end error reporting to reduce confusion on cid missing error
+
 = 1.2.2 =
 
 Consider this major upgrade to WP and especially, MU compatibility. Please review the details below if you have previously used the 'advanced' synchronization functionality. 
@@ -93,6 +97,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.2.3 =
+
+Better front end error reporting to reduce confusion on cid missing error
 
 = 1.2.2 =
 
