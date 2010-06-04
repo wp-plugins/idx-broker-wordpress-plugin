@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
 Tested up to: 2.9.2
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 
 == Description ==
 
@@ -23,7 +23,7 @@ With that said, we have provided you with the tools that you need to get started
 
 <strong>Advanced Users</strong>
 
-If you are a WordPress theme designer or IDX reseller and wish to use this Plugin, keep in mind that the plugin is designed primarily for novice users. Any custom Widgets, CSS, and other customization needs to be handled within the HTML code for each Theme. The CSS classes and IDs needed to perform that customization are all available within each IDX Broker page. We recommend that you use <a href="http://getfirebug.com/">Firebug</a> to identify those CSS elements. 
+If you are a WordPress theme designer or IDX reseller and wish to use this Plugin, keep in mind that the plugin is designed primarily for novice users. Any custom Widgets, CSS, and other customization needs to be handled within the HTML code for each Theme. The CSS classes and IDs needed to perform that customization are all available within each IDX Broker page. We recommend that you use <a href="http://getfirebug.com/>Firebug</a> to identify those CSS elements. 
 
 The 'advanced' settings provide on the Plugin admin page provide you with a way to <a href="http://www.idxbroker.com/support/kb/questions/291/">synchronize WordPress with IDX pages</a>, with the click of a mouse. This synchronization option is only useful if a client's IDX pages need to match their WordPress blog. <strong>Only synchronize if the WordPress blog is the MLS-approved domain on record.</strong>      
 
@@ -87,9 +87,7 @@ Better front end error reporting to reduce confusion on cid missing error
 
 = 1.2.2 =
 
-Consider this major upgrade to WP and especially, MU compatibility. Please review the details below if you have previously used the 'advanced' synchronization functionality. 
-
-<strong>If you created synchronized header/footer files using a previous version of this plugin, please follow <a href="http://www.idxbroker.com/support/kb/questions/292/">these instructions</a> to establish the correct permissions for your header/footer files.</strong>
+Cleaned up options page and options registration scripts for forward WP compatability and MU compatability.
 
 = 1.2 =
 
@@ -97,6 +95,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.2.4 =
+
+Custom links option generation error controls
 
 = 1.2.3 =
 
