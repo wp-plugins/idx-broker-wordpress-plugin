@@ -14,8 +14,14 @@ jQuery(document).ready(function(){
     jQuery('.expand').attr({ title: "Click to Expand/Collapse" });
     
     jQuery('.expandable').click(function() {
-        jQuery(this).next().slideToggle('fast');
         var content = jQuery(this).find('.expand').html();
+        if((jQuery(this).next().attr('id')) == 'advanced' && (content == '[+]')) {
+            
+            var warning = 'WARNING!  This area is for advanced users and developers only!  If you are not comfortable with HTML editing, FTPing, file permissions, and possible .htaccess edits then please do not use the file write option below. Please use the "Copy and Paste Code" option and paste the generated code into the IDX Broker Middlware under the "Global HTML Wrapper" area.';
+            
+            alert(warning);
+        }
+        jQuery(this).next().slideToggle('fast');
         if (content == '[+]') {
             jQuery(this).find('.expand').html('[-]');
         } else {
@@ -29,6 +35,31 @@ jQuery(document).ready(function(){
 
         // prevent the default action as we need to save the links to the db first.
         event.preventDefault();
+        
+        var cid = jQuery('#idx_broker_cid').val();
+        var pass = jQuery('#idx_broker_pass').val();
+        var domain = jQuery('#idx_broker_domain').val();
+        
+        var submit = true;
+        
+        if (cid == '') {
+            jQuery('#idx_broker_cid').parents('li').css('background', '#FDB7B7');
+            submit = false;
+        } else {
+            jQuery('#idx_broker_cid').parents('li').css('background', 'none');
+        }
+        if (pass == '') {
+            jQuery('#idx_broker_pass').parents('li').css('background', '#FDB7B7');
+            submit = false;
+        } else {
+            jQuery('#idx_broker_pass').parents('li').css('background', 'none');
+        }
+        if (domain == '') {
+            jQuery('#idx_broker_domain').parents('li').css('background', '#FDB7B7');
+            submit = false;
+        } else {
+            jQuery('#idx_broker_domain').parents('li').css('background', 'none');
+        }
         
         // place a typical ajax loading gif on the screen so the user knows that something is actually happening
 
@@ -97,10 +128,11 @@ jQuery(document).ready(function(){
                     function(responseText){
                         // when the ajax is complete, then change the state of the psuedo status console and submit the form like normal
                         status.html(ajax_load+'Saving Options...');
-                        jQuery('#idxOptions').submit();	
+                        if (submit == true){
+                            jQuery('#idxOptions').submit();	
+                        }
                     }
                 );
-
             }
         );
     });
@@ -132,22 +164,60 @@ jQuery(document).ready(function(){
         
         event.preventDefault();
         var blogUrl = jQuery(this).attr('ajax') + '/';
-        jQuery('#wrapperStatus').fadeIn('fast').html(ajax_load+'Updating Wrapper...');
+        var choice = jQuery('#wrapperOption').val();
+        
+        if(choice == 'echoCode'){
+            var message = "Generating Code...";
+        } else if (choice == 'writeCode'){
+            var message = "Updating Wrapper...";
+        }
+        
+        jQuery('#wrapperStatus').fadeIn('fast').html(ajax_load+message);
 
         jQuery.get(
             ajaxPath,
             {
                 "action": "idxUpdateWrapper",
+                "method": choice,
                 "url": blogUrl
             },
             function(responseText){
                 
                 if(responseText != '0'){
-                    jQuery('#wrapperStatus').html('Verified!').css('color', 'green');
+                    
+                    if(choice == 'echoCode'){
+                        
+                        jQuery('#wrapperStatus').html('Verified!').css('color', 'green');
+                        jQuery('#echoedCode').html(responseText.substring(0,responseText.length-1));
+                        
+                    } else if (choice == 'writeCode'){
+                        
+                        jQuery('#wrapperStatus').html('Verified!').css('color', 'green');
+                        
+                    }
+ 
                 } else {
+                    
                     jQuery('#wrapperStatus').html('!Error <a href="http://www.idxbroker.com/support/kb/questions/291/">How do I fix this?</a>').css('color', 'red');
+                    
                 }
             }
         );
     });
+    
+    // user choice on wrapper method
+    
+    jQuery('#wrapperOption').change(function(){
+       var choice = jQuery(this).val();
+       
+       if(choice == 'echoCode'){
+            jQuery('#echoStep').fadeIn();
+            jQuery('#writeStep').fadeOut();
+       } else if (choice == 'writeCode'){
+            jQuery('#writeStep').fadeIn();
+            jQuery('#echoStep').fadeOut();
+       }
+       
+    });
+    
 });

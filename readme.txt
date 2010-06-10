@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
 Tested up to: 2.9.2
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 
 == Description ==
 
@@ -57,10 +57,6 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 
 == Frequently Asked Questions ==
 
-= Do I need an IDX Broker account in order to use this plugin? =
-
-Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_qanda.php">Read more about IDX Broker and IDX Feeds.</a>
-
 = How does IDX work? =
 IDX is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker™ connects to this data feed automatically, maps the necessary fields, and adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
 
@@ -68,6 +64,10 @@ IDX is a type of data feed provided by your MLS. This data feed typically (but n
 Features provided by this Plugin - Widgets, links, and custom links may be placed onto ANY WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. 
 
 Note that the website hosting the design for IDX pages must be approved by your local MLS(s).  
+
+= Do I need an IDX Broker account in order to use this plugin? =
+
+Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_qanda.php">Read more about IDX Broker and IDX Feeds.</a>
  
 == Screenshots ==
 
@@ -80,6 +80,10 @@ Note that the website hosting the design for IDX pages must be approved by your 
 7. IDX automatic wrapper generation - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.2.5 =
+
+Adds another option for wrapper generation.  Some Worpress Server configurations will not allow for the include files, this version will generate the static code to copy and paste into the IDX Broker Middlware.
 
 = 1.2.3 =
 
@@ -96,9 +100,9 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 == Changelog ==
 
-= 1.2.4 =
+= 1.2.5 +
 
-Custom links option generation error controls
+Wraper option added, you can now generate your header and footer to copy and paste into the IDX Broker Middleware.
 
 = 1.2.3 =
 

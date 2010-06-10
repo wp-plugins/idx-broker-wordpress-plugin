@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.2.2
+Version: 1.2.5
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
@@ -48,10 +48,14 @@ function idx_broker_options_init(){
 	/*
 	 *	Since we have custom links that can be added and deleted inside
 	 *	the IDX Broker admin, we need to grab them and set up the options
-	 *	to control them here.  First let's grab them.
+	 *	to control them here.  First let's grab them, if the cid is not blank.
 	 */
 	
-	$customLinks = idx_getCustomLinks();
+	if (get_option('idx_broker_cid') != '') {
+	
+		$customLinks = idx_getCustomLinks();
+	
+	}
 	
 	/*
 	 *	Next loop through each one and set up the option.
@@ -220,6 +224,18 @@ function idx_broker_admin_page() {
 						</li>
 <?php
 					}
+					
+					/*
+					*	Ther are no custom links in the system, so just display some text and a link to the admin to
+					*	add custom links.
+					*/
+					
+				} else {
+?>
+					<div>
+						<span style="font-weight:bold">You have no custom links created.</span> Log into the <a href="http://www.idxco.com/mgmt">IDX Broker Admin</a> to create custom links.
+					</div>
+<?php
 				}
 ?>
 			</ul>
@@ -237,20 +253,40 @@ function idx_broker_admin_page() {
 				For Advanced Users Only: This section provides you with the tools necessary to synchronize your IDX pages with changes made to your theme. Read <a href="http://www.idxbroker.com/support/kb/questions/288/">this article</a> for detailed instructions.
 			</p>
 			
-			<div id="id">
-				Step 1: <input id="updateWrapper" type="submit" style=''value='<?php _e('Update IDX Wrapper') ?>' ajax="<?php bloginfo('wpurl'); ?>" /><span style="color:#21759B; font-weight: bold;" id="wrapperStatus"></span>
+			<div>
+				Step 1: Choose your wrapper update option:
+				<select name="wrapperOption" id="wrapperOption">
+					<option value="echoCode">Copy and Paste Code</option>
+					<option value="writeCode">Write to Include Files</option>
+				</select>
 			</div>
 			
-			<div id="id">
-				Step 2: Copy and paste the Header and Footer URLs below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/290/">How do I do this?</a>
+			<div>
+				Step 2: <input id="updateWrapper" type="submit" style=''value='<?php _e('Wrap It!') ?>' ajax="<?php bloginfo('wpurl'); ?>" /><span style="color:#21759B; font-weight: bold;" id="wrapperStatus"></span>
+			</div>
+			
+			<div id="echoStep">
+				
 				<div>
-					<p style="font-weight: bold;">Header File:</p>
-					<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
+					Step 3: Copy and paste the Header and Footer Code below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/291/">How do I do this?</a>
 				</div>
+				
+				<div id="echoedCode"></div>
+			</div>
+			
+			<div id="writeStep" style="display: none;">
+				
 				<div>
-					<p style="font-weight: bold;">Footer File:</p>
-					<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
-				</div>	
+					Step 3: Copy and paste the Header and Footer URLs below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/290/">How do I do this?</a>
+					<div>
+						<p style="font-weight: bold;">Header File:</p>
+						<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
+					</div>
+					<div>
+						<p style="font-weight: bold;">Footer File:</p>
+						<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
+					</div>	
+				</div>
 			</div>
 		</div>
 		<?php settings_fields( 'idx-settings-group' ); ?>
@@ -774,6 +810,12 @@ function idx_stop () {
 function idxUpdateWrapper () {
 	
 	/*
+	*	Get the wrapper method
+	*/	
+	
+	$method = $_GET['method'];
+	
+	/*
 	*	Get the raw wrapper string
 	*/
 	
@@ -787,40 +829,62 @@ function idxUpdateWrapper () {
 	$footer = parseWrapper($wrapper, 'footer');
 	
 	/*
-	*	Set up our wrapper file paths and file names
+	*	Depending on the method, we will do different things
 	*/
 	
-	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
-	$headerFile = $wrapperDir."/header.php";
-	$footerFile = $wrapperDir."/footer.php";
-	
-	/*
-	*	Save the header file
-	*/
-	
-	if(file_put_contents($headerFile, $header)) {
+	if($method == 'echoCode'){
 		
 		/*
-		*	Save the footer file
+		 *	Return a formated header and footer message
+		 */
+		
+		$returnable = "<div>Header:<textarea cols='100' rows='5'>".$header."</textarea></div><div>Footer:<textarea cols='100' rows='5'>".$footer."</textarea></div>";
+		
+		echo $returnable;
+		
+	} elseif($method == 'writeCode') {
+		
+		/*
+		*	Set up our wrapper file paths and file names
 		*/
 		
-		if(file_put_contents($footerFile, $footer)) {
-			
-			die('1');
+		$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
+		$headerFile = $wrapperDir."/header.php";
+		$footerFile = $wrapperDir."/footer.php";
+		
+		/*
+		*	Save the header file
+		*/
+		
+		if(file_put_contents($headerFile, $header)) {
 			
 			/*
-			*	Couldn't save footer, die with false
+			*	Save the footer file
 			*/
+			
+			if(file_put_contents($footerFile, $footer)) {
+				
+				die('1');
+				
+				/*
+				*	Couldn't save footer, die with false
+				*/
+				
+			} else {
+				
+				die('0');
+				
+			}
+			
+		/*
+		*	Couldn't save header, die with false
+		*/
 			
 		} else {
 			
 			die('0');
 			
-		}
-		
-	/*
-	*	Couldn't save header, die with false
-	*/
+		}	
 		
 	} else {
 		
@@ -828,7 +892,9 @@ function idxUpdateWrapper () {
 		
 	}
 	
+	
 }
+
 
 // curls the full index page code
 
