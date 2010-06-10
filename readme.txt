@@ -100,7 +100,7 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 == Changelog ==
 
-= 1.2.5 +
+= 1.2.5 =
 
 Wraper option added, you can now generate your header and footer to copy and paste into the IDX Broker Middleware.
 
