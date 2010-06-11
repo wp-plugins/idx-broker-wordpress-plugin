@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
 Tested up to: 2.9.2
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 
 == Description ==
 
@@ -99,6 +99,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.2.6 =
+
+Custom links error sending output before header. Corrected
 
 = 1.2.5 =
 
