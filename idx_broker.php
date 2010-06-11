@@ -61,10 +61,14 @@ function idx_broker_options_init(){
 	 *	Next loop through each one and set up the option.
 	 */
 	
-	foreach($customLinks as $link) {
-		
-		$tempName = 'idx_custom_'.$link[0];
-		register_setting( 'idx-settings-group', "$tempName" );
+	if (count($customLinks) > 0){
+	
+		foreach($customLinks as $link) {
+			
+			$tempName = 'idx_custom_'.$link[0];
+			register_setting( 'idx-settings-group', "$tempName" );
+			
+		}
 		
 	}
 	
