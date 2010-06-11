@@ -29,13 +29,13 @@ The 'advanced' settings provide on the Plugin admin page provide you with a way 
 
 <strong>Getting Started</strong>
 
-Existing IDX Broker clients may simply enter their IDX Broker client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. 
+Existing IDX Broker clients may simply enter their IDX Broker client ID (CID), Password, and IDX sub domain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. 
 
 <strong>What is Available?</strong>
 
-Indexable IDX - All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and details pages. We also provide you with a way to edit URL paths, add subheader content, custom title/description tags, and make your IDX pages unique. 
+Indexable IDX - All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and details pages. We also provide you with a way to edit URL paths, add sub header content, custom title/description tags, and make your IDX pages unique. 
 
-Custom Results Landing Pages - We recommend that you add custom content to the subheaders of your IDX results pages in order to encourage the search enginess to differentiate your content from all the other IDX results and details pages that display the same addresses, Cities, and Zips for each MLS region. 
+Custom Results Landing Pages - We recommend that you add custom content to the sub headers of your IDX results pages in order to encourage the search engines to differentiate your content from all the other IDX results and details pages that display the same addresses, Cities, and Zips for each MLS region. 
 
 Lead Registration - You can use IDX Broker to force signup on every 4th or 5th property detail view. Or, if you prefer, require registration once the visitor click the link to your custom results page. 
 
@@ -91,7 +91,7 @@ Better front end error reporting to reduce confusion on cid missing error
 
 = 1.2.2 =
 
-Cleaned up options page and options registration scripts for forward WP compatability and MU compatability.
+Cleaned up options page and options registration scripts for forward WP compatibility and MU compatibility.
 
 = 1.2 =
 
@@ -102,7 +102,7 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 = 1.2.5 =
 
-Wraper option added, you can now generate your header and footer to copy and paste into the IDX Broker Middleware.
+Wrapper option added, you can now generate your header and footer to copy and paste into the IDX Broker Middleware.
 
 = 1.2.3 =
 
@@ -110,7 +110,7 @@ Better front end error reporting to reduce confusion on cid missing error
 
 = 1.2.2 =
 
-Cleaned up options page and options registration scripts for forward WP compatability and MU compatability.
+Cleaned up options page and options registration scripts for forward WP compatibility and MU compatibility.
 
 = 1.2.1 =
 
@@ -136,7 +136,7 @@ Added other widgets to bring plugin to 1.1 spec
 = 1.01 = 
 
 Added error checking on missing domain entry and malformed or missing CID, with error messages on widget placement/configuration page.
-Added wildcard search form widget to list of avaliable tools.
+Added wildcard search form widget to list of available tools.
 Added more format options to Quick Search Form.
 Added myAgent badge widget.
 
