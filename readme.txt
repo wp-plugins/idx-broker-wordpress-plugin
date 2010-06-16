@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
 Tested up to: 2.9.2
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 
 == Description ==
 
@@ -81,6 +81,10 @@ Yes. IDX Broker manages your IDX feed by building forms, results, and property d
 
 == Upgrade Notice ==
 
+= 1.2.7 =
+
+Wrapper update options are now avaliable depending on detection of requirements.
+
 = 1.2.5 =
 
 Adds another option for wrapper generation.  Some Worpress Server configurations will not allow for the include files, this version will generate the static code to copy and paste into the IDX Broker Middlware.
@@ -99,6 +103,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.2.7 =
+
+Wrapper update options are now avaliable depending on detection of requirements.  Wrapper functions moved off into it's own class.
 
 = 1.2.6 =
 

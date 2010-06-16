@@ -15,12 +15,6 @@ jQuery(document).ready(function(){
     
     jQuery('.expandable').click(function() {
         var content = jQuery(this).find('.expand').html();
-        if((jQuery(this).next().attr('id')) == 'advanced' && (content == '[+]')) {
-            
-            var warning = 'WARNING!  This area is for advanced users and developers only!  If you are not comfortable with HTML editing, FTPing, file permissions, and possible .htaccess edits then please do not use the file write option below. Please use the "Copy and Paste Code" option and paste the generated code into the IDX Broker Middlware under the "Global HTML Wrapper" area.';
-            
-            alert(warning);
-        }
         jQuery(this).next().slideToggle('fast');
         if (content == '[+]') {
             jQuery(this).find('.expand').html('[-]');
@@ -187,12 +181,12 @@ jQuery(document).ready(function(){
                     
                     if(choice == 'echoCode'){
                         
-                        jQuery('#wrapperStatus').html('Verified!').css('color', 'green');
+                        jQuery('#wrapperStatus').html('Code Generated!').css('color', 'green');
                         jQuery('#echoedCode').html(responseText.substring(0,responseText.length-1));
                         
                     } else if (choice == 'writeCode'){
                         
-                        jQuery('#wrapperStatus').html('Verified!').css('color', 'green');
+                        jQuery('#wrapperStatus').html('Files Written!').css('color', 'green');
                         
                     }
  

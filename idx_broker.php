@@ -3,17 +3,23 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.2.5
+Version: 1.2.7
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
 */
 
-/*
-*	Used for debugging purposes
-*/
+/**
+ *	Include the wrapper class as it hold the functions to manipulate the wrapper files
+ */
 
-//ini_set('display_errors', 1);
+include('class.wrapper.php');
+
+/**
+ *	Create a new wrapper object
+ */
+
+$wrapper = new wrapper;
 
 add_action('admin_menu', 'idx_broker_menu');
 add_action('admin_menu', 'idx_broker_options_init' );
@@ -61,10 +67,14 @@ function idx_broker_options_init(){
 	 *	Next loop through each one and set up the option.
 	 */
 	
-	foreach($customLinks as $link) {
-		
-		$tempName = 'idx_custom_'.$link[0];
-		register_setting( 'idx-settings-group', "$tempName" );
+	if (count($customLinks) > 0){
+	
+		foreach($customLinks as $link) {
+			
+			$tempName = 'idx_custom_'.$link[0];
+			register_setting( 'idx-settings-group', "$tempName" );
+			
+		}
 		
 	}
 	
@@ -87,6 +97,8 @@ function idx_broker_menu() {
 
 function idx_broker_admin_page() {
 	
+	global $wrapper;
+	
 	if (!current_user_can('manage_options'))  {
 		wp_die( __('You do not have sufficient permissions to access this page.') );
 	}
@@ -104,17 +116,17 @@ function idx_broker_admin_page() {
 		<ul>
 			<li style="height: 25px;">
 				<label for="idx_broker_cid">Customer Identification Number (CID): </label>
-				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;" target="_blank">What's this?</a>
 				<input style="float: right;" name="idx_broker_cid" type="text" id="idx_broker_cid" value="<?php echo get_option('idx_broker_cid'); ?>" />
 			</li>
 			<li style="height: 25px;">
 				<label for="idx_broker_pass">Your IDX Broker Password:</label>
-				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;" target="_blank">What's this?</a>
 				<input style="float: right;" name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php echo get_option('idx_broker_pass'); ?>" />
 			</li>
 			<li style="height: 25px;">
 				<label for="idx_broker_domain">Your Website Domain (subdomain.domain.com):</label>
-				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;">What's this?</a>
+				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;" target="_blank">What's this?</a>
 				<input style="float: right;" name="idx_broker_domain" type="text" id="idx_broker_domain" size="30" value="<?php echo get_option('idx_broker_domain'); ?>" />
 			</li>
 		</ul>
@@ -128,7 +140,7 @@ function idx_broker_admin_page() {
 		
 		<p>Many Realtors&reg; add 2-3 links to their site or blog.  Often it's basic or map search, followed by a link to your active listings (Featured Properties).</p>
 		
-		<p>IDX Broker generates the content for these pages automatically using MLS data that is updated every 24 hours. To see if IDX Broker offers coverage in your area, <a href="http://www.idxbroker.com">click here</a>. </p>
+		<p>IDX Broker generates the content for these pages automatically using MLS data that is updated every 24 hours. To see if IDX Broker offers coverage in your area, <a href="http://www.idxbroker.com" target="_blank">click here</a>. </p>
 		
 		<p>Use the tool below to add IDX Broker links as Pages in your navigation.  When you are done entering your information and choosing/renaming your links, simply hit the "Save Changes" button to apply your settings.</p>
 		
@@ -190,7 +202,7 @@ function idx_broker_admin_page() {
 			<span class="expand">[+]</span> Custom Links
 		</h3>
 		<div id="customLinks" style="display: none; padding-bottom: 15px;">
-			<p>You can add your IDX Broker custom links to your main navigation in this area.  Simply check or uncheck the links to add or remove them, and click the save changes button above. Links can be build in the <a href="http://www.idxco.com/mgmt/">IDX Broker Admin</a>.</p>  
+			<p>You can add your IDX Broker custom links to your main navigation in this area.  Simply check or uncheck the links to add or remove them, and click the save changes button above. Links can be build in the <a href="http://www.idxco.com/mgmt/" target="_blank">IDX Broker Admin</a>.</p>  
 			<ul>
 <?php
 				/*
@@ -233,31 +245,38 @@ function idx_broker_admin_page() {
 				} else {
 ?>
 					<div>
-						<span style="font-weight:bold">You have no custom links created.</span> Log into the <a href="http://www.idxco.com/mgmt">IDX Broker Admin</a> to create custom links.
+						<span style="font-weight:bold">You have no custom links created.</span> Log into the <a href="http://www.idxco.com/mgmt" target="_blank">IDX Broker Admin</a> to create custom links.
 					</div>
 <?php
 				}
 ?>
 			</ul>
-			<p>If you have removed custom links in the <a href="http://www.idxco.com/mgmt/">IDX Broker Admin</a> that were in your main navigation, you may need to clear them if they remain in your navigation.  Simply click the 'Clear Old Custom Links' to remove them.</p>
+			<p>If you have removed custom links in the <a href="http://www.idxco.com/mgmt/" target="_blank">IDX Broker Admin</a> that were in your main navigation, you may need to clear them if they remain in your navigation.  Simply click the 'Clear Old Custom Links' to remove them.</p>
 			<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
 			<input style="float: right;" type="submit" value="<?php _e('Clear Old Custom Links') ?>" id="clearLinks" />
 			<div style="clear:both;"></div>
 		</div>
+		
 		<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
-			<span class="expand">[+]</span> Advanced
+			<span class="expand">[+]</span> Advanced 
 		</h3>
 		
 		<div id="advanced" style="display: none; padding-bottom: 15px;">
 			<p>
-				For Advanced Users Only: This section provides you with the tools necessary to synchronize your IDX pages with changes made to your theme. Read <a href="http://www.idxbroker.com/support/kb/questions/288/">this article</a> for detailed instructions.
+				For Advanced Users Only: This section provides you with the tools necessary to synchronize your IDX pages with changes made to your theme. Read <a href="http://www.idxbroker.com/support/kb/questions/288/" target="_blank">this article</a> for detailed instructions.
 			</p>
+<?php
+
+			$tagState = $wrapper->checkTags();
+			$permState = $wrapper->getPermissions();
 			
+			if($tagState){
+?>
 			<div>
 				Step 1: Choose your wrapper update option:
 				<select name="wrapperOption" id="wrapperOption">
 					<option value="echoCode">Copy and Paste Code</option>
-					<option value="writeCode">Write to Include Files</option>
+					<?=($permState)?'<option value="writeCode">Write to Include Files</option>':''?>
 				</select>
 			</div>
 			
@@ -268,7 +287,7 @@ function idx_broker_admin_page() {
 			<div id="echoStep">
 				
 				<div>
-					Step 3: Copy and paste the Header and Footer Code below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/291/">How do I do this?</a>
+					Step 3: Copy and paste the Header and Footer Code below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/291/" target="_blank">How do I do this?</a>
 				</div>
 				
 				<div id="echoedCode"></div>
@@ -288,6 +307,13 @@ function idx_broker_admin_page() {
 					</div>	
 				</div>
 			</div>
+<?php
+			} else {
+?>
+			<p>Tags have not been detected.  In order to continue you will need to follow <a href="http://www.idxbroker.com/support/kb/questions/291/">these instructions</a> to add the tags.  Once placed, refresh this page and continue.</p>
+<?php
+			}
+?>
 		</div>
 		<?php settings_fields( 'idx-settings-group' ); ?>
 	</form>
@@ -296,6 +322,96 @@ function idx_broker_admin_page() {
 <?php
 
 }
+
+/**
+ * Update the wrapper code depending on the two methods avaliable, writing or copy and paste
+ */
+
+function idxUpdateWrapper () {
+	
+	global $wrapper;
+	
+	$method = $_GET['method'];
+
+	/*
+	*	Get the raw wrapper string, set it
+	*/
+	
+	$wrapper->getPage($_GET['url']);
+	$wrapper->getWrapper();
+	
+	/*
+	*	Parse the wrapper to find the header and footer strings, set them
+	*/
+	
+	$wrapper->parseWrapper();
+	
+	/*
+	*	Depending on the method, we will do different things
+	*/
+	
+	if($method == 'echoCode'){
+		
+		/*
+		 *	Return a formated header and footer message
+		 */
+		
+		$header = $wrapper->getHeader();
+		$footer = $wrapper->getFooter();
+		
+		$returnable = "<div>Header:<textarea cols='100' rows='5'>".$header."</textarea></div><div>Footer:<textarea cols='100' rows='5'>".$footer."</textarea></div>";
+		
+		echo $returnable;
+		
+	} elseif($method == 'writeCode') {
+	
+		/*
+		*	Save the header file
+		*/
+		
+		if(file_put_contents($wrapper->getHeaderPath(), $wrapper->getHeader())) {
+			
+			/*
+			*	Save the footer file
+			*/
+			
+			if(file_put_contents($wrapper->getFooterPath(), $wrapper->getFooter())) {
+				
+				/**
+				 *	Everything went fine, die with true
+				 */
+				
+				die('1');
+				
+				/*
+				*	Couldn't save footer, die with false
+				*/
+				
+			} else {
+				
+				die('0');
+				
+			} // end if put file contents of footer
+			
+		/*
+		*	Couldn't save header, die with false
+		*/
+			
+		} else {
+			
+			die('0');
+			
+		} // end if put file contents of header
+		
+	} else {
+		
+		die('0');
+		
+	} // end if method type
+	
+} //end idxUpdateWrapper()
+
+
 
 
 /*		idxUpdateLinks();
@@ -807,259 +923,10 @@ function idx_stop () {
 }
 
 
-function idxUpdateWrapper () {
-	
-	/*
-	*	Get the wrapper method
-	*/	
-	
-	$method = $_GET['method'];
-	
-	/*
-	*	Get the raw wrapper string
-	*/
-	
-	$wrapper = getWrapper($_GET['url']);
-	
-	/*
-	*	Parse the wrapper to find the header and footer strings
-	*/
-	
-	$header = parseWrapper($wrapper, 'header');
-	$footer = parseWrapper($wrapper, 'footer');
-	
-	/*
-	*	Depending on the method, we will do different things
-	*/
-	
-	if($method == 'echoCode'){
-		
-		/*
-		 *	Return a formated header and footer message
-		 */
-		
-		$returnable = "<div>Header:<textarea cols='100' rows='5'>".$header."</textarea></div><div>Footer:<textarea cols='100' rows='5'>".$footer."</textarea></div>";
-		
-		echo $returnable;
-		
-	} elseif($method == 'writeCode') {
-		
-		/*
-		*	Set up our wrapper file paths and file names
-		*/
-		
-		$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
-		$headerFile = $wrapperDir."/header.php";
-		$footerFile = $wrapperDir."/footer.php";
-		
-		/*
-		*	Save the header file
-		*/
-		
-		if(file_put_contents($headerFile, $header)) {
-			
-			/*
-			*	Save the footer file
-			*/
-			
-			if(file_put_contents($footerFile, $footer)) {
-				
-				die('1');
-				
-				/*
-				*	Couldn't save footer, die with false
-				*/
-				
-			} else {
-				
-				die('0');
-				
-			}
-			
-		/*
-		*	Couldn't save header, die with false
-		*/
-			
-		} else {
-			
-			die('0');
-			
-		}	
-		
-	} else {
-		
-		die('0');
-		
-	}
-	
-	
-}
-
-
-// curls the full index page code
-
-function getWrapper($url) {
-	
-	/*
-	*	cUrl the index page of the plog to get the raw html code
-	*/
-	
-	$curl_handle = curl_init();
-    curl_setopt( $curl_handle, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
-    curl_setopt( $curl_handle, CURLOPT_URL, $url );
-    curl_setopt( $curl_handle, CURLOPT_ENCODING, "" );
-    curl_setopt( $curl_handle, CURLOPT_AUTOREFERER, true );
-	curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, true );
-    curl_setopt( $curl_handle, CURLOPT_MAXREDIRS, 10 );
-	$wrapper = curl_exec($curl_handle);
-	curl_close($curl_handle);
-	
-	/*
-	*	check to see if our idx stop and stop functions are present, if so return
-	*	the raw wrapper, if not then return false
-	*/
-	
-	if (checkWrapper($wrapper)) {
-		return $wrapper;
-	} else {
-		return false;
-	}
-	
-}
-
-/*
-*	Takes full page code and parses out the header and footer code
-*/
-
-
-function parseWrapper($wrapper, $section) {
-	
-	if ($section == 'header') {
-		
-		/*
-		*	To parse out the string we have to get around earlier versions of php. First we reverse the
-		*	string and look for our reversed start flag.  Then we need to reverse the string back to normal
-		*	and cut out the actual flag from the code. Return the header.
-		*	
-		*/
-		
-		return substr(strrev(stristr(strrev($wrapper), '>vid/<>";enon :yalpsid"=elyts "tratSxdi"=di vid<')), 0, -48); // 48 char
-		
-	} else if ($section == 'footer') {
-		
-		/*
-		*	This is the same process as returning the header, except we dont need to reverse the string, as
-		*	our flag will be at the beginning of the code block. Return the footer.
-		*/
-		
-		return substr(stristr($wrapper, '<div id="idxStop" style="display: none;"></div>'), 47); //47 char
-		
-	} else {
-		
-		/*
-		*	If the required header/footer parameter is not provided then just die().
-		*/
-		
-		die();
-		
-	}
-	
-}
-
-/*
-*	Checks to see if wrapper has required stop and start function in place,
-*	if so return true, if not return false
-*/ 
-
-function checkWrapper($wrapper) {
-	
-	/*
-	*	Check to see if the start flag is present, if so move on
-	*/
-
-	if( stristr($wrapper, idx_start() )) {
-		
-		/*
-		*	Check to see if the stop flag is present, if so return true
-		*/
-		
-		if(stristr($wrapper, idx_stop() )) {
-			
-			return true;
-		
-		/*
-		*	Stop flag is not present, return false
-		*/
-		
-		} else {
-			
-			return false;
-		
-		}
-		
-	/*
-	*	Start flag is not present, return false
-	*/
-		
-	} else {
-		
-		return false;
-	
-	}
-	
-}
-
-/*
-*	adminCheckWrapper()
-*	This function checks to see if we have succesfully added content to
-*	the header.php and footer.php files in the wrapper directory.  Returns
-*	1 on success, 0 on no change.
-*/
-
-function adminCheckWrapper() {
-	
-	/*
-	*	These is the declaration of the wrapper directory, and the file names
-	*	of the header and footer files.
-	*/
-	
-	$wrapperDir = '../wp-content/plugins/idx-broker-wordpress-plugin/wrapper';
-	$headerFile = $wrapperDir."/header.php";
-	$footerFile = $wrapperDir."/footer.php";
-	
-	/*
-	*	If the file size of the header file is greater than 0.
-	*/
-	
-	if(filesize($headerFile) > 0){
-		
-		/*
-		*	If the file size of the footer file is greater than 0.
-		*/
-		
-		if(filesize($footerFile) > 0){
-			
-			/*
-			*	Both the header and the footer have a filesize that
-			*	is greater than 0, die and return TRUE.
-			*/
-			
-			die('1');
-			
-		} else {
-			
-			die('0');
-			
-		}
-		
-	} else {
-		
-		die('0');
-		
-	}
-	
-}
-
+/**
+ * Check the CID, Password, and domain option for errors
+ * @return string - Echos the errors
+ */
 
 function errorCheck() {
 	
