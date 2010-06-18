@@ -84,7 +84,9 @@ We recommend that you leave the advanced synchronization feature to your develop
 
 = 1.2.7 =
 
-Wrapper update options are now avaliable depending on detection of requirements.
+Advanced feature now detects tags, read/write settings for folders, and provides copy/paste of header and footer content if security settings do not allow for the locally stored live wrapper files.
+
+<strong>Important Note to Advanced Developers: If you currently use the live wrapper files, all updates will force you to manually modify the CHMOD settings for your /wrapper/ folder and the header.php and footer.php files contained there. Please review <a href="http://www.idxbroker.com/support/kb/questions/301/">this knowledgebase article</a> for more information about how to manage live wrappers when you update the IDX Broker plugin. Note that this is due to WordPress security requirements. This logic applies to any plugin that writes files to your local WordPress installation. 
 
 = 1.2.5 =
 
