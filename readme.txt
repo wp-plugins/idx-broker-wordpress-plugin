@@ -4,14 +4,14 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
-Tested up to: 2.9.2
+Tested up to: 3.0
 Stable tag: 1.2.7
 
 == Description ==
 
-This IDX plugin is <strong>exclusively</strong> for IDX Broker clients. Please note that IDX, Inc. does not provide phone support to troubleshooot theme compatibility issues. This free plugin is being provided as a courtesy to the WordPress development community. 
+This IDX plugin is <strong>exclusively</strong> for <a href="http://www.idxbroker.com/">IDX Broker</a> subscribers. 
 
-This plugin offers four primary features. <strong>Note that these features may not be supported in every theme or WordPress installation</strong>:
+This plugin offers four primary features:
 
 1. Drag-and-drop quick search, iPhone app, showcase, slideshow, and other IDX Broker Widgets into your Automattic sidebar (Automattic sidebar may not be available for all themes).
 2. Add MLS basic, advanced, map, address, and/or listing search to the navigation links at the top of your WordPress site or blog. 
@@ -22,7 +22,7 @@ Your IDX results and details pages are hosted by IDX Broker, not your Wordpress 
 
 Most of your IDX lead capture, iPhone app settings, lead routing, listing email updates, etc. are to be managed using your IDX Broker Admin, not via Admin for this WordPress Plugin. We have chosen not to reproduce an entire IDX back-office solution within Wordpress. There are simply too many features available through hosted IDX that cannot be reproduced within WordPress. 
 
-This Plugin is ideal for those Realtors&reg; who simply need to build a site or blog quickly in WordPress. It provides a way to quickly display featured listings, community/subdivision pages, basic search, your iPhone app code, and more - without having to hand-code this into every theme.     
+This Plugin is ideal for those Realtors&reg; who simply need to build a site or blog quickly in WordPress. It provides a way to quickly display featured listings, community/subdivision pages, basic search, your iPhone app code, and more - without having to hand-code these features into the HTML of a theme. It also provides WordPress developers with advanced functionality to synchronize WordPress pages with IDX search, result, and details pages.      
 
 <strong>Leading Features</strong>
 
