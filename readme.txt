@@ -9,34 +9,30 @@ Stable tag: 1.2.7
 
 == Description ==
 
-This IDX plugin is <strong>exclusively</strong> for <a href="http://www.idxbroker.com/">IDX Broker</a> subscribers. 
+This IDX plugin provides Real Estate Brokers and Agents with a very easy way to add <a href="http://www.idxbroker.com/features/Quick-Search">Quick Search</a>, <a href="http://www.idxbroker.com/features/Automatically-Feature-Listings-for-an-Agent">Active Listings</a>, <a href="http://www.idxbroker.com/features/Predefined-Subdivision">Pre-defined Search Links</a>, <a href="http://www.idxbroker.com/features/Custom-Lead-Signup-Form">Lead Capture</a>, and more to any WordPress site or blog. 
 
-This plugin offers four primary features:
+This plugin requires an <a href="http://www.idxbroker.com/">IDX Broker</a> subscriber account. Agent accounts start at $39.99 monthly and include features available via full IDX (lead capture, pre-defined links, indexable details pages, etc).   
 
-1. Drag-and-drop quick search, iPhone app, showcase, slideshow, and other IDX Broker Widgets into your Automattic sidebar (Automattic sidebar may not be available for all themes).
-2. Add MLS basic, advanced, map, address, and/or listing search to the navigation links at the top of your WordPress site or blog. 
+Features include:
+
+1. Drag-and-drop quick search, the myAgent iPhone app, showcases, slideshows, and lead login, and other IDX Broker Widgets for your Automattic sidebar.
+2. Add featured, basic MLS search, advanced MLS search, map search, address search, and/or listing search to the navigation links at the top of your WordPress site or blog. 
 3. Add an unlimited number of neighborhood, subdivision, or other custom IDX search pages to your navigation and/or sidebar.
-4. <strong>Advanced Theme Developers Only:</strong> Provide Realtors&reg; with one-click Blog <> IDX synchronization. Tag your themes for Realtors&reg; so that Realtors&reg; don't have to update their IDX pages manually. 
+4. <strong>Advanced Theme Developers Only:</strong> Provide Realtors&reg; with one-click Blog <> IDX synchronization. Combine this feature with a <a href="http://www.idxbroker.com/support/kb/questions/270/">custom subdomain</a>, as well as <a href="http://www.idxbroker.com/support/kb/questions/57/">dynamic title</a> and description tags for advanced search engine optimization.  
 
-Your IDX results and details pages are hosted by IDX Broker, not your Wordpress blog. This means that you will not need to hand-code or remember any WordPress tags in order to use this plugin. 
+Your blog posts and pages are hosted in WordPress (myblogsite.com). Your IDX Broker pages are hosted by IDX Broker (myblogsite.idxco.com or subdomain.myblogsite.com). We integrate the design of your blog site INTO your IDX pages so that all you need to do is add links and widgets that point to your IDX subdomain (or custom subdomain). By separating the IDX functions from your blogging functions, we are able to provide you with a very powerful administrative back-office application that controls listing details, lead activity, custom search links, agent bio pages, you iPhone App colors/details, and more.      
 
-Most of your IDX lead capture, iPhone app settings, lead routing, listing email updates, etc. are to be managed using your IDX Broker Admin, not via Admin for this WordPress Plugin. We have chosen not to reproduce an entire IDX back-office solution within Wordpress. There are simply too many features available through hosted IDX that cannot be reproduced within WordPress. 
+<strong>Benefits</strong>
 
-This Plugin is ideal for those Realtors&reg; who simply need to build a site or blog quickly in WordPress. It provides a way to quickly display featured listings, community/subdivision pages, basic search, your iPhone app code, and more - without having to hand-code these features into the HTML of a theme. It also provides WordPress developers with advanced functionality to synchronize WordPress pages with IDX search, result, and details pages.      
+Get Indexed - All IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and details pages. We also provide you with a way to edit URL paths, add sub header content, custom title/description tags, and make your IDX pages unique. You can make your custom links as keyword and content-rich as you like. Yet even if you don't, your IDX pages are fully indexable. 
 
-<strong>Leading Features</strong>
+Benefit from long-tail keyword searches - Adding keyword-rich descriptions to the same page that hosts indexable IDX results means that you are pairing dynamic property content with unique neighborhood or area-specific content. The dynamic nature of these pages, and the fact that they aren't built with javascript or iFramed, encourages search engines to pair your keyword-rich page with specific 3, 4, and 5 word phrase searches.  
 
-Indexable IDX - All hosted IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and details pages. We also provide you with a way to edit URL paths, add sub header content, custom title/description tags, and make your IDX pages unique. 
-
-Custom Results Landing Pages - We recommend that you add custom content to the sub headers of your IDX results pages in order to encourage the search engines to differentiate your content from all the other IDX results and details pages that display the same addresses, Cities, and Zips for each MLS region. 
-
-Lead Registration - You can use IDX Broker to force signup on every 4th or 5th property detail view. Or, if you prefer, require registration once the visitor click the link to your custom results page. 
-
-Lead Management - Anybody who requests property info, fills out your contact form, saves a search, or creates an account with you will show up in the Lead Management tab of IDX Broker. You will also receive an email alert when this occurs. 
+Get more leads, not just indexable pages - Through trial and error some realtors have been able to increase their weekly lead count by 200% or more. Try forcing signup on every 4th or 5th property detail view. Or, try another setting until you see a substantial increase in the number of weekly leads. You are in control. 
 
 <strong>Getting Started</strong>
 
-Existing IDX Broker clients may simply enter their IDX Broker Client ID (CID), Password, and IDX sub domain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. Once entered, simply follow the instructions provided on the plugin page, or review articles published to the <a href="http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/">IDX Broker Knowledgebase.</a>    
+Existing IDX Broker clients may simply enter their IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. Once entered, simply follow the instructions provided on the plugin page, or review articles published to the <a href="http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/">IDX Broker Knowledgebase.</a>    
 
 <strong>General Terms of Use</strong> 
 
