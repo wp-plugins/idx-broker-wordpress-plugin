@@ -7,6 +7,8 @@ Requires at least: 2.8.2
 Tested up to: 3.0
 Stable tag: 1.2.7
 
+IDX Broker Plugin - Embed IDX Broker Widgets, Custom Links, and Page Links into your WordPress blog or site. 
+
 == Description ==
 
 This IDX plugin provides Real Estate Brokers and Agents with a very easy way to add <a href="http://www.idxbroker.com/features/Quick-Search">Quick Search</a>, <a href="http://www.idxbroker.com/features/Automatically-Feature-Listings-for-an-Agent">Active Listings</a>, <a href="http://www.idxbroker.com/features/Predefined-Subdivision">Pre-defined Search Links</a>, <a href="http://www.idxbroker.com/features/Custom-Lead-Signup-Form">Lead Capture</a>, and more to any WordPress site or blog. 
@@ -49,6 +51,9 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links).
 
 == Frequently Asked Questions ==
+
+= Does this plugin work with PHP4? =
+No. The latest version of this plugin is written for PHP5. Download the 1.2.6 version of the plugin if your web server uses PHP4. 
 
 = How does IDX work? =
 IDX is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker™ connects to this data feed automatically, maps the necessary fields, and adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
