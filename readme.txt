@@ -7,30 +7,30 @@ Requires at least: 2.8.2
 Tested up to: 3.0
 Stable tag: 1.2.7
 
-IDX Broker Plugin - Embed IDX Broker Widgets, Custom Links, and Page Links into your WordPress blog or site. 
+IDX Broker Plugin - Add integrated IDX to your website or blog today. 
 
 == Description ==
 
-This IDX plugin provides Real Estate Brokers and Agents with a very easy way to add <a href="http://www.idxbroker.com/features/Quick-Search">Quick Search</a>, <a href="http://www.idxbroker.com/features/Automatically-Feature-Listings-for-an-Agent">Active Listings</a>, <a href="http://www.idxbroker.com/features/Predefined-Subdivision">Pre-defined Search Links</a>, <a href="http://www.idxbroker.com/features/Custom-Lead-Signup-Form">Lead Capture</a>, and more to any WordPress site or blog. 
+This IDX plugin provides Realtors&reg; with a very easy way to add integrated IDX without using iFrames and without having to edit your theme's HTML directly. This plugin has been tested on AgentPress, as well as other popular IDX themes for Realtors.   
 
-This plugin requires an <a href="http://www.idxbroker.com/">IDX Broker</a> subscriber account. Agent accounts start at $39.99 monthly and include features available via full IDX (lead capture, pre-defined links, indexable details pages, etc).   
+Note: This plugin requires an IDX Broker Account. Check MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a>
 
-Features include:
+<strong>Features include:</strong>
 
-1. Drag-and-drop quick search, the myAgent iPhone app, showcases, slideshows, and lead login, and other IDX Broker Widgets for your Automattic sidebar.
-2. Add featured, basic MLS search, advanced MLS search, map search, address search, and/or listing search to the navigation links at the top of your WordPress site or blog. 
-3. Add an unlimited number of neighborhood, subdivision, or other custom IDX search pages to your navigation and/or sidebar.
-4. <strong>Advanced Theme Developers Only:</strong> Provide Realtors&reg; with one-click Blog <> IDX synchronization. Combine this feature with a <a href="http://www.idxbroker.com/support/kb/questions/270/">custom subdomain</a>, as well as <a href="http://www.idxbroker.com/support/kb/questions/57/">dynamic title</a> and description tags for advanced search engine optimization.  
-
-Your blog posts and pages are hosted in WordPress (myblogsite.com). Your IDX Broker pages are hosted by IDX Broker (myblogsite.idxco.com or subdomain.myblogsite.com). We integrate the design of your blog site INTO your IDX pages so that all you need to do is add links and widgets that point to your IDX subdomain (or custom subdomain). By separating the IDX functions from your blogging functions, we are able to provide you with a very powerful administrative back-office application that controls listing details, lead activity, custom search links, agent bio pages, you iPhone App colors/details, and more.      
+1. Drag-and-drop IDX search, new account setup, and other IDX Broker Widgets. 
+2. Unlimited page links can be embedded into your navigation, including custom neighborhood, foreclosure, and other search page links. 
+3. Widget to help you promote your myAgent iPhone App agent code. 
+4. Advanced Theme Developers Only: Automated header and footer code generation to synchronize WordPress design with IDX pages.      
 
 <strong>Benefits</strong>
 
-Get Indexed - All IDX pages are fully indexable. We have removed duplicate titles and descriptions from most of your IDX results and details pages. We also provide you with a way to edit URL paths, add sub header content, custom title/description tags, and make your IDX pages unique. You can make your custom links as keyword and content-rich as you like. Yet even if you don't, your IDX pages are fully indexable. 
+Get Indexed - All IDX pages are fully indexable. 
 
-Benefit from long-tail keyword searches - Adding keyword-rich descriptions to the same page that hosts indexable IDX results means that you are pairing dynamic property content with unique neighborhood or area-specific content. The dynamic nature of these pages, and the fact that they aren't built with javascript or iFramed, encourages search engines to pair your keyword-rich page with specific 3, 4, and 5 word phrase searches.  
+Promote a mobile solution - Encourage people to download the free myAgent App and enter your Agent code. Once embedded, you become the primary point of contact for each and every property. 
 
-Get more leads, not just indexable pages - Through trial and error some realtors have been able to increase their weekly lead count by 200% or more. Try forcing signup on every 4th or 5th property detail view. Or, try another setting until you see a substantial increase in the number of weekly leads. You are in control. 
+Find the ideal signup process - Request signup on search, upon results, or after the 5th property view. It's up to you!
+
+Pay one flat-rate price - Get IDX on your site, Widgets on your blog, map search, lead capture, iPhone application, and much more starting at $39.99/month. No monthly commitment required. 
 
 <strong>Getting Started</strong>
 
