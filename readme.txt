@@ -13,7 +13,7 @@ IDX Broker Plugin - Add integrated IDX to your website or blog today.
 
 This IDX plugin provides Realtors&reg; with a very easy way to add integrated IDX without using iFrames and without having to edit your theme's HTML directly. This plugin has been tested on AgentPress, as well as other popular IDX themes for Realtors.   
 
-Note: This plugin requires an IDX Broker Account. Check MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a>
+Note: This plugin requires an IDX Broker Account. Check MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
 
 <strong>Features include:</strong>
 
