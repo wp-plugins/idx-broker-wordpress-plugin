@@ -47,8 +47,8 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 1. Download and extract the IDX Broker plugin. You may also install directly by going to your WP-Admin page and then Plugins > Add New. Search for 'idxbroker' under new plugins and click to install directly.
 2. Upload the uncompressed folder to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the Plugins menu in WordPress.
-4. You will need an IDX Broker account (MLS approval required), for the Plugin to work. Go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
-5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links).
+4. You will need to have an active <a href="http://www.idxbroker.com">IDX Broker</a> account for the Plugin to work. Go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
+5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links), and more.
 
 == Frequently Asked Questions ==
 
@@ -60,6 +60,9 @@ Yes. IDX Broker manages your IDX feed by building forms, results, and property d
 
 = Does IDX Broker require a long-term contract? =
 No. IDX Broker requires a month-to-month agreement only. There are three monthly account levels - Agent ($39+), Team ($49+), and Office($78+). 
+
+= What can I expect if I decide to get my IDX feed through IDX Broker? =
+When you sign up for a new account, IDX, Inc sends you any necessary MLS paperwork (if required). Once you have signed the necessary paperwork, you will need to fax that back to us and we will then forward your paperwork to the MLS for approval. Approval can take anywhere from 3-10 days. Once approved, we will activate your account, integrate your site's design into IDX pages, and send you IDX Broker login credentials so that you can add links and Widgets to your site or blog.  
 
 = How many blogs/websites can I integrate with IDX Broker? =
 Features provided by this Plugin - Widgets, links, and custom links may be placed onto any WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. Each IDX Broker account requires MLS approval of ONE site for IDX display. Your search results and details pages must match this approved site. 
