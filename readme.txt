@@ -20,7 +20,7 @@ Note: This plugin requires an IDX Broker Account. Check MLS/IDX feed coverage <a
 1. Drag-and-drop IDX search, new account setup, and other IDX Broker Widgets. 
 2. Unlimited page links can be embedded into your navigation, including custom neighborhood, foreclosure, and other search page links. 
 3. Widget to help you promote your myAgent iPhone App agent code. 
-4. Advanced Theme Developers Only: Automated header and footer code generation to synchronize WordPress design with IDX pages.      
+4. New Feature for Theme Developers: <a href="http://www.idxbroker.com/support/kb/questions/310/">Insert your Theme design</a> into every IDX page.        
 
 <strong>Benefits</strong>
 
