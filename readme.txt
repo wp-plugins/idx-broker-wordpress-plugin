@@ -4,7 +4,7 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
 Requires at least: 2.8.2
-Tested up to: 3.0
+Tested up to: 3.0.1
 Stable tag: 1.2.7
 
 IDX Broker Plugin - Add integrated IDX to your website or blog today. 
@@ -52,34 +52,36 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 
 == Frequently Asked Questions ==
 
-= Does this plugin work with PHP4? =
-No. The latest version of this plugin is written for PHP5. Download the 1.2.6 version of the plugin if your web server uses PHP4. 
-
-= How does IDX work? =
-IDX is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker™ connects to this data feed automatically, maps the necessary fields, and adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
-
-= How many blogs/websites can I integrate with IDX Broker? =
-Features provided by this Plugin - Widgets, links, and custom links may be placed onto ANY WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. 
-
-Note that the website hosting the design for IDX pages must be approved by your local MLS(s).  
+= What is IDX? =
+Internet Data Exchange, or IDX, is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker&reg; connects to this data feed automatically, maps the necessary fields, and then adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
 
 = Do I need an IDX Broker account in order to use this plugin? =
+Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_mls_coverage.php">Read more about our MLS coverage.</a> Note that some MLS's may charge you a separate fee for access to your IDX feed. 
 
-Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_qanda.php">Read more about IDX Broker and IDX Feeds.</a>
+= Does IDX Broker require a long-term contract? =
+No. IDX Broker requires a month-to-month agreement only. There are three monthly account levels - Agent ($39+), Team ($49+), and Office($78+). 
 
-= Should I use the advanced synchronization features, or leave that to my developer? =
+= How many blogs/websites can I integrate with IDX Broker? =
+Features provided by this Plugin - Widgets, links, and custom links may be placed onto any WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. Each IDX Broker account requires MLS approval of ONE site for IDX display. Your search results and details pages must match this approved site. 
 
-We recommend that you leave the advanced synchronization feature to your developer. One exception to this rule is if you understand how WordPress manages security settings including CHMOD settings. If you don't know what CHMOD settings are, you should not attempt to synchronize your WordPress with IDX pages. Simply <a href="http://www.idxbroker.com/support/kb/contact.php">contact our support team</a> <strong>once you have finished making changes to your WordPress blog or site using the plugin</strong>, and we will update your IDX pages with those changes.    
+= Does IDX Broker offer lead capture functionality? =
+Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manager page, a customizable sign up form, and provides you with 'teaser' registration options. 
+
+= Does this plugin work with PHP4? =
+No. The latest version of this plugin is optimized for WordPress 3.0 and as a result has been written in PHP5. Download the 1.2.6 version of the plugin if your web server uses PHP4. 
+
+= What is the real-time synchronization feature? =
+This feature is designed to help designers integrate their theme design into each IDX page. There is now a fast and easy way to do this <a href="http://www.idxbroker.com/support/kb/questions/310/">from IDX Broker Admin.</a> This requires some knowledge of <a href="http://www.idxbroker.com/support/kb/questions/291/">Theme editing</a> to get started. 
  
 == Screenshots ==
 
-1. Featured property slideshow Widget - 'screenshot-1.png'
-2. myAgent iPhone App Widget - 'screenshot-2.png'
-3. Custom links Widget - 'screenshot-3.png'
-4. IDX Menu links - 'screenshot-4.png'
-5. Plugin Admin screen. 'screenshot-5.png'
+1. Search Link and iPhone App sidebar Widgets. - 'screenshot-1.png'
+2. Embedded Quick Search and Custom Link sidebar Widgets. - 'screenshot-2.png'
+3. Search Links Added to Navigation.  - 'screenshot-3.png'
+4. More Links Added to Navigation. - 'screenshot-4.png'
+5. Plugin Admin Page. 'screenshot-5.png'
 6. IDX Widget Admin - myAgent iPhone App. 'screenshot-6.png'
-7. IDX automatic wrapper generation - 'screenshot-7.png'
+7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
 
