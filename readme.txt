@@ -12,10 +12,17 @@ IDX Broker Plugin - Add integrated IDX to your WordPress website today.
 == Description ==
 
 This IDX plugin provides Realtors&reg; with an easy way to incorporate an IDX feed into a WordPress website. The IDX pages available via this plugin are fully indexable. Each IDX subscription also comes with a free iPhone/iPad application and online lead capture functionality. 
+      
+An <a href="http://www.idxbroker.com/">IDX Broker</a> subscription is required. Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
+
+<strong>Features include:</strong>
+
+1. Drag-and-drop IDX search, new account setup, and other IDX Broker Widgets. 
+2. Unlimited page links can be embedded into your navigation, including custom neighborhood, foreclosure, and other search page links. 
+3. Widget to help you promote your myAgent iPhone App agent code. 
+4. New Feature for Theme Developers: <a href="http://www.idxbroker.com/support/kb/questions/310/">Insert your Theme design</a> into every IDX page.        
 
 IDX, Inc will integrate your theme design into each IDX page automatically before activating your account. After receiving your login information, simply enter it into the plugin to quickly add page links and Widgets to your website. There is no need to integrate via short codes or use other HTML coding techniques to get started.
-      
-An <a href="http://www.idxbroker.com/">IDX Broker</a> subscription is required. Each IDX Broker Agent or Office subscriber receives the <strong>full</strong> set of IDX search features. Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
 
 <strong>Features include:</strong>
 
