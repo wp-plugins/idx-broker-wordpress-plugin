@@ -2,18 +2,20 @@
 Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
-Tags: idx, real estate, search, widget, wordpress, wordpress idx, housing, RETS, MLS
+Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
 Tested up to: 3.0.1
 Stable tag: 1.2.7
 
-IDX Broker Plugin - Add integrated IDX to your website or blog today. 
+IDX Broker Plugin - Add integrated IDX to your WordPress website today. 
 
 == Description ==
 
-This IDX plugin provides Realtors&reg; with a very easy way to add integrated IDX without using iFrames and without having to edit your theme's HTML directly. This plugin has been tested on AgentPress, as well as other popular IDX themes for Realtors.   
+This IDX plugin provides Realtors&reg; with an easy way to incorporate an IDX feed into a WordPress website. The IDX pages available via this plugin are fully indexable. Each IDX subscription also comes with a free iPhone/iPad application and online lead capture functionality. 
 
-Note: This plugin requires an IDX Broker Account. Check MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
+IDX, Inc will integrate your theme design into each IDX page automatically before activating your account. After receiving your login information, simply enter it into the plugin to quickly add page links and Widgets to your website. There is no need to integrate via short codes or use other HTML coding techniques to get started.
+      
+An <a href="http://www.idxbroker.com/">IDX Broker</a> subscription is required. Each IDX Broker Agent or Office subscriber receives the <strong>full</strong> set of IDX search features. Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
 
 <strong>Features include:</strong>
 
