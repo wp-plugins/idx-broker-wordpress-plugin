@@ -9,17 +9,8 @@ Author URI: http://www.idxbroker.com
 License: GPL
 */
 
-/**
- *	Include the wrapper class as it hold the functions to manipulate the wrapper files
- */
-
-include('class.wrapper.php');
-
-/**
- *	Create a new wrapper object
- */
-
-$wrapper = new wrapper;
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 
 add_action('admin_menu', 'idx_broker_menu');
 add_action('admin_menu', 'idx_broker_options_init' );
@@ -37,20 +28,18 @@ function idx_broker_options_init(){
 	register_setting( 'idx-settings-group', "idx_broker_pass" );		
 	register_setting( 'idx-settings-group', "idx_broker_domain" );		
 	register_setting( 'idx-settings-group', "idx_broker_basicSearchLink" );
-	register_setting( 'idx-settings-group', "idx_broker_basicSearchLabel" );
 	register_setting( 'idx-settings-group', "idx_broker_advancedSearchLink" );
-	register_setting( 'idx-settings-group', "idx_broker_advancedSearchLabel" );
 	register_setting( 'idx-settings-group', "idx_broker_mapSearchLink" );
-	register_setting( 'idx-settings-group', "idx_broker_mapSearchLabel" );
 	register_setting( 'idx-settings-group', "idx_broker_addressSearchLink" );
-	register_setting( 'idx-settings-group', "idx_broker_addressSearchLabel" );
 	register_setting( 'idx-settings-group', "idx_broker_listingSearchLink" );
-	register_setting( 'idx-settings-group', "idx_broker_listingSearchLabel" );
 	register_setting( 'idx-settings-group', "idx_broker_featuredLink" );
-	register_setting( 'idx-settings-group', "idx_broker_featuredLabel" );
 	register_setting( 'idx-settings-group', "idx_broker_soldPendLink" );
-	register_setting( 'idx-settings-group', "idx_broker_soldPendLabel" );
-	
+	register_setting( 'idx-settings-group', "idx_broker_openHousesLink" );
+	register_setting( 'idx-settings-group', "idx_broker_contactLink" );
+	register_setting( 'idx-settings-group', "idx_broker_rosterLink" );
+	register_setting( 'idx-settings-group', "idx_broker_listManLink" );
+	register_setting( 'idx-settings-group', "idx_broker_homeValLink" );
+
 	/*
 	 *	Since we have custom links that can be added and deleted inside
 	 *	the IDX Broker admin, we need to grab them and set up the options
@@ -97,8 +86,6 @@ function idx_broker_menu() {
 
 function idx_broker_admin_page() {
 	
-	global $wrapper;
-	
 	if (!current_user_can('manage_options'))  {
 		wp_die( __('You do not have sufficient permissions to access this page.') );
 	}
@@ -107,213 +94,205 @@ function idx_broker_admin_page() {
 
 <script src="<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/idxBroker.js" type="text/javascript"></script>
 
-<div class="wrap" style="width: 800px;">
-	<h2>IDX Broker Plugin Options</h2>
-	<h3 style="border-bottom: 1px solid #ccc;">General Settings</h3>
+<style type="text/css">
+
+#idxPluginWrap {
+	font-family: Verdana, Helvetica, sans-serif;
+	width: 900px;
+}
+#idxPluginWrap h2, #idxPluginWrap h3 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+#idxPluginWrap h3 {
+	border-bottom: 1px solid #ccc;
+}
+#logo {
+	background-image: url(../wp-content/plugins/idx-broker-wordpress-plugin/images/logoSmEmail.png);
+	background-repeat: no-repeat;
+	background-position: bottom;
+	width: 100px;
+	height: 58px;
+	float: right;
+}
+#gen_settings li {
+	height: 25px;
+}
+#gen_settings li input {
+	float: right;
+}
+.link_header {
+	font-weight:bold;
+	margin-bottom: 5px;
+}
+.link_list li {
+	float: left;
+	height: 20px;
+	width: 225px;
+}
+.link_label {
+	padding-left: 2px;
+}
+.status {
+	float: left;
+	color:#21759B;
+	font-weight: bold;
+	margin-top: 15px;
+}
+#saveChanges {
+	float: right;
+	margin-top: 15px;
+}
+.save_footer{
+	border-top: 1px solid #ccc;
+}
+.clear {
+	clear: both;
+}
+</style>
+
+<div id="idxPluginWrap" class="wrap">
+	<br class="clear" />
+	<div id="logo"></div>
+	<h2 style="float: left;">IDX Broker Plugin Options</h2>
+	<br class="clear" />
+	<h3>General Settings</h3>
 	
 	<form method="post" action="options.php" id="idxOptions">
 		<div id="blogUrl" style="display: none;" ajax="<?php bloginfo('wpurl'); ?>"></div>
-		<ul>
-			<li style="height: 25px;">
+		<ul id="gen_settings">
+			<li>
 				<label for="idx_broker_cid">Customer Identification Number (CID): </label>
-				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;" target="_blank">What's this?</a>
-				<input style="float: right;" name="idx_broker_cid" type="text" id="idx_broker_cid" value="<?php echo get_option('idx_broker_cid'); ?>" />
+				<input name="idx_broker_cid" type="text" id="idx_broker_cid" value="<?php echo get_option('idx_broker_cid'); ?>" />
 			</li>
-			<li style="height: 25px;">
+			<li>
 				<label for="idx_broker_pass">Your IDX Broker Password:</label>
-				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;" target="_blank">What's this?</a>
-				<input style="float: right;" name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php echo get_option('idx_broker_pass'); ?>" />
+				<input name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php echo get_option('idx_broker_pass'); ?>" />
 			</li>
-			<li style="height: 25px;">
+			<li>
 				<label for="idx_broker_domain">Your Website Domain (subdomain.domain.com):</label>
-				<a href="http://www.idxbroker.com/support/kb/questions/285/" style="font-size: 8pt;" target="_blank">What's this?</a>
-				<input style="float: right;" name="idx_broker_domain" type="text" id="idx_broker_domain" size="30" value="<?php echo get_option('idx_broker_domain'); ?>" />
+				<input name="idx_broker_domain" type="text" id="idx_broker_domain" size="30" value="<?php echo get_option('idx_broker_domain'); ?>" />
 			</li>
 		</ul>
 	
-		<h3 style="border-bottom: 1px solid #ccc;">Widgets</h3>
+		<h3>Sidebar Widgets</h3>
 		
 		<p><a href="widgets.php">Click here</a> to visit the Widgets page and add IDX Broker widgets to your sidebar(s).</p>
 	
 		
-		<h3 style="border-bottom: 1px solid #ccc;">Menu Links Tool</h3>
+		<h3>Navigation Links</h3>
 		
-		<p>Many Realtors&reg; add 2-3 links to their site or blog.  Often it's basic or map search, followed by a link to your active listings (Featured Properties).</p>
+		<p>Many Realtors&reg; add 2-3 navigation links to their site or blog, although you may choose to add more. The most common links are to the Basic Search, Map Search, and the Featured Properties Pages.</p>
+		<p>Use the boxes below to Add or Remove MLS/IDX pages from your navigation. Each page will maintain the look and feel of your blog or site. Once you have decided upon the pages that you want in your navigation, click the "Save Changes" button. To customize your IDX page link titles, or to manage the menu order of your new IDX pages, simply visit <a href="edit.php?post_type=page">Pages</a>.</p>
 		
-		<p>IDX Broker generates the content for these pages automatically using MLS data that is updated every 24 hours. To see if IDX Broker offers coverage in your area, <a href="http://www.idxbroker.com" target="_blank">click here</a>. </p>
+		<div class="link_header">Add/Remove Core Page Links</div>
+		<br class="clear" />
 		
-		<p>Use the tool below to add IDX Broker links as Pages in your navigation.  When you are done entering your information and choosing/renaming your links, simply hit the "Save Changes" button to apply your settings.</p>
-		
-		<span style="float:left; font-weight:bold;">Activate -</span>
-		<span style="float:left; font-weight:bold; margin-left: 7px;">IDX Broker Page Link</span>
-		<span style="float:right; font-weight:bold; margin-right: 6px;">Rename Page Link</span>
-		<div style="clear: both;"></div>
-		
-		<ul>
-			<li style="height: 20px;">
-				<?php $basicCheck = (get_option('idx_broker_basicSearchLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_basicSearchLink" id="idx_broker_basicSearchLink" <? echo $basicCheck; ?>" class="idx_broker_basicSearchLink" />
-				<label for="idx_broker_basicSearchLink" style="padding-left:2px;">- Basic Search</label>
-				<input style="float: right;" class="idx_broker_basicSearchLabel" name="idx_broker_basicSearchLabel" type="text" id="idx_broker_basicSearchLabel" value="<?php echo get_option('idx_broker_basicSearchLabel'); ?>" />
+		<ul class="link_list">
+			<li>
+				<input type="checkbox" name="idx_broker_basicSearchLink" id="idx_broker_basicSearchLink" <?=(get_option('idx_broker_basicSearchLink')=='on')?'checked="checked"':'';?> class="idx_broker_basicSearchLink" />
+				<label for="idx_broker_basicSearchLink" class="link_label">- Basic Search</label>
 			</li>
-			<li style="height: 20px;">
-				<?php $advancedCheck = (get_option('idx_broker_advancedSearchLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_advancedSearchLink" id="idx_broker_advancedSearchLink" <? echo $advancedCheck; ?> class="idx_broker_advancedSearchLink" />
-				<label for="idx_broker_advancedSearchLink" style="padding-left: 2px;">- Advanced Search</label>
-				<input style="float: right;" class="idx_broker_advancedSearchLabel" name="idx_broker_advancedSearchLabel" type="text" id="idx_broker_advancedSearchLabel" value="<?php echo get_option('idx_broker_advancedSearchLabel'); ?>" />
+			<li>
+				<input type="checkbox" name="idx_broker_advancedSearchLink" id="idx_broker_advancedSearchLink" <?=(get_option('idx_broker_advancedSearchLink')=='on')?'checked="checked"':'';?> class="idx_broker_advancedSearchLink" />
+				<label for="idx_broker_advancedSearchLink" class="link_label">- Advanced Search</label>
 			</li>
-			<li style="height: 20px;">
-				<?php $mapCheck = (get_option('idx_broker_mapSearchLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_mapSearchLink" id="idx_broker_mapSearchLink" <? echo $mapCheck; ?> class="idx_broker_mapSearchLink" />
-				<label for="idx_broker_mapSearchLink" style="padding-left: 2px;">- Map Search</label>
-				<input style="float: right;" class="idx_broker_mapSearchLabel" name="idx_broker_mapSearchLabel" type="text" id="idx_broker_mapSearchLabel" value="<?php echo get_option('idx_broker_mapSearchLabel'); ?>" />
+			<li>
+				<input type="checkbox" name="idx_broker_mapSearchLink" id="idx_broker_mapSearchLink" <?=(get_option('idx_broker_mapSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_mapSearchLink" />
+				<label for="idx_broker_mapSearchLink" class="link_label">- Map Search</label>
 			</li>
-			<li style="height: 20px;">
-				<?php $addressCheck = (get_option('idx_broker_addressSearchLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_addressSearchLink" id="idx_broker_addressSearchLink" <? echo $addressCheck; ?> class="idx_broker_addressSearchLink" />
-				<label for="idx_broker_addressSearchLink" style="padding-left: 2px;">- Address Search</label>
-				<input style="float: right;" class="idx_broker_addressSearchLabel" name="idx_broker_addressSearchLabel" type="text" id="idx_broker_addressSearchLabel" value="<?php echo get_option('idx_broker_addressSearchLabel'); ?>" />
+			<li>
+				<input type="checkbox" name="idx_broker_addressSearchLink" id="idx_broker_addressSearchLink" <?=(get_option('idx_broker_addressSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_addressSearchLink" />
+				<label for="idx_broker_addressSearchLink" class="link_label">- Address Search</label>
 			</li>
-			<li style="height: 20px;">
-				<?php $listingCheck = (get_option('idx_broker_listingSearchLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_listingSearchLink" id="idx_broker_listingSearchLink" <? echo $listingCheck; ?> class="idx_broker_listingSearchLink" />
-				<label for="idx_broker_listingSearchLink" style="padding-left: 2px;">- Listing Search</label>
-				<input style="float: right;" class="idx_broker_listingSearchLabel" name="idx_broker_listingSearchLabel" type="text" id="idx_broker_listingSearchLabel" value="<?php echo get_option('idx_broker_listingSearchLabel'); ?>" />
+			<li>
+				<input type="checkbox" name="idx_broker_listingSearchLink" id="idx_broker_listingSearchLink" <?=(get_option('idx_broker_listingSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listingSearchLink" />
+				<label for="idx_broker_listingSearchLink" class="link_label">- Listing Search</label>
 			</li>
-			<li style="height: 20px;">
-				<?php $featuredCheck = (get_option('idx_broker_featuredLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_featuredLink" id="idx_broker_featuredLink" <? echo $addressCheck; ?> class="idx_broker_featuredLink" />
-				<label for="idx_broker_featuredLink" style="padding-left: 2px;">- Featured Properties</label>
-				<input style="float: right;" class="idx_broker_featuredLabel" name="idx_broker_featuredLabel" type="text" id="idx_broker_featuredLabel" value="<?php echo get_option('idx_broker_featuredLabel'); ?>" />
+			<li>
+				<input type="checkbox" name="idx_broker_featuredLink" id="idx_broker_featuredLink" <?=(get_option('idx_broker_featuredLink') == 'on')?'checked="checked"':'';?> class="idx_broker_featuredLink" />
+				<label for="idx_broker_featuredLink" class="link_label">- Featured Properties</label>
 			</li>
-			<li style="height: 20px;">
-				<?php $soldPendCheck = (get_option('idx_broker_soldPendLink') == 'on')?'checked="checked"':''; ?>
-				<input type="checkbox" name="idx_broker_soldPendLink" id="idx_broker_soldPendLink" <? echo $soldPendCheck; ?> class="idx_broker_soldPendLink" />
-				<label for="idx_broker_soldPendLink" style="padding-left: 2px;">- Sold/Pending Properties</label>
-				<input style="float: right;" class="idx_broker_soldPendLabel" name="idx_broker_soldPendLabel" type="text" id="idx_broker_soldPendLabel" value="<?php echo get_option('idx_broker_soldPendLabel'); ?>" />
+			<li>
+				<input type="checkbox" name="idx_broker_soldPendLink" id="idx_broker_soldPendLink" <?=(get_option('idx_broker_soldPendLink') == 'on')?'checked="checked"':'';?> class="idx_broker_soldPendLink" />
+				<label for="idx_broker_soldPendLink" class="link_label">- Sold/Pending Properties</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_openHousesLink" id="idx_broker_openHousesLink" <?=(get_option('idx_broker_openHousesLink') == 'on')?'checked="checked"':'';?> class="idx_broker_openHousesLink" />
+				<label for="idx_broker_openHousesLink" class="link_label">- Open Houses</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_contactLink" id="idx_broker_contactLink" <?=(get_option('idx_broker_contactLink') == 'on')?'checked="checked"':'';?> class="idx_broker_contactLink" />
+				<label for="idx_broker_contactLink" class="link_label">- Contact Page</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_rosterLink" id="idx_broker_rosterLink" <?=(get_option('idx_broker_rosterLink') == 'on')?'checked="checked"':'';?> class="idx_broker_rosterLink" />
+				<label for="idx_broker_rosterLink" class="link_label">- Roster Page (multi only)</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_listManLink" id="idx_broker_listManLink" <?=(get_option('idx_broker_listManLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listManLink" />
+				<label for="idx_broker_listManLink" class="link_label">- Listing Manager</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_homeValLink" id="idx_broker_homeValLink" <?=(get_option('idx_broker_homeValLink') == 'on')?'checked="checked"':'';?> class="idx_broker_homeValLink" />
+				<label for="idx_broker_homeValLink" class="link_label">- Home Valuation</label>
 			</li>
 		</ul>
-		<p>
-			<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
-			<input style="float: right;" type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
-			<div style="clear:both;"></div>
-		</p>
-		<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
-			<span class="expand">[+]</span> Custom Links
-		</h3>
-		<div id="customLinks" style="display: none; padding-bottom: 15px;">
-			<p>You can add your IDX Broker custom links to your main navigation in this area.  Simply check or uncheck the links to add or remove them, and click the save changes button above. Links can be build in the <a href="http://www.idxco.com/mgmt/" target="_blank">IDX Broker Admin</a>.</p>  
-			<ul>
+		<br class="clear" />
+
+		<div class="link_header">Custom Links</div>
+		<ul class="link_list">
 <?php
+			/*
+			*	We want the client the ability to place any custom built links in the system
+			*	in the main navigation.  First lets grab them.
+			*/
+
+			$customLinks = idx_getCustomLinks();
+			
+			if(count($customLinks) > 0) {
+			
 				/*
-				*	We want the client the ability to place any custom built links in the system
-				*	in the main navigation.  First lets grab them.
+				*	Now that we have seperated the list into individual array elements, we need to loop
+				*	over them and seperate again by the pipe character ->  link_name | http://link.tiny.url
 				*/
-	
-				$customLinks = idx_getCustomLinks();
-				
-				if(count($customLinks) > 0) {
-				
-					/*
-					*	Now that we have seperated the list into individual array elements, we need to loop
-					*	over them and seperate again by the pipe character ->  link_name | http://link.tiny.url
-					*/
-	
-					foreach ($customLinks as $link){
-						
-						/*
-						*	Now we have gathered all our info, now we
-						*	need to display the custom link and a checkbox to allow the user to toggle it on
-						*	or off.  First we gather the setting, and if it's on then we need to display
-						*	checked="checked"
-						*/
-						
-						$checkOption = (get_option("idx_custom_".$link[0]) == 'on')?'checked="checked"':'';
-?>
-						<li style="height: 20px;">
-							<input type="checkbox" name="idx_custom_<? echo $link[0]; ?>" id="idx_custom_<? echo $link[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $link[1]; ?>" />
-							<label for="idx_custom_<? echo $link[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $link[0]); ?></label>
-						</li>
-<?php
-					}
+
+				foreach ($customLinks as $link){
 					
 					/*
-					*	Ther are no custom links in the system, so just display some text and a link to the admin to
-					*	add custom links.
+					*	Now we have gathered all our info, now we
+					*	need to display the custom link and a checkbox to allow the user to toggle it on
+					*	or off.  First we gather the setting, and if it's on then we need to display
+					*	checked="checked"
 					*/
 					
-				} else {
+					$checkOption = (get_option("idx_custom_".$link[0]) == 'on')?'checked="checked"':'';
 ?>
-					<div>
-						<span style="font-weight:bold">You have no custom links created.</span> Log into the <a href="http://www.idxco.com/mgmt" target="_blank">IDX Broker Admin</a> to create custom links.
-					</div>
+					<li>
+						<input type="checkbox" name="idx_custom_<? echo $link[0]; ?>" id="idx_custom_<? echo $link[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $link[1]; ?>" />
+						<label for="idx_custom_<? echo $link[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $link[0]); ?></label>
+					</li>
 <?php
 				}
-?>
-			</ul>
-			<p>If you have removed custom links in the <a href="http://www.idxco.com/mgmt/" target="_blank">IDX Broker Admin</a> that were in your main navigation, you may need to clear them if they remain in your navigation.  Simply click the 'Clear Old Custom Links' to remove them.</p>
-			<span style="float: left; color:#21759B; font-weight: bold; " class="status"></span>
-			<input style="float: right;" type="submit" value="<?php _e('Clear Old Custom Links') ?>" id="clearLinks" />
-			<div style="clear:both;"></div>
-		</div>
-		
-		<h3 class="expandable" style="cursor: pointer;height: 30px;border-bottom: 1px solid #ccc;">
-			<span class="expand">[+]</span> Advanced 
-		</h3>
-		
-		<div id="advanced" style="display: none; padding-bottom: 15px;">
-			<p>
-				For Advanced Users Only: This section provides you with the tools necessary to synchronize your IDX pages with changes made to your theme. Read <a href="http://www.idxbroker.com/support/kb/questions/288/" target="_blank">this article</a> for detailed instructions.
-			</p>
-<?php
-
-			$tagState = $wrapper->checkTags();
-			$permState = $wrapper->getPermissions();
-			
-			if($tagState){
-?>
-			<div>
-				Step 1: Choose your wrapper update option:
-				<select name="wrapperOption" id="wrapperOption">
-					<option value="echoCode">Copy and Paste Code</option>
-					<?=($permState)?'<option value="writeCode">Write to Include Files</option>':''?>
-				</select>
-			</div>
-			
-			<div>
-				Step 2: <input id="updateWrapper" type="submit" style=''value='<?php _e('Wrap It!') ?>' ajax="<?php bloginfo('wpurl'); ?>" /><span style="color:#21759B; font-weight: bold;" id="wrapperStatus"></span>
-			</div>
-			
-			<div id="echoStep">
 				
-				<div>
-					Step 3: Copy and paste the Header and Footer Code below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/291/" target="_blank">How do I do this?</a>
-				</div>
+				/*
+				*	Ther are no custom links in the system, so just display some text and a link to the admin to
+				*	add custom links.
+				*/
 				
-				<div id="echoedCode"></div>
-			</div>
-			
-			<div id="writeStep" style="display: none;">
-				
-				<div>
-					Step 3: Copy and paste the Header and Footer URLs below into your IDX&nbsp;Broker Global HTML Wrapper. <a href="http://www.idxbroker.com/support/kb/questions/290/">How do I do this?</a>
-					<div>
-						<p style="font-weight: bold;">Header File:</p>
-						<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/header.php
-					</div>
-					<div>
-						<p style="font-weight: bold;">Footer File:</p>
-						<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/wrapper/footer.php
-					</div>	
-				</div>
-			</div>
-<?php
 			} else {
 ?>
-			<p>Tags have not been detected.  In order to continue you will need to follow <a href="http://www.idxbroker.com/support/kb/questions/291/">these instructions</a> to add the tags.  Once placed, refresh this page and continue.</p>
+				<div>
+					<span style="font-weight:bold">You have no custom links created.</span> Log into the <a href="http://www.idxco.com/mgmt" target="_blank">IDX Broker Admin</a> to create custom links.
+				</div>
 <?php
 			}
 ?>
+		</ul>
+		<br class="clear" />
+		<div class="save_footer">
+			<span class="status"></span>
+			<input type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
+			<br class="clear" />
 		</div>
 		<?php settings_fields( 'idx-settings-group' ); ?>
 	</form>
@@ -322,97 +301,6 @@ function idx_broker_admin_page() {
 <?php
 
 }
-
-/**
- * Update the wrapper code depending on the two methods avaliable, writing or copy and paste
- */
-
-function idxUpdateWrapper () {
-	
-	global $wrapper;
-	
-	$method = $_GET['method'];
-
-	/*
-	*	Get the raw wrapper string, set it
-	*/
-	
-	$wrapper->getPage($_GET['url']);
-	$wrapper->getWrapper();
-	
-	/*
-	*	Parse the wrapper to find the header and footer strings, set them
-	*/
-	
-	$wrapper->parseWrapper();
-	
-	/*
-	*	Depending on the method, we will do different things
-	*/
-	
-	if($method == 'echoCode'){
-		
-		/*
-		 *	Return a formated header and footer message
-		 */
-		
-		$header = $wrapper->getHeader();
-		$footer = $wrapper->getFooter();
-		
-		$returnable = "<div>Header:<textarea cols='100' rows='5'>".$header."</textarea></div><div>Footer:<textarea cols='100' rows='5'>".$footer."</textarea></div>";
-		
-		echo $returnable;
-		
-	} elseif($method == 'writeCode') {
-	
-		/*
-		*	Save the header file
-		*/
-		
-		if(file_put_contents($wrapper->getHeaderPath(), $wrapper->getHeader())) {
-			
-			/*
-			*	Save the footer file
-			*/
-			
-			if(file_put_contents($wrapper->getFooterPath(), $wrapper->getFooter())) {
-				
-				/**
-				 *	Everything went fine, die with true
-				 */
-				
-				die('1');
-				
-				/*
-				*	Couldn't save footer, die with false
-				*/
-				
-			} else {
-				
-				die('0');
-				
-			} // end if put file contents of footer
-			
-		/*
-		*	Couldn't save header, die with false
-		*/
-			
-		} else {
-			
-			die('0');
-			
-		} // end if put file contents of header
-		
-	} else {
-		
-		die('0');
-		
-	} // end if method type
-	
-} //end idxUpdateWrapper()
-
-
-
 
 /*		idxUpdateLinks();
  *
@@ -434,8 +322,7 @@ function idxUpdateLinks() {
 	*	 ajax call.  We build these out to easily loop through them all.
 	*/
 	
-	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'] );
-	$labels = array( 'basic' => $_GET['basicLabel'],'advanced' => $_GET['advancedLabel'], 'map' => $_GET['mapLabel'], 'address' => $_GET['addressLabel'], 'listing' => $_GET['listingLabel'], 'featured' => $_GET['featuredLabel'], 'soldPend' => $_GET['soldPendLabel'] );
+	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'], 'openHouse' => $_GET['openHouseLink'], 'contact' => $_GET['contactLink'], 'roster' => $_GET['rosterLink'], 'listingManager' => $_GET['listManLink'], 'homeValuation' => $_GET['homeValLink'] );
 
 	/*
 	*	Loop through all the link so we can manage them one by one.
@@ -470,7 +357,7 @@ function idxUpdateLinks() {
 				*/
 				
 				case "basic":
-					$label = ($labels[$type] != '')?$labels[$type]:"Basic Search";
+					$label = "Basic Search";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/basicSearch.php";
 					break;
 				
@@ -480,7 +367,7 @@ function idxUpdateLinks() {
 				
 				case "advanced":
 					
-					$label = ($labels[$type] != '')?$labels[$type]:"Advanced Search";
+					$label = "Advanced Search";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/advancedSearch.php";
 					break;
 				
@@ -490,7 +377,7 @@ function idxUpdateLinks() {
 				
 				case "map":
 					
-					$label = ($labels[$type] != '')?$labels[$type]:"Map Search";
+					$label = "Map Search";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/mapSearch.php";
 					break;
 				
@@ -500,7 +387,7 @@ function idxUpdateLinks() {
 				
 				case "address":
 					
-					$label = ($labels[$type] != '')?$labels[$type]:"Address Search";
+					$label = "Address Search";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/addressSearch.php";
 					break;
 				
@@ -510,7 +397,7 @@ function idxUpdateLinks() {
 				
 				case "listing":
 					
-					$label = ($labels[$type] != '')?$labels[$type]:"Listing Search";
+					$label = "Listing Search";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/listingIDSearch.php";
 					break;
 				
@@ -520,7 +407,7 @@ function idxUpdateLinks() {
 				
 				case "featured":
 					
-					$label = ($labels[$type] != '')?$labels[$type]:"Featured Properties";
+					$label = "Featured Properties";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/featured.php";
 					break;
 				
@@ -530,8 +417,58 @@ function idxUpdateLinks() {
 				
 				case "soldPend":
 					
-					$label = ($labels[$type] != '')?$labels[$type]:"Sold/Pending Properties";
+					$label = "Sold/Pending Properties";
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/soldPending.php";
+					break;
+				
+				case "openHouse":
+					
+				/**
+				 *	Open Houses
+				 */
+					
+					$label = "Open Houses";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/featuredOpenHouses.php";
+					break;
+				
+				case "contact":
+					
+				/**
+				 *	Contact Page
+				 */
+					
+					$label = "Contact Us";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/contact.php";
+					break;
+				
+				case "roster":
+					
+				/**
+				 *	Roster Page
+				 */
+					
+					$label = "Roster";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/roster.php";
+					break;
+				
+				case"listingManager":
+					
+				/**
+				 *	Listing Manager
+				 */
+					
+					$label = "Listing Manager";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/userSignup.php";
+					break;
+				
+				case "homeValuation":
+					
+				/**
+				 *	Home Valuation
+				 */
+					
+					$label = "Home Valuation";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/homeValue.php";
 					break;
 				
 			}
@@ -598,9 +535,9 @@ function idxUpdateLinks() {
 	*	End without returning anything (AJAX)
 	*/
 	
+	json_encode(array('response'=>'ok'));
 	
 	die();
-	
 }
 
 /*
@@ -619,230 +556,82 @@ function idxUpdateCustomLinks () {
 	/*
 	*	Loop through all the $_GET variables as key -> value pairs
 	*/
+	
+	$linkName = $_GET['name'];
+	$linkState = $_GET['state'];
+	$linkUrl = $_GET['url'];
 
-	foreach($_GET as $key => $value) {
+	/*
+	*	If we find a key whose value is set to true.
+	*/
+	
+	if($linkState == 'true'){
 		
 		/*
-		*	If we find a key whose value is set to true.
+		*	Take the key and convert all underscores to spaces.  Then we need to cut
+		*	off the first 11 characters 'idx_broker_' as that was used as a key
+		*	in the admin to save the link states.
 		*/
 		
-		if($value == 'true'){
+		$label = substr(str_replace('_', ' ', $linkName),11,strlen($linkName));
+		
+		/*
+		*	Now we need to look in the table and see if this entry already exists,
+		*	if it does then we just need to UPDATE, if not, then we INSERT.
+		*/
+		
+		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$label' " );
+		$row = mysql_fetch_array($current);
+	
+		if(mysql_num_rows($current) > 0){
 			
 			/*
-			*	Take the key and convert all underscores to spaces.  Then we need to cut
-			*	off the first 11 characters 'idx_broker_' as that was used as a key
-			*	in the admin to save the link states.
+			*	The entry already exists, so we can just UPDATE with the new information.
 			*/
 			
-			$label = substr(str_replace('_', ' ', $key),11,strlen($key));
-			
-			/*
-			*	Now we can look up the url by using the key with the suffix 'Url' added,
-			*	this is also in our $_GET string.
-			*/
-			
-			$url = $_GET[$key.'Url'];
-			
-			/*
-			*	Now we need to look in the table and see if this entry already exists,
-			*	if it does then we just need to UPDATE, if not, then we INSERT.
-			*/
-			
-			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$key' " );
-			$row = mysql_fetch_array($current);
-
-			if(mysql_num_rows($current) > 0){
-				
-				/*
-				*	The entry already exists, so we can just UPDATE with the new information.
-				*/
-				
-				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $key, $row[ID] ) );
-				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $url, $row[ID] ) );
-				
-			} else {
-				
-				/*
-				*	The entry didn't exist, so we will need to INSERT the new entry.
-				*/
-				
-				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $key ) );
-				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $url, mysql_insert_id() ) );
-				
-			}
-			
-			/*
-			*	If we find a key whose value is false.
-			*/
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $linkName, $row[ID] ) );
+			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $linkUrl, $row[ID] ) );
 			
 		} else {
 			
 			/*
-			*	Lets look up the ID of the entry so we can delete it, if it exists.
+			*	The entry didn't exist, so we will need to INSERT the new entry.
 			*/
 			
-			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$key' " );
-			$row = mysql_fetch_array($current);
+			$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $linkName ) );
+			$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $linkUrl, mysql_insert_id() ) );
+			
+		}
+		
+		/*
+		*	If we find a key whose value is false.
+		*/
+		
+	} else {
+		
+		/*
+		*	Lets look up the ID of the entry so we can delete it, if it exists.
+		*/
+		
+		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$linkName' " );
+		$row = mysql_fetch_array($current);
+		
+		/*
+		*	We found a matching entry
+		*/
+		
+		if(mysql_num_rows($current) > 0){
 			
 			/*
-			*	We found a matching entry
+			*	Delete the unwanted entry in the table.
 			*/
 			
-			if(mysql_num_rows($current) > 0){
-				
-				/*
-				*	Delete the unwanted entry in the table.
-				*/
-				
-				mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
-				mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
-
-				
-			}
-		}
-
-		
-	}
+			mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
+			mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
 	
-	die();
-	
-}
-
-/*
-*	idx_clearCustomLinks()
-*	We need a way to clear out the custom links as they are managed from the middleware.  This is
-*	because they may be removed in the middleware, but the settings will still remain in the wp
-*	pages, but the controls will disappear in the admin.
-*/
-
-
-function idx_clearCustomLinks () {
-	
-	/*
-	*	First lets get an array of our current custom links, so that we
-	*	can compare the current ones, with what is saved in the wp_posts table.
-	*/
-	
-	$currentCustomLinks = idx_getCustomLinks();
-	
-	/*
-	*	All of our custom links in the db are keyed with an idx_custom_ prefix.  So first
-	*	lets grab all the links we have placed in the table.
-	*/
-	
-	$links = mysql_query( "SELECT `post_name`, `ID` FROM wp_posts" );
-	
-	/*
-	*	Loop through all the posts
-	*/
-	
-	while ($row = mysql_fetch_array($links)) {
-		
-		/*
-		*	Look at the post name and grab the first 11 characters, if it matches the
-		*	key that we have placed on all custom links then we have found one.
-		*/
-		
-		if(substr($row['post_name'], 0, 11) == 'idx_custom_'){
-			
-			/*
-			*	Now that we have found a custom link that has been saved in the table,
-			*	we need to compare it with our current custom links.  So we'll loop over the
-			*	curretnCustomLinks array and do a comparison.
-			*/
-			
-			foreach($currentCustomLinks as $linkInfo){
-				
-				/*
-				*	The first element in each array element is the link name.  To clean up the
-				*	code lets create a variable with the key added to the front for comparison.
-				*/
-				
-				$checkKey = 'idx_custom_' . $linkInfo[0];
-				
-				/*
-				*	Now check the current table custom link with the current links array.  If they
-				*	match then we know we need to leave this custom link alone so that the user
-				*	can manage it through the WP Plugin Admin
-				*/
-				
-				if($checkKey == $row['post_name']){
-					
-					/*
-					*	Build out an array of links that need to stay after our comparison.
-					*/
-					
-					$leaveCustomLink[] = $row['post_name'];
-					
-				}
-			}
-		}
-	}
-	
-	/*
-	*	Query for the links in the table again.
-	*/
-	
-	$links = mysql_query( "SELECT `post_name`, `ID` FROM `wp_posts` WHERE `post_name` LIKE 'idx_custom_%'" );
-	
-	/*
-	*	Loop through the results of the query.
-	*/
-	
-	while ($row = mysql_fetch_array($links)) {
-		
-		echo $row['post_name'];
-		
-		/*
-		*	Check to see if the link is a main link, if not, loop through the custom links that we need to keep,
-		*	declare a variable that will tell us if we need to delete the link.
-		*/
-		
-		if(substr($row['post_name'], 0, 9) == 'idx_main_'){
-			
-			$leaveThisLink = TRUE;
-			
-		} else {
-			
-			$leaveThisLink = FALSE;
-			
-			foreach($leaveCustomLink as $key => $linkName){
-			
-				/*
-				*	Compare what we need to keep to what we have in the table results, and also check to see
-				*	if it's a main link, as we want to keep these.
-				*
-				*/
-		
-				if($row['post_name'] ==  $linkName){
-					
-					/*
-					*	If we find a match then we set a variable telling us that we don't need
-					*	to delete this particular table entry. 
-					*/
-					
-					$leaveThisLink = TRUE;
-					
-				}
-			}
-		}
-		
-		/*
-		*	If we didn't find this link in the saved link array, and we didn't set
-		*	the leaveThisLink variable to TRUE, then delete the link from both tables.
-		*/
-		
-		if (!$leaveThisLink) {
-			
-			mysql_query( "DELETE FROM `wp_posts` WHERE `post_name` = '$row[post_name]' " );
-			mysql_query( "DELETE FROM `wp_postmeta` WHERE `post_id` = '$row[ID]' " );
 			
 		}
 	}
-	
-	/*
-	*	Done, die without returning anything!
-	*/
 	
 	die();
 	
@@ -877,7 +666,7 @@ function idx_getCustomLinks () {
 	*/
 
     foreach ($lines as $link) {
-			
+
 		$customLinks[] = explode("|", $link);
 	
 	}
@@ -921,7 +710,6 @@ function idx_stop () {
 	return '<div id="idxStop" style="display: none;"></div>';
 
 }
-
 
 /**
  * Check the CID, Password, and domain option for errors
@@ -1039,58 +827,145 @@ function idx_web_services( $getService ) {
 }
 
 /*
-*	Following three functions mimic the page_links_to plugin and allow the
-*	addition of system and custom links to be added to the main navigation
-*	area.
-*/
-
-function idx_get_post_meta_by_key( $key ) {
-	
-	global $wpdb;
-	return $wpdb->get_results( $wpdb->prepare( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $key ) );
-	
-}
-
-function idx_get_page_links_to_meta () {
-	
-	global $wpdb, $page_links_to_cache, $blog_id;
-
-	if ( !isset( $page_links_to_cache[$blog_id] ) )
-		$links_to = idx_get_post_meta_by_key( '_links_to' );
-	else
-		return $page_links_to_cache[$blog_id];
-
-	if ( !$links_to ) {
-		
-		$page_links_to_cache[$blog_id] = false;
-		return false;
-	
-	}
-
-	foreach ( (array) $links_to as $link )
-		$page_links_to_cache[$blog_id][$link->post_id] = $link->meta_value;
-
-	return $page_links_to_cache[$blog_id];
-	
-}
-
-function idx_filter_links_to_pages ($link, $post) {
-	
-	$page_links_to_cache = idx_get_page_links_to_meta();
-
-	// Really strange, but page_link gives us an ID and post_link gives us a post object
-	$id = ( $post->ID ) ? $post->ID : $post;
-
-	if ( $page_links_to_cache[$id] )
-		$link = esc_url( $page_links_to_cache[$id] );
-
-	return $link;
-
-}
-
-/*
 *	--------- IDX Broker Widgets Section -----------
 */
+
+/*		widget_idxUserSignup();
+ *
+ *		Provides a widget that displays a form for leads to signup
+ *		
+ */
+
+class widget_idxUserSignup extends WP_Widget {
+	
+	/*
+	*	Constructor for the widget.
+	*/
+	
+	function widget_idxUserSignup() {
+		
+		$widget_ops = array( 'classname' => 'widget_idxUserSignup', 'description' => __( "IDX Lead Signup" ) );
+		$this->WP_Widget('idxUserSignup', __('IDX Lead Signup'), $widget_ops);
+		
+	}
+	
+	/*
+	*	Widget Code executed on page
+	*/
+	
+	function widget($args, $instance) {
+		
+		extract($args);
+		
+		$domain = get_option('idx_broker_domain');
+		
+		echo $before_widget;
+		echo $before_title;
+		
+		if(!empty($instance['title'])) {
+			
+			echo $instance['title'];
+			
+		} else {
+			
+			echo "User Signup";
+			
+		}
+		echo $after_title;
+?>
+		<style type="text/css">
+			#IDX-userSignup {list-style: none;}
+			#IDX-userSignup input[type=text], #IDX-userSignup input[type=password] {float: right; height: 14px;}
+			#IDX-userSignup input[type=submit], #IDX-userSignup input[type=checkbox] {float: right;}
+			#IDX-userSignup li {height: 23px; font-size: 8pt;}
+			#IDX-leadPhoneBlock {display: block; float: right;}
+		</style>
+		
+		<form name="newLead" class="IDX-spaceless" action="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSignup.php" method="post">
+			<input name="hint" type="hidden" value="newUser" />
+			<input name="action" type="hidden" value="add" />
+			<input name="phoneNumberRequired" type="hidden" value="n" />
+			<input name="passwordRequired" type="hidden" value="n" />
+			<input name="leadAddressRequired" type="hidden" value="n" />
+			<input name="addEmailRequired" type="hidden" value="n" />
+			
+			<ul id="IDX-userSignup">
+				<li>
+					<label id="IDX-nameLabel" for="leadFirstName">First Name:</label>
+					<input name="leadFirstName" type="text" size="15" maxlength="180" value="" id="IDX-userSignupName" />
+				</li>
+				<li>
+					<label id="IDX-nameLabel" for="leadLastName">Last Name:</label>
+					<input name="leadLastName" type="text" size="15" maxlength="180" value="" id="IDX-userSignupName" />
+				</li>
+				<li>
+					<label id="IDX-emailLabel" for="leadEmail">Email Address:</label>
+					<input name="leadEmail" type="text" size="15" maxlength="180" value="" id="IDX-userSignupEmail" />
+				</li>
+				<li>
+					<label id="IDX-phoneLabel" for="leadPhoneArea" style="float: left;">Phone:</label>
+					<span id="IDX-leadPhoneBlock">
+						<input style="float: none;" name="leadPhoneArea" type="text" size="3" maxlength="3" value="" id="IDX-userSignupPhone1" />
+						<input style="float: none;" name="leadPhonePrefix" type="text" size="3" maxlength="3" value="" id="IDX-userSignupPhone2" />
+						<input style="float: none;" name="leadPhoneSuffix" type="text" size="4" maxlength="4" value="" id="IDX-userSignupPhone3"/>
+					</span>
+				</li>
+				<li>
+					<label id="IDX-addressLabel" for="leadAddress">Address:</label>
+					<input name="leadAddress" type="text" size="15" maxlength="180" value="" id="IDX-userSignupAddress" />
+				</li>
+				<li>
+					<label id="IDX-addressCityLabel" for="leadCity">City:</label>
+					<input name="leadCity" type="text" size="15" maxlength="180" value="" id="IDX-userSignupCity" />
+				</li>
+				<li>
+					<label id="IDX-addressStateLabel" for="leadState">State:</label>
+					<input name="leadState" type="text" size="2" maxlength="2" value="" id="IDX-userSignupState" />
+				</li>
+				<li>
+					<label id="IDX-addressZipLabel" for="leadZip">Zip:</label>
+					<input name="leadZip" type="text" size="5" maxlength="5" value="" id="IDX-userSignupZip" />
+				</li>
+				<li>
+					<label id="IDX-passwordLabel">Password:</label>
+					<input name="password" type="password" maxlength="32" size="15" id="IDX-userSignupPassword"/>
+				</li>
+				<li>
+					<label id="leadReceiveEmailUpdatesTd" for="leadReceiveEmailUpdates">Would you like to receive email updates?</label>
+					<input type="checkbox" id="leadReceiveEmailUpdates" name="leadReceiveEmailUpdates" value="y" checked/>
+				</li>
+				<li style="list-style: none;">
+					<input name="submit" id="IDX-formSubmit" type="submit" value="Sign Up!" id="IDX-userSignupSubmit"/>
+				</li>
+				<br style="clear:both;" />
+			</ul>
+		</form>
+
+<?php 	echo $after_widget;
+
+	}
+	
+	function update($new_instance, $old_instance) {
+
+		return $new_instance;
+	
+	}
+	
+	function form($instance) {
+		
+		errorCheck();
+		
+		echo '<div id="idxUserSignup-admin-panel">';
+		echo '<p>Provides a widget that displays a form for leads to signup for email update services.</p>';
+		echo '<label for="' . $this->get_field_id("title") .'">User Signup Title:</label>';
+		echo '<input type="text" ';
+		echo 'name="' . $this->get_field_name("title") . '" ';
+		echo 'id="' . $this->get_field_id("title") . '" ';
+		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo '</div>';
+		
+	}
+}
 
 
 /*		widget_idxLinks();
@@ -1936,6 +1811,7 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
 add_action('widgets_init', create_function('', 'return register_widget("widget_myAgentBadge");'));
 add_action('widgets_init', create_function('', 'return register_widget("widget_idxLeadLogin");'));
 add_action('widgets_init', create_function('', 'return register_widget("widget_idxCustomLinks");'));
+add_action('widgets_init', create_function('', 'return register_widget("widget_idxUserSignup");'));
 
 /*
 *	Add all ajax actions to the WP system.
@@ -1944,13 +1820,179 @@ add_action('widgets_init', create_function('', 'return register_widget("widget_i
 add_action('wp_ajax_idxUpdateLinks', 'idxUpdateLinks' );
 add_action('wp_ajax_idxUpdateCustomLinks', 'idxUpdateCustomLinks' );
 add_action('wp_ajax_idx_clearCustomLinks', 'idx_clearCustomLinks' );
-add_action('wp_ajax_idxUpdateWrapper', 'idxUpdateWrapper' );
-add_action('wp_ajax_adminCheckWrapper', 'adminCheckWrapper' );
 
 /*
 *	Add all filters to the WP system.
 */
 
 add_filter( 'page_link', 'idx_filter_links_to_pages', 20, 2 );
+
+
+/**
+ *	Page links to plugin code, to make our navigation links work correctly
+ */
+
+// Compat functions for WP < 2.8
+if ( !function_exists( 'esc_attr' ) ) {
+	function esc_attr( $attr ) {
+		return attribute_escape( $attr );
+	}
+
+	function esc_url( $url ) {
+		return clean_url( $url );
+	}
+}
+
+function txfx_get_post_meta_by_key( $key ) {
+	global $wpdb;
+	return $wpdb->get_results( $wpdb->prepare( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $key ) );
+}
+
+function txfx_get_page_links_to_meta () {
+	global $wpdb, $page_links_to_cache, $blog_id;
+
+	if ( !isset( $page_links_to_cache[$blog_id] ) )
+		$links_to = txfx_get_post_meta_by_key( '_links_to' );
+	else
+		return $page_links_to_cache[$blog_id];
+
+	if ( !$links_to ) {
+		$page_links_to_cache[$blog_id] = false;
+		return false;
+	}
+
+	foreach ( (array) $links_to as $link )
+		$page_links_to_cache[$blog_id][$link->post_id] = $link->meta_value;
+
+	return $page_links_to_cache[$blog_id];
+}
+
+function txfx_get_page_links_to_targets () {
+	global $wpdb, $page_links_to_target_cache, $blog_id;
+
+	if ( !isset( $page_links_to_target_cache[$blog_id] ) )
+		$links_to = txfx_get_post_meta_by_key( '_links_to_target' );
+	else
+		return $page_links_to_target_cache[$blog_id];
+
+	if ( !$links_to ) {
+		$page_links_to_target_cache[$blog_id] = false;
+		return false;
+	}
+
+	foreach ( (array) $links_to as $link )
+		$page_links_to_target_cache[$blog_id][$link->post_id] = $link->meta_value;
+
+	return $page_links_to_target_cache[$blog_id];
+}
+
+
+function txfx_plt_save_meta_box( $post_ID ) {
+	if ( wp_verify_nonce( $_REQUEST['_txfx_pl2_nonce'], 'txfx_plt' ) ) {
+		if ( isset( $_POST['txfx_links_to'] ) && strlen( $_POST['txfx_links_to'] ) > 0 && $_POST['txfx_links_to'] !== 'http://' ) {
+			$link = stripslashes( $_POST['txfx_links_to'] );
+			if ( 0 === strpos( $link, 'www.' ) )
+				$link = 'http://' . $link; // Starts with www., so add http://
+			update_post_meta( $post_ID, '_links_to', $link );
+			if ( isset( $_POST['txfx_links_to_new_window'] ) )
+				update_post_meta( $post_ID, '_links_to_target', '_blank' );
+			else
+				delete_post_meta( $post_ID, '_links_to_target' );
+			if ( isset( $_POST['txfx_links_to_302'] ) )
+				update_post_meta( $post_ID, '_links_to_type', '302' );
+			else
+				delete_post_meta( $post_ID, '_links_to_type' );
+		} else {
+			delete_post_meta( $post_ID, '_links_to' );
+			delete_post_meta( $post_ID, '_links_to_target' );
+			delete_post_meta( $post_ID, '_links_to_type' );
+		}
+	}
+	return $post_ID;
+}
+
+
+function txfx_filter_links_to_pages ($link, $post) {
+	$page_links_to_cache = txfx_get_page_links_to_meta();
+
+	// Really strange, but page_link gives us an ID and post_link gives us a post object
+	$id = ( $post->ID ) ? $post->ID : $post;
+
+	if ( $page_links_to_cache[$id] )
+		$link = esc_url( $page_links_to_cache[$id] );
+
+	return $link;
+}
+
+function txfx_redirect_links_to_pages() {
+	if ( !is_single() && !is_page() )
+		return;
+
+	global $wp_query;
+
+	$link = get_post_meta( $wp_query->post->ID, '_links_to', true );
+
+	if ( !$link )
+		return;
+
+	$redirect_type = get_post_meta( $wp_query->post->ID, '_links_to_type', true );
+	$redirect_type = ( $redirect_type = '302' ) ? '302' : '301';
+	wp_redirect( $link, $redirect_type );
+	exit;
+}
+
+function txfx_page_links_to_highlight_tabs( $pages ) {
+	$page_links_to_cache = txfx_get_page_links_to_meta();
+	$page_links_to_target_cache = txfx_get_page_links_to_targets();
+
+	if ( !$page_links_to_cache && !$page_links_to_target_cache )
+		return $pages;
+
+	$this_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$targets = array();
+
+	foreach ( (array) $page_links_to_cache as $id => $page ) {
+		if ( isset( $page_links_to_target_cache[$id] ) )
+			$targets[$page] = $page_links_to_target_cache[$id];
+
+		if ( str_replace( 'http://www.', 'http://', $this_url ) == str_replace( 'http://www.', 'http://', $page ) || ( is_home() && str_replace( 'http://www.', 'http://', trailingslashit( get_bloginfo( 'home' ) ) ) == str_replace( 'http://www.', 'http://', trailingslashit( $page ) ) ) ) {
+			$highlight = true;
+			$current_page = esc_url( $page );
+		}
+	}
+
+	if ( count( $targets ) ) {
+		foreach ( $targets as  $p => $t ) {
+			$p = esc_url( $p );
+			$t = esc_attr( $t );
+			$pages = str_replace( '<a href="' . $p . '" ', '<a href="' . $p . '" target="' . $t . '" ', $pages );
+		}
+	}
+
+	if ( $highlight ) {
+		$pages = preg_replace( '| class="([^"]+)current_page_item"|', ' class="$1"', $pages ); // Kill default highlighting
+		$pages = preg_replace( '|<li class="([^"]+)"><a href="' . $current_page . '"|', '<li class="$1 current_page_item"><a href="' . $current_page . '"', $pages );
+	}
+
+	return $pages;
+}
+
+function txfx_plt_init() {
+	if ( get_option( 'txfx_plt_schema_version' ) < 3 ) {
+		global $wpdb;
+		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_links_to'        WHERE meta_key = 'links_to'        " );
+		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_links_to_target' WHERE meta_key = 'links_to_target' " );
+		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_links_to_type'   WHERE meta_key = 'links_to_type'   " );
+		wp_cache_flush();
+		update_option( 'txfx_plt_schema_version', 3 );
+	}
+}
+
+add_filter( 'wp_list_pages',     'txfx_page_links_to_highlight_tabs', 9     );
+add_action( 'template_redirect', 'txfx_redirect_links_to_pages'             );
+add_filter( 'page_link',         'txfx_filter_links_to_pages',        20, 2 );
+add_filter( 'post_link',         'txfx_filter_links_to_pages',        20, 2 );
+add_action( 'save_post',         'txfx_plt_save_meta_box'                   );
+add_action( 'init',              'txfx_plt_init'                            );
 
 ?>

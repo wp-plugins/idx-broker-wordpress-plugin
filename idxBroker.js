@@ -59,11 +59,11 @@ jQuery(document).ready(function(){
 
         // give the user a pseudo status console so they know something is happening
         var status = jQuery(this).siblings('.status')
-        status.fadeIn('fast').html(ajax_load+'Saving Links...');
+        status.fadeIn('fast').html(ajax_load+'Saving Core Links...');
 
         // get info from the page so that we can build out our ajax request
         
-        // here are the states of the checkboxes
+        //here are the states of the checkboxes
         var basicLink = jQuery('.idx_broker_basicSearchLink').is(':checked');
         var advancedLink = jQuery('.idx_broker_advancedSearchLink').is(':checked');
         var mapLink = jQuery('.idx_broker_mapSearchLink').is(':checked');
@@ -71,64 +71,37 @@ jQuery(document).ready(function(){
         var listingLink = jQuery('.idx_broker_listingSearchLink').is(':checked');
         var featuredLink = jQuery('.idx_broker_featuredLink').is(':checked');
         var soldPendLink = jQuery('.idx_broker_soldPendLink').is(':checked');
+        var openHouseLink = jQuery('.idx_broker_openHousesLink').is(':checked');
+        var contactLink = jQuery('.idx_broker_contactLink').is(':checked');
+        var rosterLink = jQuery('.idx_broker_rosterLink').is(':checked');
+        var listManLink = jQuery('.idx_broker_listManLink').is(':checked');
+        var homeValLink = jQuery('.idx_broker_homeValLink').is(':checked');
         
-        // here are the custom labels for the links
-        var basicLabel = jQuery('.idx_broker_basicSearchLabel').val();
-        var advancedLabel = jQuery('.idx_broker_advancedSearchLabel').val();
-        var mapLabel = jQuery('.idx_broker_mapSearchLabel').val();
-        var addressLabel = jQuery('.idx_broker_addressSearchLabel').val();
-        var listingLabel = jQuery('.idx_broker_listingSearchLabel').val();
-        var featuredLabel = jQuery('.idx_broker_featuredLabel').val();
-        var soldPendLabel = jQuery('.idx_broker_soldPendLabel').val();
+        var jsonObj = {"action":"idxUpdateLinks","basicLink":basicLink,"advancedLink":advancedLink,"mapLink":mapLink,"addressLink":addressLink,"listingLink":listingLink,"featuredLink":featuredLink,"soldPendLink":soldPendLink,"openHouseLink":openHouseLink,"contactLink":contactLink,"rosterLink":rosterLink,"listManLink":listManLink,"homeValLink":homeValLink};
+
+        jQuery.getJSON(ajaxPath,jsonObj,function(data){
+            }
+        );
+        
+        status.fadeIn('fast').html(ajax_load+'Saving Custom Links...');
 
         // need to get the custom links from the form, if any
-        
-        var customLinksString = 'action=idxUpdateCustomLinks&';
 
         jQuery('.customLink').each(function(){
             var linkName = jQuery(this).attr('name');
             var linkState = jQuery(this).is(':checked');
             var linkUrl = jQuery(this).attr('url');
-            customLinksString += linkName+'='+linkState+'&';
-            customLinksString += linkName+'Url'+'='+linkUrl+'&';
+            var jsonObjCustom = ({"action":"idxUpdateCustomLinks","name":linkName,"state":linkState,"url":linkUrl});
+
+            jQuery.getJSON(ajaxPath,jsonObjCustom,function(data){
+                }
+            );
         });
         
-        customLinksString = customLinksString.substring(0, customLinksString.length-1);
-
-        // place our ajax request
-        jQuery.get(
-            ajaxPath,
-            {
-                "action": "idxUpdateLinks",
-                "basicLink": basicLink,
-                "advancedLink": advancedLink,
-                "mapLink": mapLink,
-                "addressLink": addressLink,
-                "listingLink": listingLink,
-                "featuredLink": featuredLink,
-                "soldPendLink": soldPendLink,
-                "basicLabel": basicLabel,
-                "advancedLabel": advancedLabel,
-                "mapLabel": mapLabel,
-                "addressLabel": addressLabel,
-                "listingLabel": listingLabel,
-                "featuredLabel": featuredLabel,
-                "soldPendLabel": soldPendLabel
-            },
-            function(responseText){
-                jQuery.get(
-                    ajaxPath,
-                    customLinksString,
-                    function(responseText){
-                        // when the ajax is complete, then change the state of the psuedo status console and submit the form like normal
-                        status.html(ajax_load+'Saving Options...');
-                        if (submit == true){
-                            jQuery('#idxOptions').submit();	
-                        }
-                    }
-                );
-            }
-        );
+        status.fadeIn('fast').html(ajax_load+'Done!');
+        
+        jQuery('#idxOptions').submit();
+        
     });
     
     jQuery('#clearLinks').click(function(event){
