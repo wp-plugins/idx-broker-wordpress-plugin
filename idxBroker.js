@@ -59,9 +59,20 @@ jQuery(document).ready(function(){
 
         // give the user a pseudo status console so they know something is happening
         var status = jQuery(this).siblings('.status')
-        status.fadeIn('fast').html(ajax_load+'Saving Core Links...');
+        status.fadeIn('fast').html(ajax_load+'Saving Links...');
 
-        // get info from the page so that we can build out our ajax request
+        // need to get the custom links from the form, if any
+
+        jQuery('.customLink').each(function(){
+            var linkName = jQuery(this).attr('name');
+            var linkState = jQuery(this).is(':checked');
+            var linkUrl = jQuery(this).attr('url');
+            var jsonObjCustom = ({"action":"idxUpdateCustomLinks","name":linkName,"state":linkState,"url":linkUrl});
+
+            jQuery.getJSON(ajaxPath,jsonObjCustom,function(data){
+                }
+            );
+        });
         
         //here are the states of the checkboxes
         var basicLink = jQuery('.idx_broker_basicSearchLink').is(':checked');
@@ -80,27 +91,10 @@ jQuery(document).ready(function(){
         var jsonObj = {"action":"idxUpdateLinks","basicLink":basicLink,"advancedLink":advancedLink,"mapLink":mapLink,"addressLink":addressLink,"listingLink":listingLink,"featuredLink":featuredLink,"soldPendLink":soldPendLink,"openHouseLink":openHouseLink,"contactLink":contactLink,"rosterLink":rosterLink,"listManLink":listManLink,"homeValLink":homeValLink};
 
         jQuery.getJSON(ajaxPath,jsonObj,function(data){
+                status.fadeIn('fast').html(ajax_load+'Saving Options...');
+                jQuery('#idxOptions').submit();
             }
         );
-        
-        status.fadeIn('fast').html(ajax_load+'Saving Custom Links...');
-
-        // need to get the custom links from the form, if any
-
-        jQuery('.customLink').each(function(){
-            var linkName = jQuery(this).attr('name');
-            var linkState = jQuery(this).is(':checked');
-            var linkUrl = jQuery(this).attr('url');
-            var jsonObjCustom = ({"action":"idxUpdateCustomLinks","name":linkName,"state":linkState,"url":linkUrl});
-
-            jQuery.getJSON(ajaxPath,jsonObjCustom,function(data){
-                }
-            );
-        });
-        
-        status.fadeIn('fast').html(ajax_load+'Done!');
-        
-        jQuery('#idxOptions').submit();
         
     });
     
