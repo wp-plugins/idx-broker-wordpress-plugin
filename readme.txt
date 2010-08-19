@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
 Tested up to: 3.0.1
-Stable tag: 1.2.8
+Stable tag: 1.2.9
 
 IDX Broker Plugin - Add integrated IDX to your WordPress website today. 
 
@@ -90,6 +90,10 @@ This feature is designed to help designers integrate their theme design into eac
 
 == Upgrade Notice ==
 
+= 1.2.9 =
+
+Essential update to fix page links to function namespace errors and help links added.
+
 = 1.2.8 =
 
 Plugin has been streamlined and optimized after its initial development.  Wrapper features have updgraded were no file permissions, or copy and paste is needed in order to take advantage of the full integration feature.  Simply add your tags, set a few settings in the IDX Broker Admin, and your pages are automatically wrapped for you.  No need to update your wrapper, it's dyanamically loaded each time someone hits one of your pages.  The "Property Manager Signup" widget has been added, so that your visitor can sign up for automatic email updates that match searches that they preform on your site.  An essential upgrade!
@@ -118,6 +122,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.2.9 =
+
+Page links to function namespace errors, added help icons and links.
 
 = 1.2.8 =
 
