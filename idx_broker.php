@@ -114,6 +114,18 @@ function idx_broker_admin_page() {
 	height: 58px;
 	float: right;
 }
+.helpIcon{
+	background-image: url(../wp-content/plugins/idx-broker-wordpress-plugin/images/helpIcon.png);
+	width: 20px;
+	height: 20px;
+	display:inline-block;
+}
+.ajax{
+	background-image: url(../wp-content/plugins/idx-broker-wordpress-plugin/images/ajax-loader.gif);
+	width: 15px;
+	height: 15px;
+	display:inline-block;
+}
 #gen_settings li {
 	height: 25px;
 }
@@ -155,7 +167,7 @@ function idx_broker_admin_page() {
 	<div id="logo"></div>
 	<h2 style="float: left;">IDX Broker Plugin Options</h2>
 	<br class="clear" />
-	<h3>General Settings</h3>
+	<h3>General Settings<a href="http://www.idxbroker.com/support/kb/questions/285/" class="helpIcon" target="_blank"></a></h3>
 	
 	<form method="post" action="options.php" id="idxOptions">
 		<div id="blogUrl" style="display: none;" ajax="<?php bloginfo('wpurl'); ?>"></div>
@@ -174,12 +186,12 @@ function idx_broker_admin_page() {
 			</li>
 		</ul>
 	
-		<h3>Sidebar Widgets</h3>
+		<h3>Sidebar Widgets<a href="http://www.idxbroker.com/support/kb/questions/313/" class="helpIcon" target="_blank"></a></h3>
 		
 		<p><a href="widgets.php">Click here</a> to visit the Widgets page and add IDX Broker widgets to your sidebar(s).</p>
 	
 		
-		<h3>Navigation Links</h3>
+		<h3>Navigation Links<a href="http://www.idxbroker.com/support/kb/questions/314/" class="helpIcon" target="_blank"></a></h3>
 		
 		<p>Many Realtors&reg; add 2-3 navigation links to their site or blog, although you may choose to add more. The most common links are to the Basic Search, Map Search, and the Featured Properties Pages.</p>
 		<p>Use the boxes below to Add or Remove MLS/IDX pages from your navigation. Each page will maintain the look and feel of your blog or site. Once you have decided upon the pages that you want in your navigation, click the "Save Changes" button. To customize your IDX page link titles, or to manage the menu order of your new IDX pages, simply visit <a href="edit.php?post_type=page">Pages</a>.</p>
@@ -1821,13 +1833,6 @@ add_action('wp_ajax_idxUpdateLinks', 'idxUpdateLinks' );
 add_action('wp_ajax_idxUpdateCustomLinks', 'idxUpdateCustomLinks' );
 add_action('wp_ajax_idx_clearCustomLinks', 'idx_clearCustomLinks' );
 
-/*
-*	Add all filters to the WP system.
-*/
-
-add_filter( 'page_link', 'idx_filter_links_to_pages', 20, 2 );
-
-
 /**
  *	Page links to plugin code, to make our navigation links work correctly
  */
@@ -1843,16 +1848,16 @@ if ( !function_exists( 'esc_attr' ) ) {
 	}
 }
 
-function txfx_get_post_meta_by_key( $key ) {
+function idx_get_post_meta_by_key( $key ) {
 	global $wpdb;
 	return $wpdb->get_results( $wpdb->prepare( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = %s", $key ) );
 }
 
-function txfx_get_page_links_to_meta () {
+function idx_get_page_links_to_meta () {
 	global $wpdb, $page_links_to_cache, $blog_id;
 
 	if ( !isset( $page_links_to_cache[$blog_id] ) )
-		$links_to = txfx_get_post_meta_by_key( '_links_to' );
+		$links_to = idx_get_post_meta_by_key( '_links_to' );
 	else
 		return $page_links_to_cache[$blog_id];
 
@@ -1867,11 +1872,11 @@ function txfx_get_page_links_to_meta () {
 	return $page_links_to_cache[$blog_id];
 }
 
-function txfx_get_page_links_to_targets () {
+function idx_get_page_links_to_targets () {
 	global $wpdb, $page_links_to_target_cache, $blog_id;
 
 	if ( !isset( $page_links_to_target_cache[$blog_id] ) )
-		$links_to = txfx_get_post_meta_by_key( '_links_to_target' );
+		$links_to = idx_get_post_meta_by_key( '_links_to_target' );
 	else
 		return $page_links_to_target_cache[$blog_id];
 
@@ -1887,18 +1892,18 @@ function txfx_get_page_links_to_targets () {
 }
 
 
-function txfx_plt_save_meta_box( $post_ID ) {
-	if ( wp_verify_nonce( $_REQUEST['_txfx_pl2_nonce'], 'txfx_plt' ) ) {
-		if ( isset( $_POST['txfx_links_to'] ) && strlen( $_POST['txfx_links_to'] ) > 0 && $_POST['txfx_links_to'] !== 'http://' ) {
-			$link = stripslashes( $_POST['txfx_links_to'] );
+function idx_plt_save_meta_box( $post_ID ) {
+	if ( wp_verify_nonce( $_REQUEST['_idx_pl2_nonce'], 'idx_plt' ) ) {
+		if ( isset( $_POST['idx_links_to'] ) && strlen( $_POST['idx_links_to'] ) > 0 && $_POST['idx_links_to'] !== 'http://' ) {
+			$link = stripslashes( $_POST['idx_links_to'] );
 			if ( 0 === strpos( $link, 'www.' ) )
 				$link = 'http://' . $link; // Starts with www., so add http://
 			update_post_meta( $post_ID, '_links_to', $link );
-			if ( isset( $_POST['txfx_links_to_new_window'] ) )
+			if ( isset( $_POST['idx_links_to_new_window'] ) )
 				update_post_meta( $post_ID, '_links_to_target', '_blank' );
 			else
 				delete_post_meta( $post_ID, '_links_to_target' );
-			if ( isset( $_POST['txfx_links_to_302'] ) )
+			if ( isset( $_POST['idx_links_to_302'] ) )
 				update_post_meta( $post_ID, '_links_to_type', '302' );
 			else
 				delete_post_meta( $post_ID, '_links_to_type' );
@@ -1912,8 +1917,8 @@ function txfx_plt_save_meta_box( $post_ID ) {
 }
 
 
-function txfx_filter_links_to_pages ($link, $post) {
-	$page_links_to_cache = txfx_get_page_links_to_meta();
+function idx_filter_links_to_pages ($link, $post) {
+	$page_links_to_cache = idx_get_page_links_to_meta();
 
 	// Really strange, but page_link gives us an ID and post_link gives us a post object
 	$id = ( $post->ID ) ? $post->ID : $post;
@@ -1924,7 +1929,7 @@ function txfx_filter_links_to_pages ($link, $post) {
 	return $link;
 }
 
-function txfx_redirect_links_to_pages() {
+function idx_redirect_links_to_pages() {
 	if ( !is_single() && !is_page() )
 		return;
 
@@ -1941,9 +1946,9 @@ function txfx_redirect_links_to_pages() {
 	exit;
 }
 
-function txfx_page_links_to_highlight_tabs( $pages ) {
-	$page_links_to_cache = txfx_get_page_links_to_meta();
-	$page_links_to_target_cache = txfx_get_page_links_to_targets();
+function idx_page_links_to_highlight_tabs( $pages ) {
+	$page_links_to_cache = idx_get_page_links_to_meta();
+	$page_links_to_target_cache = idx_get_page_links_to_targets();
 
 	if ( !$page_links_to_cache && !$page_links_to_target_cache )
 		return $pages;
@@ -1977,22 +1982,22 @@ function txfx_page_links_to_highlight_tabs( $pages ) {
 	return $pages;
 }
 
-function txfx_plt_init() {
-	if ( get_option( 'txfx_plt_schema_version' ) < 3 ) {
+function idx_plt_init() {
+	if ( get_option( 'idx_plt_schema_version' ) < 3 ) {
 		global $wpdb;
 		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_links_to'        WHERE meta_key = 'links_to'        " );
 		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_links_to_target' WHERE meta_key = 'links_to_target' " );
 		$wpdb->query( "UPDATE $wpdb->postmeta SET meta_key = '_links_to_type'   WHERE meta_key = 'links_to_type'   " );
 		wp_cache_flush();
-		update_option( 'txfx_plt_schema_version', 3 );
+		update_option( 'idx_plt_schema_version', 3 );
 	}
 }
 
-add_filter( 'wp_list_pages',     'txfx_page_links_to_highlight_tabs', 9     );
-add_action( 'template_redirect', 'txfx_redirect_links_to_pages'             );
-add_filter( 'page_link',         'txfx_filter_links_to_pages',        20, 2 );
-add_filter( 'post_link',         'txfx_filter_links_to_pages',        20, 2 );
-add_action( 'save_post',         'txfx_plt_save_meta_box'                   );
-add_action( 'init',              'txfx_plt_init'                            );
+add_filter( 'wp_list_pages',     'idx_page_links_to_highlight_tabs', 9     );
+add_action( 'template_redirect', 'idx_redirect_links_to_pages'             );
+add_filter( 'page_link',         'idx_filter_links_to_pages',        20, 2 );
+add_filter( 'post_link',         'idx_filter_links_to_pages',        20, 2 );
+add_action( 'save_post',         'idx_plt_save_meta_box'                   );
+add_action( 'init',              'idx_plt_init'                            );
 
 ?>

@@ -1,7 +1,7 @@
 jQuery(document).ready(function(){
     
     // ajax loading gif
-    var ajax_load = "<img src='/images/ajax-loader.gif' />";
+    var ajax_load = "<span class='ajax'></span>";
     
     // path to the admin ajax file
     var ajaxPath = jQuery('#saveChanges').attr('ajax');
