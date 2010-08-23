@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.2.9
+Version: 1.3
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
@@ -196,63 +196,73 @@ function idx_broker_admin_page() {
 		<p>Many Realtors&reg; add 2-3 navigation links to their site or blog, although you may choose to add more. The most common links are to the Basic Search, Map Search, and the Featured Properties Pages.</p>
 		<p>Use the boxes below to Add or Remove MLS/IDX pages from your navigation. Each page will maintain the look and feel of your blog or site. Once you have decided upon the pages that you want in your navigation, click the "Save Changes" button. To customize your IDX page link titles, or to manage the menu order of your new IDX pages, simply visit <a href="edit.php?post_type=page">Pages</a>.</p>
 		
-		<div class="link_header">Add/Remove Core Page Links</div>
-		<br class="clear" />
+		<div class="link_header" style="float: left;">Add/Remove Core Page Links</div>
 		
 		<ul class="link_list">
+			<div style="float: right; font-weight: bold;">
+				<input type="checkbox" name="idx_ml_group" id="idx_ml_group" />
+				<label for="idx_ml_group" class="link_label">Select/Deselect All</label>	
+			</div>
+			<br class="clear" />
 			<li>
-				<input type="checkbox" name="idx_broker_basicSearchLink" id="idx_broker_basicSearchLink" <?=(get_option('idx_broker_basicSearchLink')=='on')?'checked="checked"':'';?> class="idx_broker_basicSearchLink" />
+				<input type="checkbox" name="idx_broker_basicSearchLink" id="idx_broker_basicSearchLink" <?=(get_option('idx_broker_basicSearchLink')=='on')?'checked="checked"':'';?> class="idx_broker_basicSearchLink idx_ml" />
 				<label for="idx_broker_basicSearchLink" class="link_label">- Basic Search</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_advancedSearchLink" id="idx_broker_advancedSearchLink" <?=(get_option('idx_broker_advancedSearchLink')=='on')?'checked="checked"':'';?> class="idx_broker_advancedSearchLink" />
+				<input type="checkbox" name="idx_broker_advancedSearchLink" id="idx_broker_advancedSearchLink" <?=(get_option('idx_broker_advancedSearchLink')=='on')?'checked="checked"':'';?> class="idx_broker_advancedSearchLink idx_ml" />
 				<label for="idx_broker_advancedSearchLink" class="link_label">- Advanced Search</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_mapSearchLink" id="idx_broker_mapSearchLink" <?=(get_option('idx_broker_mapSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_mapSearchLink" />
+				<input type="checkbox" name="idx_broker_mapSearchLink" id="idx_broker_mapSearchLink" <?=(get_option('idx_broker_mapSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_mapSearchLink idx_ml" />
 				<label for="idx_broker_mapSearchLink" class="link_label">- Map Search</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_addressSearchLink" id="idx_broker_addressSearchLink" <?=(get_option('idx_broker_addressSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_addressSearchLink" />
+				<input type="checkbox" name="idx_broker_addressSearchLink" id="idx_broker_addressSearchLink" <?=(get_option('idx_broker_addressSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_addressSearchLink idx_ml" />
 				<label for="idx_broker_addressSearchLink" class="link_label">- Address Search</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_listingSearchLink" id="idx_broker_listingSearchLink" <?=(get_option('idx_broker_listingSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listingSearchLink" />
+				<input type="checkbox" name="idx_broker_listingSearchLink" id="idx_broker_listingSearchLink" <?=(get_option('idx_broker_listingSearchLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listingSearchLink idx_ml" />
 				<label for="idx_broker_listingSearchLink" class="link_label">- Listing Search</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_featuredLink" id="idx_broker_featuredLink" <?=(get_option('idx_broker_featuredLink') == 'on')?'checked="checked"':'';?> class="idx_broker_featuredLink" />
+				<input type="checkbox" name="idx_broker_featuredLink" id="idx_broker_featuredLink" <?=(get_option('idx_broker_featuredLink') == 'on')?'checked="checked"':'';?> class="idx_broker_featuredLink idx_ml" />
 				<label for="idx_broker_featuredLink" class="link_label">- Featured Properties</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_soldPendLink" id="idx_broker_soldPendLink" <?=(get_option('idx_broker_soldPendLink') == 'on')?'checked="checked"':'';?> class="idx_broker_soldPendLink" />
+				<input type="checkbox" name="idx_broker_soldPendLink" id="idx_broker_soldPendLink" <?=(get_option('idx_broker_soldPendLink') == 'on')?'checked="checked"':'';?> class="idx_broker_soldPendLink idx_ml" />
 				<label for="idx_broker_soldPendLink" class="link_label">- Sold/Pending Properties</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_openHousesLink" id="idx_broker_openHousesLink" <?=(get_option('idx_broker_openHousesLink') == 'on')?'checked="checked"':'';?> class="idx_broker_openHousesLink" />
+				<input type="checkbox" name="idx_broker_openHousesLink" id="idx_broker_openHousesLink" <?=(get_option('idx_broker_openHousesLink') == 'on')?'checked="checked"':'';?> class="idx_broker_openHousesLink idx_ml" />
 				<label for="idx_broker_openHousesLink" class="link_label">- Open Houses</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_contactLink" id="idx_broker_contactLink" <?=(get_option('idx_broker_contactLink') == 'on')?'checked="checked"':'';?> class="idx_broker_contactLink" />
+				<input type="checkbox" name="idx_broker_contactLink" id="idx_broker_contactLink" <?=(get_option('idx_broker_contactLink') == 'on')?'checked="checked"':'';?> class="idx_broker_contactLink idx_ml" />
 				<label for="idx_broker_contactLink" class="link_label">- Contact Page</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_rosterLink" id="idx_broker_rosterLink" <?=(get_option('idx_broker_rosterLink') == 'on')?'checked="checked"':'';?> class="idx_broker_rosterLink" />
+				<input type="checkbox" name="idx_broker_rosterLink" id="idx_broker_rosterLink" <?=(get_option('idx_broker_rosterLink') == 'on')?'checked="checked"':'';?> class="idx_broker_rosterLink idx_ml" />
 				<label for="idx_broker_rosterLink" class="link_label">- Roster Page (multi only)</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_listManLink" id="idx_broker_listManLink" <?=(get_option('idx_broker_listManLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listManLink" />
+				<input type="checkbox" name="idx_broker_listManLink" id="idx_broker_listManLink" <?=(get_option('idx_broker_listManLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listManLink idx_ml" />
 				<label for="idx_broker_listManLink" class="link_label">- Listing Manager</label>
 			</li>
 			<li>
-				<input type="checkbox" name="idx_broker_homeValLink" id="idx_broker_homeValLink" <?=(get_option('idx_broker_homeValLink') == 'on')?'checked="checked"':'';?> class="idx_broker_homeValLink" />
+				<input type="checkbox" name="idx_broker_homeValLink" id="idx_broker_homeValLink" <?=(get_option('idx_broker_homeValLink') == 'on')?'checked="checked"':'';?> class="idx_broker_homeValLink idx_ml" />
 				<label for="idx_broker_homeValLink" class="link_label">- Home Valuation</label>
 			</li>
 		</ul>
 		<br class="clear" />
 
-		<div class="link_header">Custom Links</div>
+		<div class="link_header" style="float: left;">Custom Links</div>
 		<ul class="link_list">
+			<div style="float: right; font-weight: bold;">
+				<input type="checkbox" name="idx_cl_group" id="idx_cl_group" />
+				<label for="idx_cl_group" class="link_label">Select/Deselect All</label>	
+			</div>
+			<br class="clear" />
+
 <?php
 			/*
 			*	We want the client the ability to place any custom built links in the system
@@ -280,7 +290,7 @@ function idx_broker_admin_page() {
 					$checkOption = (get_option("idx_custom_".$link[0]) == 'on')?'checked="checked"':'';
 ?>
 					<li>
-						<input type="checkbox" name="idx_custom_<? echo $link[0]; ?>" id="idx_custom_<? echo $link[0]; ?>" <? echo $checkOption; ?> class="customLink" url="<? echo $link[1]; ?>" />
+						<input type="checkbox" name="idx_custom_<? echo $link[0]; ?>" id="idx_custom_<? echo $link[0]; ?>" <? echo $checkOption; ?> class="customLink idx_cl" url="<? echo $link[1]; ?>" />
 						<label for="idx_custom_<? echo $link[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $link[0]); ?></label>
 					</li>
 <?php
@@ -547,7 +557,7 @@ function idxUpdateLinks() {
 	*	End without returning anything (AJAX)
 	*/
 	
-	json_encode(array('response'=>'ok'));
+	echo json_encode(array('response'=>'ok'));
 	
 	die();
 }
@@ -565,25 +575,26 @@ function idxUpdateCustomLinks () {
 	
 	global $wpdb;
 	
-	/*
-	*	Loop through all the $_GET variables as key -> value pairs
-	*/
+	/**
+	 *	Simplify the $_GET variable references.
+	 */
 	
 	$linkName = $_GET['name'];
 	$linkState = $_GET['state'];
 	$linkUrl = $_GET['url'];
 
 	/*
-	*	If we find a key whose value is set to true.
+	*	If we find a link whose checkbox value is set to true.
 	*/
 	
 	if($linkState == 'true'){
 		
 		/*
 		*	Take the key and convert all underscores to spaces.  Then we need to cut
-		*	off the first 11 characters 'idx_broker_' as that was used as a key
+		*	off the first 11 characters 'idx_custom_' as that was used as a key
 		*	in the admin to save the link states.
 		*/
+		
 		
 		$label = substr(str_replace('_', ' ', $linkName),11,strlen($linkName));
 		
@@ -592,7 +603,7 @@ function idxUpdateCustomLinks () {
 		*	if it does then we just need to UPDATE, if not, then we INSERT.
 		*/
 		
-		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$label' " );
+		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$linkName' " );
 		$row = mysql_fetch_array($current);
 	
 		if(mysql_num_rows($current) > 0){

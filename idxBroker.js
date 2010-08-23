@@ -9,20 +9,6 @@ jQuery(document).ready(function(){
     // url of the blog
     var blogUrl = jQuery('#blogUrl').attr('ajax');
     
-    // expand collapse the advanced section
-    
-    jQuery('.expand').attr({ title: "Click to Expand/Collapse" });
-    
-    jQuery('.expandable').click(function() {
-        var content = jQuery(this).find('.expand').html();
-        jQuery(this).next().slideToggle('fast');
-        if (content == '[+]') {
-            jQuery(this).find('.expand').html('[-]');
-        } else {
-            jQuery(this).find('.expand').html('[+]');
-        }
-    });
-    
     // when the save changes button is clicked
 
     jQuery('#saveChanges').click(function(event){
@@ -98,87 +84,14 @@ jQuery(document).ready(function(){
         
     });
     
-    jQuery('#clearLinks').click(function(event){
-        
-        event.preventDefault();
-        
-        var status = jQuery(this).siblings('.status')
-        status.fadeIn('fast').html(ajax_load+'Cleaning Links...');
-        
-        jQuery.get(
-            ajaxPath,
-            {
-                "action": "idx_clearCustomLinks"
-            },
-            function(responseText){
-                alert('All old links that are no longer in the IDX Broker Admin area have been removed from your navigation.')
-                status.fadeOut();
-                jQuery('#idxOptions').submit();	
-            }
-        );
-            
+    // select/deselect all link functionality
+    
+    jQuery('#idx_ml_group').click(function(event){
+        jQuery('.idx_ml').attr('checked', jQuery(this).is(':checked'));
     });
     
-    // fire the update wrapper function
-    
-    jQuery('#updateWrapper').click(function(event){
-        
-        event.preventDefault();
-        var blogUrl = jQuery(this).attr('ajax') + '/';
-        var choice = jQuery('#wrapperOption').val();
-        
-        if(choice == 'echoCode'){
-            var message = "Generating Code...";
-        } else if (choice == 'writeCode'){
-            var message = "Updating Wrapper...";
-        }
-        
-        jQuery('#wrapperStatus').fadeIn('fast').html(ajax_load+message);
-
-        jQuery.get(
-            ajaxPath,
-            {
-                "action": "idxUpdateWrapper",
-                "method": choice,
-                "url": blogUrl
-            },
-            function(responseText){
-                
-                if(responseText != '0'){
-                    
-                    if(choice == 'echoCode'){
-                        
-                        jQuery('#wrapperStatus').html('Code Generated!').css('color', 'green');
-                        jQuery('#echoedCode').html(responseText.substring(0,responseText.length-1));
-                        
-                    } else if (choice == 'writeCode'){
-                        
-                        jQuery('#wrapperStatus').html('Files Written!').css('color', 'green');
-                        
-                    }
- 
-                } else {
-                    
-                    jQuery('#wrapperStatus').html('!Error <a href="http://www.idxbroker.com/support/kb/questions/291/">How do I fix this?</a>').css('color', 'red');
-                    
-                }
-            }
-        );
-    });
-    
-    // user choice on wrapper method
-    
-    jQuery('#wrapperOption').change(function(){
-       var choice = jQuery(this).val();
-       
-       if(choice == 'echoCode'){
-            jQuery('#echoStep').fadeIn();
-            jQuery('#writeStep').fadeOut();
-       } else if (choice == 'writeCode'){
-            jQuery('#writeStep').fadeIn();
-            jQuery('#echoStep').fadeOut();
-       }
-       
+    jQuery('#idx_cl_group').click(function(event){
+        jQuery('.idx_cl').attr('checked', jQuery(this).is(':checked'));
     });
     
 });
