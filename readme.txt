@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
 Tested up to: 3.0.1
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 IDX Broker Plugin - Add integrated IDX to your WordPress website today. 
 
@@ -90,6 +90,10 @@ This feature is designed to help designers integrate their theme design into eac
 
 == Upgrade Notice ==
 
+= 1.3.1 =
+
+Bug fixes ajax scripts that would spin out and never let options page submit.
+
 = 1.3 =
 
 Bug fixes for very large custom link lists. Added Select/Deselect all functionality on link lists.
@@ -126,6 +130,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.3.1 =
+
+Bug fixes ajax scripts that would spin out and never let options page submit.
 
 = 1.3 =
 

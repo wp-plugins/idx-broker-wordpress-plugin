@@ -41,47 +41,50 @@ jQuery(document).ready(function(){
             jQuery('#idx_broker_domain').parents('li').css('background', 'none');
         }
         
-        // place a typical ajax loading gif on the screen so the user knows that something is actually happening
+        if(submit == true){
+            
+            var status = jQuery(this).siblings('.status')
 
-        // give the user a pseudo status console so they know something is happening
-        var status = jQuery(this).siblings('.status')
-        status.fadeIn('fast').html(ajax_load+'Saving Links...');
+            // give the user a pseudo status console so they know something is happening
+            status.fadeIn('fast').html(ajax_load+'Saving Links...');
+    
+            // need to get the custom links from the form, if any
 
-        // need to get the custom links from the form, if any
-
-        jQuery('.customLink').each(function(){
-            var linkName = jQuery(this).attr('name');
-            var linkState = jQuery(this).is(':checked');
-            var linkUrl = jQuery(this).attr('url');
-            var jsonObjCustom = ({"action":"idxUpdateCustomLinks","name":linkName,"state":linkState,"url":linkUrl});
-
-            jQuery.getJSON(ajaxPath,jsonObjCustom,function(data){
+            if(jQuery('.customLink').size() > 0){
+                jQuery('.customLink').each(function(){
+                    var linkName = jQuery(this).attr('name');
+                    var linkState = jQuery(this).is(':checked');
+                    var linkUrl = jQuery(this).attr('url');
+                    var jsonObjCustom = ({"action":"idxUpdateCustomLinks","name":linkName,"state":linkState,"url":linkUrl});
+        
+                    jQuery.getJSON(ajaxPath,jsonObjCustom,function(data){
+                        }
+                    );
+                });
+            }
+            
+            //here are the states of the checkboxes
+            var basicLink = jQuery('.idx_broker_basicSearchLink').is(':checked');
+            var advancedLink = jQuery('.idx_broker_advancedSearchLink').is(':checked');
+            var mapLink = jQuery('.idx_broker_mapSearchLink').is(':checked');
+            var addressLink = jQuery('.idx_broker_addressSearchLink').is(':checked');
+            var listingLink = jQuery('.idx_broker_listingSearchLink').is(':checked');
+            var featuredLink = jQuery('.idx_broker_featuredLink').is(':checked');
+            var soldPendLink = jQuery('.idx_broker_soldPendLink').is(':checked');
+            var openHouseLink = jQuery('.idx_broker_openHousesLink').is(':checked');
+            var contactLink = jQuery('.idx_broker_contactLink').is(':checked');
+            var rosterLink = jQuery('.idx_broker_rosterLink').is(':checked');
+            var listManLink = jQuery('.idx_broker_listManLink').is(':checked');
+            var homeValLink = jQuery('.idx_broker_homeValLink').is(':checked');
+            
+            var jsonObj = {"action":"idxUpdateLinks","basicLink":basicLink,"advancedLink":advancedLink,"mapLink":mapLink,"addressLink":addressLink,"listingLink":listingLink,"featuredLink":featuredLink,"soldPendLink":soldPendLink,"openHouseLink":openHouseLink,"contactLink":contactLink,"rosterLink":rosterLink,"listManLink":listManLink,"homeValLink":homeValLink};
+    
+            jQuery.getJSON(ajaxPath,jsonObj,function(data){
+                    status.fadeIn('fast').html(ajax_load+'Saving Options...');
+                    jQuery('#idxOptions').submit();
                 }
             );
-        });
-        
-        //here are the states of the checkboxes
-        var basicLink = jQuery('.idx_broker_basicSearchLink').is(':checked');
-        var advancedLink = jQuery('.idx_broker_advancedSearchLink').is(':checked');
-        var mapLink = jQuery('.idx_broker_mapSearchLink').is(':checked');
-        var addressLink = jQuery('.idx_broker_addressSearchLink').is(':checked');
-        var listingLink = jQuery('.idx_broker_listingSearchLink').is(':checked');
-        var featuredLink = jQuery('.idx_broker_featuredLink').is(':checked');
-        var soldPendLink = jQuery('.idx_broker_soldPendLink').is(':checked');
-        var openHouseLink = jQuery('.idx_broker_openHousesLink').is(':checked');
-        var contactLink = jQuery('.idx_broker_contactLink').is(':checked');
-        var rosterLink = jQuery('.idx_broker_rosterLink').is(':checked');
-        var listManLink = jQuery('.idx_broker_listManLink').is(':checked');
-        var homeValLink = jQuery('.idx_broker_homeValLink').is(':checked');
-        
-        var jsonObj = {"action":"idxUpdateLinks","basicLink":basicLink,"advancedLink":advancedLink,"mapLink":mapLink,"addressLink":addressLink,"listingLink":listingLink,"featuredLink":featuredLink,"soldPendLink":soldPendLink,"openHouseLink":openHouseLink,"contactLink":contactLink,"rosterLink":rosterLink,"listManLink":listManLink,"homeValLink":homeValLink};
-
-        jQuery.getJSON(ajaxPath,jsonObj,function(data){
-                status.fadeIn('fast').html(ajax_load+'Saving Options...');
-                jQuery('#idxOptions').submit();
-            }
-        );
-        
+        }
     });
     
     // select/deselect all link functionality

@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.3
+Version: 1.3.1
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
@@ -502,14 +502,14 @@ function idxUpdateLinks() {
 			*/
 			
 			$current = mysql_query( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$where' " );
-			$row = mysql_fetch_array($current);
+			$row = @mysql_fetch_array($current);
 			
 			/*
 			*	The number of rows returned is more than none, so we do an UPDATE. We need to
 			*	write into two tables as required by WP and our filter.
 			*/
 			
-			if(mysql_num_rows($current) > 0){
+			if(@mysql_num_rows($current) > 0){
 				
 				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $where, $row[ID] ) );
 				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $url, $row[ID] ) );
@@ -537,14 +537,14 @@ function idxUpdateLinks() {
 			*/
 			
 			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$where' " );
-			$row = mysql_fetch_array($current);
+			$row = @mysql_fetch_array($current);
 			
 			/*
 			*	If the link exists and the client has unchecked it then we know we
 			*	need to delete it from both tables.
 			*/
 			
-			if(mysql_num_rows($current) > 0){
+			if(@mysql_num_rows($current) > 0){
 				
 				mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
 				mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
@@ -604,9 +604,9 @@ function idxUpdateCustomLinks () {
 		*/
 		
 		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$linkName' " );
-		$row = mysql_fetch_array($current);
+		$row = @mysql_fetch_array($current);
 	
-		if(mysql_num_rows($current) > 0){
+		if(@mysql_num_rows($current) > 0){
 			
 			/*
 			*	The entry already exists, so we can just UPDATE with the new information.
@@ -637,13 +637,13 @@ function idxUpdateCustomLinks () {
 		*/
 		
 		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$linkName' " );
-		$row = mysql_fetch_array($current);
+		$row = @mysql_fetch_array($current);
 		
 		/*
 		*	We found a matching entry
 		*/
 		
-		if(mysql_num_rows($current) > 0){
+		if(@mysql_num_rows($current) > 0){
 			
 			/*
 			*	Delete the unwanted entry in the table.
