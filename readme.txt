@@ -11,9 +11,30 @@ IDX Broker Plugin - Add integrated IDX to your WordPress website today.
 
 == Description ==
 
-This IDX plugin provides Realtors&reg; with an easy way to incorporate an IDX feed into a WordPress website. The IDX pages available via this plugin are fully indexable. Each IDX subscription also comes with a free iPhone/iPad application and online lead capture functionality. 
+This plugin provides Realtors&reg; with an easy way to add widgets and links to your WordPress blog or site. After installing the plugin, <a href="http://www.idxbroker.com/">IDX Broker subscribers</a> simply check a box next to the link they wish to add to their WordPress site. To add Widgets, subscribers simply drag-and-drop the various Widgets into their sidebar from the Widgets screen. 
+
+SEO-friendly options - Each page is Indexable:
+
+<ul>
+
+<li>Display your own custom subdomain in the URL (e.g., idx.mydomain.com).</li>
+<li>Set dynamic Meta Title and Description tags to include the City name, Zipcode, Property address, and more.  </li>
+<li>Add the IDX Broker sitemap to your sidebar or footer to encourage crawling of your IDX pages.</li>
+<li>Build custom area, building, and neighborhood live IDX search pages and place unique content at the top of each.</li>
+</ul>
+
+Powerful lead capture and lead management functionality:
+
+<ul><li>Receive new lead alert emails when somebody creates a new listing manager account.</li>
+<li>Give repeat visitors to your blog a way to login and view their saved searches and properties.</li>
+<li>Force signup upon search, results, or after the xth property detail page view.</li> 
+<li>Add notes to lead account from your IDX Broker Admin pages.</li>
+<li>Export your leads to 3rd party DRIP campaign software.</li>
+</ul>
+
+Each IDX subscription also comes with a <a href="http://www.idxbroker.com/idx_examples/">free iPhone/iPad application.</a>
       
-An <a href="http://www.idxbroker.com/">IDX Broker</a> subscription is required. Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
+An IDX Broker</a> subscription is required. Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
 
 <strong>Features include:</strong>
 
