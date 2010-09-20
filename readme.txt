@@ -7,53 +7,31 @@ Requires at least: 2.8.2
 Tested up to: 3.0.1
 Stable tag: 1.3.1
 
-IDX Broker Plugin - Add integrated IDX to your WordPress website today. 
+The IDX Broker Plugin - Add full-service, indexable IDX pages to your WordPress site today. 
 
 == Description ==
 
-This plugin provides Realtors&reg; with an easy way to add widgets and links to your WordPress blog or site. After installing the plugin, <a href="http://www.idxbroker.com/">IDX Broker subscribers</a> simply check a box next to the link they wish to add to their WordPress site. To add Widgets, subscribers simply drag-and-drop the various Widgets into their sidebar from the Widgets screen. 
+Why sacrifice lead capture functionality, the ability to build custom predefined search pages, automatically updated listing pages, and more, simply to get your IDX pages indexed? Indexable IDX pages are standard for IDX Broker clients. 
 
-SEO-friendly options - Each page is Indexable:
+There are four ways that IDX Broker makes your IDX pages more indexable, without sacrificing full IDX functionality: 
 
 <ul>
-
-<li>Display your own custom subdomain in the URL (e.g., idx.mydomain.com).</li>
-<li>Set dynamic Meta Title and Description tags to include the City name, Zipcode, Property address, and more.  </li>
-<li>Add the IDX Broker sitemap to your sidebar or footer to encourage crawling of your IDX pages.</li>
-<li>Build custom area, building, and neighborhood live IDX search pages and place unique content at the top of each.</li>
+<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags for each property detail page may include your Company name, City, Zipcode, Property address, and much more.</li>
+<li>A single Sitemap link that includes ALL indexable listing detail pages, broken down by County, City, and Price. Adding this to your home page tells search engines that this is a very important link to crawl.</li> 
+<li>You can build <a href="http://www.idxbroker.com/support/kb/questions/29/">custom predefined search links</a> filtered by neighborhood, area, subdivision, etc. Add these to your home page navigation or footer to send search engines (and your visitors) directly to the areas you service the most.</li>
+<li>Possibly the most important <a href="http://www.idxbroker.com/features/Domain-Control">feature</a> when it comes to "getting credit" for IDX results - Add your own subdomain to each and every IDX page! Set this up once in IDX Broker, and your subdomain (e.g., idx.mysite.com or www.mysite.com) will show up in the search results.</li>
 </ul>
 
-Powerful lead capture and lead management functionality:
-
-<ul><li>Receive new lead alert emails when somebody creates a new listing manager account.</li>
-<li>Give repeat visitors to your blog a way to login and view their saved searches and properties.</li>
-<li>Force signup upon search, results, or after the xth property detail page view.</li> 
-<li>Add notes to lead account from your IDX Broker Admin pages.</li>
-<li>Export your leads to 3rd party DRIP campaign software.</li>
-</ul>
-
-Each IDX subscription also comes with a <a href="http://www.idxbroker.com/idx_examples/">free iPhone/iPad application.</a>
+IDX Broker subscribers also have access to a free iPhone/iPad App. <a href="http://itunes.apple.com/us/app/myagent-by-idx/id336858030?mt=8">Download the App</a> to use in the field, or give it to your clients to ensure that when they find a home you are the only person they can call or email through this App. 
       
-An IDX Broker</a> subscription is required. Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
+Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> If we don't cover your MLS area now, we can add your area within a couple of weeks. 
 
-<strong>Features include:</strong>
+IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
 
-1. Drag-and-drop IDX search, new account setup, and other IDX Broker Widgets. 
-2. Unlimited page links can be embedded into your navigation, including custom neighborhood, foreclosure, and other search page links. 
-3. Widget to help you promote your myAgent iPhone App agent code. 
-4. New Feature for Theme Developers: <a href="http://www.idxbroker.com/support/kb/questions/310/">Insert your Theme design</a> into every IDX page.        
+<strong>Brokers:</strong> Read the Weigand Case Study to see how you can combine IDX Broker with a custom site to <a href="http://www.idxbroker.com/idx_csWeigand.php">exponentially increase your web leads.</a>  
 
-IDX, Inc will integrate your theme design into each IDX page automatically before activating your account. After receiving your login information, simply enter it into the plugin to quickly add page links and Widgets to your website. There is no need to integrate via short codes or use other HTML coding techniques to get started.
+<strong>Theme Developers:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/">Insert your Theme design</a> into every IDX page. Join the <a href="http://www.idxbroker.com/idx_partners.php">affiliate program</a> to earn nearly $25 for each theme sold/downloaded that refers a new IDX Broker account!        
 
-<strong>Benefits</strong>
-
-Get Indexed - All IDX pages are fully indexable. 
-
-Promote a mobile solution - Encourage people to download the free myAgent App and enter your Agent code. Once embedded, you become the primary point of contact for each and every property. 
-
-Find the ideal signup process - Request signup on search, upon results, or after the 5th property view. It's up to you!
-
-Pay one flat-rate price - Get IDX on your site, Widgets on your blog, map search, lead capture, iPhone application, and much more starting at $39.99/month. No monthly commitment required. 
 
 <strong>Getting Started</strong>
 
@@ -95,9 +73,6 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 = Does this plugin work with PHP4? =
 No. The latest version of this plugin is optimized for WordPress 3.0 and as a result has been written in PHP5. Download the 1.2.6 version of the plugin if your web server uses PHP4. 
-
-= What is the real-time synchronization feature? =
-This feature is designed to help designers integrate their theme design into each IDX page. There is now a fast and easy way to do this <a href="http://www.idxbroker.com/support/kb/questions/310/">from IDX Broker Admin.</a> This requires some knowledge of <a href="http://www.idxbroker.com/support/kb/questions/291/">Theme editing</a> to get started. 
  
 == Screenshots ==
 
