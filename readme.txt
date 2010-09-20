@@ -13,13 +13,13 @@ The IDX Broker Plugin - Add full-service, indexable IDX pages to your WordPress 
 
 Why sacrifice lead capture functionality, the ability to build custom predefined search pages, automatically updated listing pages, and more, simply to get your IDX pages indexed? Indexable IDX pages are standard for IDX Broker clients. 
 
-There are four ways that IDX Broker makes your IDX pages more indexable, without sacrificing full IDX functionality: 
+There are four ways that <a href="http://wordpress.org/extend/plugins/idx-broker-wordpress-plugin/">IDX Broker</a> makes your IDX pages more indexable, without sacrificing full IDX functionality: 
 
 <ul>
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags for each property detail page may include your Company name, City, Zipcode, Property address, and much more.</li>
 <li>A single Sitemap link that includes ALL indexable listing detail pages, broken down by County, City, and Price. Adding this to your home page tells search engines that this is a very important link to crawl.</li> 
 <li>You can build <a href="http://www.idxbroker.com/support/kb/questions/29/">custom predefined search links</a> filtered by neighborhood, area, subdivision, etc. Add these to your home page navigation or footer to send search engines (and your visitors) directly to the areas you service the most.</li>
-<li>Possibly the most important <a href="http://www.idxbroker.com/features/Domain-Control">feature</a> when it comes to "getting credit" for IDX results - Add your own subdomain to each and every IDX page! Set this up once in IDX Broker, and your subdomain (e.g., idx.mysite.com or www.mysite.com) will show up in the search results.</li>
+<li>Possibly the most important <a href="http://www.idxbroker.com/features/Domain-Control">feature</a> when it comes to "getting credit" for IDX results - Add your own subdomain to each and every IDX page! Set this up once in IDX Broker, and your subdomain (e.g., idx.mysite.com or mysite.com) will show up in the search results.</li>
 </ul>
 
 IDX Broker subscribers also have access to a free iPhone/iPad App. <a href="http://itunes.apple.com/us/app/myagent-by-idx/id336858030?mt=8">Download the App</a> to use in the field, or give it to your clients to ensure that when they find a home you are the only person they can call or email through this App. 
@@ -33,11 +33,11 @@ IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.
 <strong>Theme Developers:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/">Insert your Theme design</a> into every IDX page. Join the <a href="http://www.idxbroker.com/idx_partners.php">affiliate program</a> to earn nearly $25 for each theme sold/downloaded that refers a new IDX Broker account!        
 
 
-<strong>Getting Started</strong>
+<h3>Getting Started</h3>
 
 Existing IDX Broker clients may simply enter their IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. Once entered, simply follow the instructions provided on the plugin page, or review articles published to the <a href="http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/">IDX Broker Knowledgebase.</a>    
 
-<strong>General Terms of Use</strong> 
+<h3>General Terms of Use</h3> 
 
 This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details pages. 
 
