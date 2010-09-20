@@ -7,9 +7,11 @@ Requires at least: 2.8.2
 Tested up to: 3.0.1
 Stable tag: 1.3.1
 
-The IDX Broker Plugin - Add full-service, indexable IDX pages to your WordPress site today. 
+IDX Broker - The Original IDX/MLS Integration Solution 
 
 == Description ==
+
+<h3>Easy-to-Add, Fully Functional IDX</h2>
 
 Why sacrifice lead capture functionality, the ability to build custom predefined search pages, automatically updated listing pages, and more, simply to get your IDX pages indexed? Indexable IDX pages are standard for IDX Broker clients. 
 
@@ -19,10 +21,10 @@ There are four ways that <a href="http://wordpress.org/extend/plugins/idx-broker
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags for each property detail page may include your Company name, City, Zipcode, Property address, and much more.</li>
 <li>A single Sitemap link that includes ALL indexable listing detail pages, broken down by County, City, and Price. Adding this to your home page tells search engines that this is a very important link to crawl.</li> 
 <li>You can build <a href="http://www.idxbroker.com/support/kb/questions/29/">custom predefined search links</a> filtered by neighborhood, area, subdivision, etc. Add these to your home page navigation or footer to send search engines (and your visitors) directly to the areas you service the most.</li>
-<li>Possibly the most important <a href="http://www.idxbroker.com/features/Domain-Control">feature</a> when it comes to "getting credit" for IDX results - Add your own subdomain to each and every IDX page! Set this up once in IDX Broker, and your subdomain (e.g., idx.mysite.com or mysite.com) will show up in the search results.</li>
+<li>Possibly the most important <a href="http://www.idxbroker.com/features/Domain-Control">feature</a> when it comes to "getting credit" for IDX results - Add your custom subdomain to the URL of every IDX page. Earn credit for your subdomain, and your primary domain!</li>
 </ul>
 
-IDX Broker subscribers also have access to a free iPhone/iPad App. <a href="http://itunes.apple.com/us/app/myagent-by-idx/id336858030?mt=8">Download the App</a> to use in the field, or give it to your clients to ensure that when they find a home you are the only person they can call or email through this App. 
+IDX Broker subscribers also have access to a free iPhone/iPad App. <a href="http://itunes.apple.com/us/app/myagent-by-idx/id336858030?mt=8">Download the App</a> to use in the field, or to give to potential clients. With your Agent Code embeded into the App, you are the only person that your potential client can call or email through this App! 
       
 Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> If we don't cover your MLS area now, we can add your area within a couple of weeks. 
 
