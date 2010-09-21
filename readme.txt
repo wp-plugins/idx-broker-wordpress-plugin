@@ -11,7 +11,7 @@ IDX Broker - The Original IDX/MLS Integration Solution
 
 == Description ==
 
-<h3>Easy-to-Add, Fully Functional IDX</h3><br />
+<h3>Easy-to-Add, Fully Functional IDX</h3>
 
 Why sacrifice lead capture functionality, the ability to build custom predefined search pages, automatically updated listing pages, and more, simply to get your IDX pages indexed? Indexable IDX pages are standard for IDX Broker clients. 
 
