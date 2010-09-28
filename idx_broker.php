@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/wordpress/
 Description: The IDX Broker plugin gives Realtors&trade; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any Wordpress blog. 
-Version: 1.3.1
+Version: 1.3.2
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com
 License: GPL
@@ -39,6 +39,11 @@ function idx_broker_options_init(){
 	register_setting( 'idx-settings-group', "idx_broker_rosterLink" );
 	register_setting( 'idx-settings-group', "idx_broker_listManLink" );
 	register_setting( 'idx-settings-group', "idx_broker_homeValLink" );
+	register_setting( 'idx-settings-group', "idx_broker_sitemapLink" );
+	register_setting( 'idx-settings-group', "idx_broker_userSignupLink" );
+	register_setting( 'idx-settings-group', "idx_broker_mortgageCalcLink" );
+	register_setting( 'idx-settings-group', "idx_broker_suppListingsLink" );
+	register_setting( 'idx-settings-group', "idx_broker_agentLoginLink" );
 
 	/*
 	 *	Since we have custom links that can be added and deleted inside
@@ -173,15 +178,15 @@ function idx_broker_admin_page() {
 		<div id="blogUrl" style="display: none;" ajax="<?php bloginfo('wpurl'); ?>"></div>
 		<ul id="gen_settings">
 			<li>
-				<label for="idx_broker_cid">Customer Identification Number (CID): </label>
+				<label for="idx_broker_cid">IDX Broker Customer Identification Number (CID): </label>
 				<input name="idx_broker_cid" type="text" id="idx_broker_cid" value="<?php echo get_option('idx_broker_cid'); ?>" />
 			</li>
 			<li>
-				<label for="idx_broker_pass">Your IDX Broker Password:</label>
+				<label for="idx_broker_pass">IDX Broker Password:</label>
 				<input name="idx_broker_pass" type="password" id="idx_broker_pass" value="<?php echo get_option('idx_broker_pass'); ?>" />
 			</li>
 			<li>
-				<label for="idx_broker_domain">Your Website Domain (subdomain.domain.com):</label>
+				<label for="idx_broker_domain">IDX Broker Website Domain (Ex: www.yourdomain.idxco.com or search.yourdomain.com):</label>
 				<input name="idx_broker_domain" type="text" id="idx_broker_domain" size="30" value="<?php echo get_option('idx_broker_domain'); ?>" />
 			</li>
 		</ul>
@@ -242,7 +247,7 @@ function idx_broker_admin_page() {
 			</li>
 			<li>
 				<input type="checkbox" name="idx_broker_rosterLink" id="idx_broker_rosterLink" <?=(get_option('idx_broker_rosterLink') == 'on')?'checked="checked"':'';?> class="idx_broker_rosterLink idx_ml" />
-				<label for="idx_broker_rosterLink" class="link_label">- Roster Page (multi only)</label>
+				<label for="idx_broker_rosterLink" class="link_label">- Roster Page (office only)</label>
 			</li>
 			<li>
 				<input type="checkbox" name="idx_broker_listManLink" id="idx_broker_listManLink" <?=(get_option('idx_broker_listManLink') == 'on')?'checked="checked"':'';?> class="idx_broker_listManLink idx_ml" />
@@ -251,6 +256,26 @@ function idx_broker_admin_page() {
 			<li>
 				<input type="checkbox" name="idx_broker_homeValLink" id="idx_broker_homeValLink" <?=(get_option('idx_broker_homeValLink') == 'on')?'checked="checked"':'';?> class="idx_broker_homeValLink idx_ml" />
 				<label for="idx_broker_homeValLink" class="link_label">- Home Valuation</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_sitemapLink" id="idx_broker_sitemapLink" <?=(get_option('idx_broker_sitemapLink') == 'on')?'checked="checked"':'';?> class="idx_broker_sitemapLink idx_ml" />
+				<label for="idx_broker_sitemapLink" class="link_label">- Sitemap</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_userSignupLink" id="idx_broker_userSignupLink" <?=(get_option('idx_broker_userSignupLink') == 'on')?'checked="checked"':'';?> class="idx_broker_userSignupLink idx_ml" />
+				<label for="idx_broker_userSignupLink" class="link_label">- User Signup</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_mortgageCalcLink" id="idx_broker_mortgageCalcLink" <?=(get_option('idx_broker_mortgageCalcLink') == 'on')?'checked="checked"':'';?> class="idx_broker_mortgageCalcLink idx_ml" />
+				<label for="idx_broker_mortgageCalcLink" class="link_label">- Mortgage Calculator</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_suppListingsLink" id="idx_broker_suppListingsLink" <?=(get_option('idx_broker_suppListingsLink') == 'on')?'checked="checked"':'';?> class="idx_broker_suppListingsLink idx_ml" />
+				<label for="idx_broker_suppListingsLink" class="link_label">- Supplemental Listings</label>
+			</li>
+			<li>
+				<input type="checkbox" name="idx_broker_agentLoginLink" id="idx_broker_agentLoginLink" <?=(get_option('idx_broker_agentLoginLink') == 'on')?'checked="checked"':'';?> class="idx_broker_agentLoginLink idx_ml" />
+				<label for="idx_broker_agentLoginLink" class="link_label">- Agent Login (office only)</label>
 			</li>
 		</ul>
 		<br class="clear" />
@@ -344,7 +369,7 @@ function idxUpdateLinks() {
 	*	 ajax call.  We build these out to easily loop through them all.
 	*/
 	
-	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'], 'openHouse' => $_GET['openHouseLink'], 'contact' => $_GET['contactLink'], 'roster' => $_GET['rosterLink'], 'listingManager' => $_GET['listManLink'], 'homeValuation' => $_GET['homeValLink'] );
+	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'], 'openHouse' => $_GET['openHouseLink'], 'contact' => $_GET['contactLink'], 'roster' => $_GET['rosterLink'], 'listingManager' => $_GET['listManLink'], 'homeValuation' => $_GET['homeValLink'], 'sitemap' => $_GET['sitemapLink'], 'userSignup' => $_GET['userSignupLink'], 'mortgageCalc' => $_GET['mortgageCalcLink'], 'suppListings' => $_GET['suppListingsLink'], 'agentLogin' => $_GET['agentLoginLink'] );
 
 	/*
 	*	Loop through all the link so we can manage them one by one.
@@ -493,6 +518,55 @@ function idxUpdateLinks() {
 					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/homeValue.php";
 					break;
 				
+				case "sitemap":
+					
+				/**
+				 *	Sitemap
+				 */
+					
+					$label = "Sitemap";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/sitemap.php";
+					break;
+				
+				case "userSignup":
+					
+				/**
+				 *	User Signup
+				 */
+					
+					$label = "User Signup";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/userSignup.php";
+					break;
+				
+				case "mortgageCalc":
+					
+				/**
+				 *	Mortgage Calculator
+				 */
+					
+					$label = "Mortgage Calculator";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/mortgage.php";
+					break;
+				
+				case "suppListings":
+					
+				/**
+				 *	Supplemental Listings
+				 */
+					
+					$label = "Supplemental Listings";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/supplemental.php";
+					break;
+				
+				case "agentLogin":
+					
+				/**
+				 *	Agent Login
+				 */
+					
+					$label = "Agent Login";
+					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/login.php";
+					break;
 			}
 			
 			/*
@@ -1298,6 +1372,7 @@ class widget_idxQs extends WP_Widget {
 <?php
 		} else if($instance['format'] == 'widest') {
 ?>
+		<div style="margin: 0 auto; width: 490px;">
 			<script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=105|6|22|100|0|0|200000|0&QS-maxPriceField=105|37|22|100|0|0|800000|0&QS-minSqftField=358|6|22|100|0|0|0|0&QS-minRoomsField=358|37|22|100|0|0|1|0&QS-minBathsField=105|65|22|100|0|0|0|0&QS-labelMaxPrice=25|39|22|70|0|0|Max Price:|0&QS-labelMinPrice=25|8|22|70|0|0|Min Price:|0&QS-labelMinSqft=278|8|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=278|39|22|70|0|0|Min Rooms:|0&QS-labelMinBaths=25|70|22|70|0|0|Min Baths:|0&QS-buttonSearch=209|94|27|70|0|0|Search|0&QS-selectCityList=358|65|22|105|0|0|Search|0&QS-labelCityList=278|70|22|100|0|0|Choose a City|0&formContainer=490|130&domain=&cid=4587"></script>
 <?php
 		} else {

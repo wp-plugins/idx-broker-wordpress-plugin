@@ -76,8 +76,13 @@ jQuery(document).ready(function(){
             var rosterLink = jQuery('.idx_broker_rosterLink').is(':checked');
             var listManLink = jQuery('.idx_broker_listManLink').is(':checked');
             var homeValLink = jQuery('.idx_broker_homeValLink').is(':checked');
+            var sitemapLink = jQuery('.idx_broker_sitemapLink').is(':checked');
+            var userSignupLink = jQuery('.idx_broker_userSignupLink').is(':checked');
+            var mortgageCalcLink = jQuery('.idx_broker_mortgageCalcLink').is(':checked');
+            var suppListingsLink = jQuery('.idx_broker_suppListingsLink').is(':checked');
+            var agentLoginLink = jQuery('.idx_broker_agentLoginLink').is(':checked');
             
-            var jsonObj = {"action":"idxUpdateLinks","basicLink":basicLink,"advancedLink":advancedLink,"mapLink":mapLink,"addressLink":addressLink,"listingLink":listingLink,"featuredLink":featuredLink,"soldPendLink":soldPendLink,"openHouseLink":openHouseLink,"contactLink":contactLink,"rosterLink":rosterLink,"listManLink":listManLink,"homeValLink":homeValLink};
+            var jsonObj = {"action":"idxUpdateLinks","basicLink":basicLink,"advancedLink":advancedLink,"mapLink":mapLink,"addressLink":addressLink,"listingLink":listingLink,"featuredLink":featuredLink,"soldPendLink":soldPendLink,"openHouseLink":openHouseLink,"contactLink":contactLink,"rosterLink":rosterLink,"listManLink":listManLink,"homeValLink":homeValLink,"sitemapLink":sitemapLink,"userSignupLink":userSignupLink,"mortgageCalcLink":mortgageCalcLink,"suppListingsLink":suppListingsLink,"agentLoginLink":agentLoginLink};
     
             jQuery.getJSON(ajaxPath,jsonObj,function(data){
                     status.fadeIn('fast').html(ajax_load+'Saving Options...');
@@ -92,7 +97,7 @@ jQuery(document).ready(function(){
     jQuery('#idx_ml_group').click(function(event){
         jQuery('.idx_ml').attr('checked', jQuery(this).is(':checked'));
     });
-    
+
     jQuery('#idx_cl_group').click(function(event){
         jQuery('.idx_cl').attr('checked', jQuery(this).is(':checked'));
     });
