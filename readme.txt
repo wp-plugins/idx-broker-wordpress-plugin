@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
 Tested up to: 3.0.1
-Stable tag: 1.3.2
+Stable tag: 1.3.1
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
@@ -87,10 +87,6 @@ No. The latest version of this plugin is optimized for WordPress 3.0 and as a re
 7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
-
-= 1.3.2 =
-
-Bug fix for extra div tag on widest QS form, labeling on General Settings updated in admin.
 
 = 1.3.1 =
 
