@@ -13,9 +13,9 @@ IDX Broker - The Original IDX/MLS Integration Solution
 
 <h3>Easy-to-Add, Fully Functional IDX</h3>
 
-Why sacrifice lead capture functionality, the ability to build custom predefined search pages, automatically updated listing pages, and more, simply to get your IDX pages indexed? Indexable IDX pages are standard for IDX Broker clients. 
+Why sacrifice lead capture functionality, the ability to build custom predefined search pages, saved searches, email updates, and more, simply to get your IDX pages indexed? <strong>Indexable IDX pages are standard for IDX Broker clients.</strong> Each page is hosted on the IDX servers, giving you an entirely new subdomain (or <a href="http://www.idxbroker.com/features/Domain-Control">custom subdomain</a>) of content to be indexed! Why code by hand in WordPress, when a powerful hosted server can do most of the work for you?
 
-There are four ways that <a href="http://wordpress.org/extend/plugins/idx-broker-wordpress-plugin/">IDX Broker</a> makes your IDX pages more indexable, without sacrificing full IDX functionality: 
+There are four unique ways that <a href="http://wordpress.org/extend/plugins/idx-broker-wordpress-plugin/">IDX Broker</a> makes your IDX pages more indexable, without sacrificing full IDX functionality: 
 
 <ul>
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags for each property detail page may include your Company name, City, Zipcode, Property address, and much more.</li>
