@@ -12,32 +12,32 @@ IDX Broker - The Original IDX/MLS Integration Solution
 == Description ==
 
 <h3>Easy-to-Add, Fully Functional IDX</h3>
-
-Why sacrifice lead capture functionality, the ability to build custom predefined search pages, saved searches, email updates, and more, simply to get your IDX pages indexed? <strong>Indexable IDX pages are standard for IDX Broker clients.</strong> Each page is hosted on the IDX servers, giving you an entirely new subdomain (or <a href="http://www.idxbroker.com/features/Domain-Control">custom subdomain</a>) of content to be indexed! Why code by hand in WordPress, when a powerful hosted server can do most of the work for you?
-
-There are four unique ways that <a href="http://wordpress.org/extend/plugins/idx-broker-wordpress-plugin/">IDX Broker</a> makes your IDX pages more indexable, without sacrificing full IDX functionality: 
+The IDX Broker plugin works by adding your hosted IDX page links and Widgets to WordPress site. All IDX pages are created dynamically, and include search engine friendly features such as:
 
 <ul>
-<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags for each property detail page may include your Company name, City, Zipcode, Property address, and much more.</li>
-<li>A single Sitemap link that includes ALL indexable listing detail pages, broken down by County, City, and Price. Adding this to your home page tells search engines that this is a very important link to crawl.</li> 
-<li>You can build <a href="http://www.idxbroker.com/support/kb/questions/29/">custom predefined search links</a> filtered by neighborhood, area, subdivision, etc. Add these to your home page navigation or footer to send search engines (and your visitors) directly to the areas you service the most.</li>
-<li>Possibly the most important <a href="http://www.idxbroker.com/features/Domain-Control">feature</a> when it comes to "getting credit" for IDX results - Add your custom subdomain to the URL of every IDX page. Earn credit for your subdomain, and your primary domain!</li>
+<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags.</li>
+<li>A dynamic Sitemap page that includes search engine friendly category and detail pages.</li> 
+<li><a href="http://www.idxbroker.com/support/kb/questions/29/">Search Friendly Custom Link</a> pages that you can link to from your blog posts.</li>
+<li><a href="http://www.idxbroker.com/features/Domain-Control">A Custom Subdomain</a> (idx.mysite.com). Just say <strong>NO</strong> to iFramed IDX.</li>
 </ul>
 
-IDX Broker subscribers also have access to a free iPhone/iPad App. <a href="http://itunes.apple.com/us/app/myagent-by-idx/id336858030?mt=8">Download the App</a> to use in the field, or to give to potential clients. With your Agent Code embeded into the App, you are the only person that your potential client can call or email through this App! 
-      
-Please review MLS/IDX feed coverage <a href="http://www.idxbroker.com/idx_mls_coverage.php">here.</a> If we don't cover your MLS area now, we can add your area within a couple of weeks. 
+See the full list of IDX features <a href="http://www.idxbroker.com/idx_broker.php">here.</a>
+ 
+Please review our <a href="http://www.idxbroker.com/idx_mls_coverage.php">MLS/IDX feed coverage</a> for current MLS coverage. If you don't see your MLS on this list, simply request the MLS when you sign up and we can add it (provided the MLS offers IDX feeds). 
 
 IDX Broker WordPress Plugin examples may be found <a href="http://www.idxbroker.com/idx_examples/">here.</a> 
 
-<strong>Brokers:</strong> Read the Weigand Case Study to see how you can combine IDX Broker with a custom site to <a href="http://www.idxbroker.com/idx_csWeigand.php">exponentially increase your web leads.</a>  
+<strong>Real Estate Brokers:</strong> Read the Weigand Case Study to see how you can combine IDX Broker with a custom site to <a href="http://www.idxbroker.com/idx_csWeigand.php">exponentially increase your web leads.</a>  
 
-<strong>Theme Developers:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/">Insert your Theme design</a> into every IDX page. Join the <a href="http://www.idxbroker.com/idx_partners.php">affiliate program</a> to earn nearly $25 for each theme sold/downloaded that refers a new IDX Broker account!        
+<strong>Advanced Users:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/">Synchronize your IDX</a> with your WordPress site on every page load.       
 
 
 <h3>Getting Started</h3>
 
-Existing IDX Broker clients may simply enter their IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. Once entered, simply follow the instructions provided on the plugin page, or review articles published to the <a href="http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/">IDX Broker Knowledgebase.</a>    
+Current IDX Broker clients may simply enter your IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. <a href="http://www.idxbroker.com/contact_idx.php">Contact us</a> if you don't know where to find this information. 
+
+New IDX Broker clients will need to sign up for an account to use the plugin. We cannot provide an example account at this time, however, you can view our <a href="http://greatpropertyforsale.com">official demo example</a> of a fully integrated site WordPress plugin. This demo example uses the 'www' subdomain to display IDX page links. You may also call 1-800-421-9668 to talk to one of our product experts.     
+
 
 <h3>General Terms of Use</h3> 
 
@@ -50,7 +50,7 @@ IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display th
 1. Download and extract the IDX Broker plugin. You may also install directly by going to your WP-Admin page and then Plugins > Add New. Search for 'idxbroker' under new plugins and click to install directly.
 2. Upload the uncompressed folder to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the Plugins menu in WordPress.
-4. You will need to have an active <a href="http://www.idxbroker.com">IDX Broker</a> account for the Plugin to work. Go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
+4. You will need to have an active <a href="http://www.idxbroker.com">IDX Broker</a> account for the Plugin to work. Once you do, go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
 5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links), and more.
 
 == Frequently Asked Questions ==
@@ -87,6 +87,10 @@ No. The latest version of this plugin is optimized for WordPress 3.0 and as a re
 7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.3.2 =
+
+Added sitemap, user login, and other links to the standard link options. Provided additional help for people confused about what to enter in subdomain field. 
 
 = 1.3.1 =
 
