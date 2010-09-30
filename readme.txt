@@ -12,7 +12,7 @@ IDX Broker - The Original IDX/MLS Integration Solution
 == Description ==
 
 <h3>Easy-to-Add, Fully Functional IDX</h3>
-The IDX Broker plugin works by adding your hosted IDX page links and Widgets to WordPress site. All IDX pages are created dynamically, and include search engine friendly features such as:
+The IDX Broker plugin works by adding hosted IDX page links and Widgets to your WordPress site. All IDX pages are created dynamically, and include search engine friendly features such as:
 
 <ul>
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags.</li>
