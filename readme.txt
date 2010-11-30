@@ -5,43 +5,40 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
 Tested up to: 3.0.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
 == Description ==
 
-<h3>Easy-to-Add, Fully Functional IDX</h3>
-The IDX Broker plugin works by adding hosted IDX page links and Widgets to your WordPress site. All IDX pages are created dynamically, and include search engine friendly features such as:
-
+<h3>Easy-to-Add, Fully-Functional IDX</h3>
+For IDX Broker subscribers only. The IDX Broker plugin adds MLS/IDX search page links to your menu and sidebar, and provides you with drag-and-drop MLS search Widgets for your sidebar. Each widget and link is updated nightly via your approved MLS/IDX feed.<br /><br />All IDX Broker pages are optimized to encourage indexing by search engines:
 <ul>
-<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags">Description</a> tags.</li>
-<li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
-<li><a href="http://www.idxbroker.com/support/kb/questions/29/">Search-friendly, custom IDX link</a> pages that you can add to your sidebar or blog posts.</li>
-<li><a href="http://www.idxbroker.com/features/Domain-Control">A Custom Subdomain</a> (idx.mysite.com). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content, while providing you with a useful backlink! Just say <strong>NO</strong> to navigationless, framed IDX.</li>
+<li>In August 2010, approximately 800k IDX Broker client pages were indexed. In October 2010, over 4 million pages have been indexed. An increase of over 400%. </li>
+<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags.</li>
+<li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap" target="_blank">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
+<li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you can add to your sidebar or blog posts.</li>
+<li><a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">A Custom Subdomain</a> (idx.mysite.com). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content.</li>
 </ul>
 
-View the <a href="http://greatpropertyforsale.com/">IDX Broker WordPress Plugin example website</a> 
+View the <a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
 
-Review the full list of <a href="http://www.idxbroker.com/idx_broker.php">IDX Broker features</a> available.
+Review the full list of <a href="http://www.idxbroker.com/idx_broker.php" target="_blank">IDX Broker features</a> available.
  
-View our <a href="http://www.idxbroker.com/idx_mls_coverage.php">MLS/IDX feed coverage</a> page to determine if IDX Broker services your board. If you don't see your MLS or board, simply provide your board's name when you sign up and we will add the IDX feed to IDX Broker (new MLS feeds may require 4-6 weeks for setup). 
+View our <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank">MLS/IDX feed coverage</a> page to determine if IDX Broker services your board. If you don't see your MLS or board, simply provide your board's name when you sign up and we will add the IDX feed to IDX Broker (new MLS feeds may require 4-6 weeks for setup). 
 
-<strong>Advanced Users:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/">Synchronize your IDX pages</a> with your WordPress theme, on every page load! This feature works with <a href="http://www.idxbroker.com/support/kb/questions/312/">Genesis (AgentPress)</a>, <a href="http://www.idxbroker.com/support/kb/questions/322/">Thesis</a>, <a href="http://www.idxbroker.com/support/kb/questions/321">Atahualpa</a>, and other popular themes/frameworks.        
-
+<strong>Advanced Users:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/" target="_blank">Synchronize your IDX pages</a> with your WordPress theme, on every page load! This feature works with Genesis (AgentPress), Thesis, Atahualpa, and other popular themes/frameworks.        
 
 <h3>Getting Started</h3>
 
 Current IDX Broker clients; simply enter your IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. <a href="http://www.idxbroker.com/contact_idx.php">Contact us</a> if you don't know where to find this information. 
 
-Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">create an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and an Office featured listings link.  
+Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and more.  
 
 
 <h3>General Terms of Use</h3> 
 
-This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details pages. 
-
-IDX, Inc. manages any MLS paperwork and IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
+This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details page display and disclaimers. IDX, Inc. manages all the necessary MLS paperwork. IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
 
 == Installation ==
 
@@ -60,19 +57,16 @@ Internet Data Exchange, or IDX, is a type of data feed provided by your MLS. Thi
 Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_mls_coverage.php">Read more about our MLS coverage.</a> Note that some MLS's may charge you a separate fee for access to your IDX feed. 
 
 = Does IDX Broker require a long-term contract? =
-No. IDX Broker requires a month-to-month agreement only. There are three monthly account levels - Agent ($39+), Team ($49+), and Office($78+). 
+No. IDX Broker requires a month-to-month agreement only. There are three monthly account levels - Agent ($39.99+), Team ($49.99+), and Office($78.99+). 
 
 = What can I expect if I decide to get my IDX feed through IDX Broker? =
 When you sign up for a new account, IDX, Inc sends you any necessary MLS paperwork (if required). Once you have signed the necessary paperwork, you will need to fax that back to us and we will then forward your paperwork to the MLS for approval. Approval can take anywhere from 3-10 days. Once approved, we will activate your account, integrate your site's design into IDX pages, and send you IDX Broker login credentials so that you can add links and Widgets to your site or blog.  
 
 = How many blogs/websites can I integrate with IDX Broker? =
-Features provided by this Plugin - Widgets, links, and custom links may be placed onto any WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. Each IDX Broker account requires MLS approval of ONE site for IDX display. Your search results and details pages must match this approved site. 
+Features provided by this Plugin - Widgets, links, and custom links may be placed onto any WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. Each IDX Broker account requires MLS approval of one site for IDX display. Your search results and details pages must match this approved site. 
 
 = Does IDX Broker offer lead capture functionality? =
 Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manager page, a customizable sign up form, and provides you with 'teaser' registration options. 
-
-= Does this plugin work with PHP4? =
-No. The latest version of this plugin is optimized for WordPress 3.0 and as a result has been written in PHP5. Download the 1.2.6 version of the plugin if your web server uses PHP4. 
  
 == Screenshots ==
 
@@ -85,6 +79,10 @@ No. The latest version of this plugin is optimized for WordPress 3.0 and as a re
 7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.3.3 =
+
+Cleaned up admin UI, replaced php shortcodes, replaced myAgent widget link, added additional help links, resized quick search widget, embedded additional knowledgebase links.  
 
 = 1.3.2 =
 
@@ -130,6 +128,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.3.3 =
+
+Bug fix for php shortcodes and resized quick search widget.  
 
 = 1.3.2 =
 
