@@ -1,5 +1,7 @@
 jQuery(document).ready(function(){
     
+    jQuery('#web_services_error').css('display','block');
+    
     // ajax loading gif
     var ajax_load = "<span class='ajax'></span>";
     

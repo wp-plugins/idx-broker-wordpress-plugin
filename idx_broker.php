@@ -907,7 +907,7 @@ function idx_web_services( $getService ) {
 	if ($err) {
 		
 		// Display the error
-		echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
+		//echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
 		// At this point, you know the call that follows will fail
 		
 	}
@@ -918,9 +918,9 @@ function idx_web_services( $getService ) {
 	// Check for a fault
 	if ($client->fault) {
 		
-		echo '<div class="error" style="display:block;"><h2>Fault</h2><pre>';
-		print_r($result);
-		echo '</pre></div>';
+		//echo '<div class="error" style="display:block;"><h2>Fault</h2><pre>';
+		//print_r($result);
+		//echo '</pre></div>';
 		
 	} else {
 		
@@ -930,7 +930,7 @@ function idx_web_services( $getService ) {
 		if ($err) {
 			
 			// Display the error
-			echo '<div class="error" style="display:block;"><h2>Error</h2><pre>' . $err . '</pre></div>';
+			echo '<div style="display:none; " id="web_services_error" class="error">IDX Broker web services is currently unavailable, click <a href="http://www.idxbroker.com/support/kb/questions/330/Cannot+connect+to+IDX+Web+Services/" target="_blank">here</a> for more information.</div>';
 			
 		} else {
 			
