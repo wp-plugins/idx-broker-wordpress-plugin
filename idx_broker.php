@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
 Description: The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.3.4
+Version: 1.3.5
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -1842,9 +1842,6 @@ class widget_idxCustomLinks extends WP_Widget {
 		
 		echo $after_title;
 		
-		
-
-	
 		$customLinks = idx_getCustomLinks();
 
 ?>
