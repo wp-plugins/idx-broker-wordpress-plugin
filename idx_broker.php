@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
 Description: The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.3.3
+Version: 1.3.4
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -76,9 +76,9 @@ function idx_broker_options_init(){
 	
 	if (count($customLinks) > 0){
 	
-		foreach($customLinks as $link) {
+		foreach($customLinks as $linkName => $linkURL) {
 			
-			$tempName = 'idx_custom_'.$link[0];
+			$tempName = 'idx_custom_'. $linkName;
 			register_setting( 'idx-settings-group', "$tempName" );
 			
 		}
@@ -320,7 +320,7 @@ ul {
 				*	over them and seperate again by the pipe character ->  link_name | http://link.tiny.url
 				*/
 
-				foreach ($customLinks as $link){
+				foreach ($customLinks as $linkName => $linkURL){
 					
 					/*
 					*	Now we have gathered all our info, now we
@@ -329,11 +329,11 @@ ul {
 					*	checked="checked"
 					*/
 					
-					$checkOption = (get_option("idx_custom_".$link[0]) == 'on')?'checked="checked"':'';
+					$checkOption = (get_option("idx_custom_".$linkName) == 'on')?'checked="checked"':'';
 ?>
       <li>
-        <input type="checkbox" name="idx_custom_<? echo $link[0]; ?>" id="idx_custom_<? echo $link[0]; ?>" <? echo $checkOption; ?> class="customLink idx_cl" url="<? echo $link[1]; ?>" />
-        <label for="idx_custom_<? echo $link[0]; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $link[0]); ?></label>
+        <input type="checkbox" name="idx_custom_<? echo $linkName; ?>" id="idx_custom_<? echo $linkName; ?>" <? echo $checkOption; ?> class="customLink idx_cl" url="<? echo $linkURL; ?>" />
+        <label for="idx_custom_<? echo $linkName; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $linkName); ?></label>
       </li>
       <?php
 				}
@@ -759,38 +759,18 @@ function idxUpdateCustomLinks () {
 
 
 function idx_getCustomLinks () {
+ 
+       $customLinks = array();
 
-	/*
-	*	First we need to grab a string of current custom links
-	*	with our web services script.
-	*/
-	
-	$savedSearches = idx_web_services( 'listSavedSearches' );
-	
-	/*
-	*	Build the initial array by seperating by the new link character '\n'
-	*/
-	
-	$lines = explode("\n",$savedSearches);
-	
-	/*
-	*	Loop over the array and seperate the link name and the link url by
-	*	the pipe character "|".  We will save all the links and urls in
-	*	a new array $customLinks.
-	*/
-
-    foreach ($lines as $link) {
-
-		$customLinks[] = explode("|", $link);
-	
-	}
-	
-	/*
-	*	We always have an extra '/n' in the inital array, so we need to
-	*	pop it off the end as it's useless.
-	*/
-	
-	array_pop($customLinks);
+       $xmlFile = 'http://idxco.com/services/wpSimple_1-0.php?cid='.get_option('idx_broker_cid');
+       $xml = simplexml_load_file($xmlFile);
+       
+       foreach ($xml->children() as $link)
+       {
+            $name = (string) $link->name;
+            $url = (string) $link->url;
+	    $customLinks[$name] = $url;
+       }
 	
 	/*
 	*	Return our new array of custom links.
@@ -890,54 +870,6 @@ function errorCheck() {
 	
 	echo $errorOutput;
 	
-}
-
-function idx_web_services( $getService ) {
-
-	// Require the NuSOAP code
-	require_once('nusoap.php');
-	
-	// Create the client instance
-	$host = 'https://idxco.com/services/clientWSDL_1-3.php';
-	$client = new nusoap_client($host);
-	
-	// Check for an error
-	$err = $client->getError();
-	
-	if ($err) {
-		
-		// Display the error
-		//echo '<h2>Constructor error</h2><pre>' . $err . '</pre>';
-		// At this point, you know the call that follows will fail
-		
-	}
-	
-	// Call the SOAP method
-	$result = $client->call($getService, array('cid' => get_option('idx_broker_cid'),'password' => get_option('idx_broker_pass')));
-	
-	// Check for a fault
-	if ($client->fault) {
-		
-		//echo '<div class="error" style="display:block;"><h2>Fault</h2><pre>';
-		//print_r($result);
-		//echo '</pre></div>';
-		
-	} else {
-		
-		// Check for errors
-		$err = $client->getError();
-		
-		if ($err) {
-			
-			// Display the error
-			echo '<div style="display:none; " id="web_services_error" class="error">IDX Broker web services is currently unavailable, click <a href="http://www.idxbroker.com/support/kb/questions/330/Cannot+connect+to+IDX+Web+Services/" target="_blank">here</a> for more information.</div>';
-			
-		} else {
-			
-			return $result;
-		
-		}
-	}
 }
 
 /*

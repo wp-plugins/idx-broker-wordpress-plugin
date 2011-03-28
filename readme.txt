@@ -5,7 +5,7 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
 Tested up to: 3.0.1
-Stable tag: 1.3.3
+Stable tag: 1.3.4
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
@@ -80,6 +80,10 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 == Upgrade Notice ==
 
+= 1.3.4 =
+
+Switched from web services to an xml feed for better reliability for custom link aquisition.  Highly recommended upgrade.
+
 = 1.3.3 =
 
 Cleaned up admin UI, replaced php shortcodes, replaced myAgent widget link, added additional help links, resized quick search widget, embedded additional knowledgebase links.  
@@ -128,6 +132,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.3.4 =
+
+Switched from web services to an xml feed for better reliability for custom link aquisition.  Highly recommended upgrade.
 
 = 1.3.3 =
 
