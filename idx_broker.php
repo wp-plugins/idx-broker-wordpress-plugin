@@ -1842,18 +1842,18 @@ class widget_idxCustomLinks extends WP_Widget {
 		
 		echo $after_title;
 		
-		$savedSearches = idx_web_services( 'listSavedSearches' );
-		$lines = explode("\n",$savedSearches);
+		
+
+	
+		$customLinks = idx_getCustomLinks();
 
 ?>
 <ul id="id">
-  <?php
-        //print_r($lines);
-        foreach ($lines as $link) {
-			
-            $li = explode("|", $link);
-			if($li[1] != '')
-            echo '<li><a href="' . $li[1] . '">' . str_replace('_', ' ', $li[0]) . '</a></li>';
+<?php
+
+        foreach($customLinks as $linkName => $linkURL) {
+ 
+            echo '<li><a href="' . $linkURL . '">' . str_replace('_', ' ', $linkName) . '</a></li>';
 			
         }
 
