@@ -2,7 +2,7 @@
 Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
-Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
+Tags: idx, real estate, wordpress plugin, idx/mls, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker, idx broker
 Requires at least: 2.8.2
 Tested up to: 3.1
 Stable tag: 1.3.6
@@ -80,9 +80,13 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 == Upgrade Notice ==
 
+= 1.3.6 =
+
+CID error check. 
+
 = 1.3.5 =
 
-Small Patch to resolve CID error check. 
+Small Patch to resolve PHP error. 
 
 = 1.3.4 =
 
