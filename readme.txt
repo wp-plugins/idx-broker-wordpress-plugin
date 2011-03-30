@@ -4,7 +4,7 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
-Tested up to: 3.0.1
+Tested up to: 3.1
 Stable tag: 1.3.6
 
 IDX Broker - The Original IDX/MLS Integration Solution 
@@ -14,14 +14,14 @@ IDX Broker - The Original IDX/MLS Integration Solution
 <h3>Easy-to-Add, Fully-Functional IDX</h3>
 For IDX Broker subscribers only. The IDX Broker plugin adds MLS/IDX search page links to your menu and sidebar, and provides you with drag-and-drop MLS search Widgets for your sidebar. Each widget and link is updated nightly via your approved MLS/IDX feed.<br /><br />All IDX Broker pages are optimized to encourage indexing by search engines:
 <ul>
-<li>In August 2010, approximately 800k IDX Broker client pages were indexed. In October 2010, over 4 million pages have been indexed. An increase of over 400%. </li>
-<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags.</li>
+<li>Approximately 2 Million IDX pages are now indexed (variable). Up from about 800k indexed in August 2010.</li>
+<li><a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">A Custom Subdomain</a> (search.yoursite.com). For example, Google uses subdomains to integrate content across the Google domain..search.google.com, maps.google.com, etc.</li>
+<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags to listing details pages. You may also add custom title and description tags to any custom search links (neighborhood, schools, etc) that you create.</li>
 <li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap" target="_blank">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
-<li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you can add to your sidebar or blog posts.</li>
-<li><a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">A Custom Subdomain</a> (idx.mysite.com). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content.</li>
+<li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you may easily add to your sidebar or blog posts.</li>
 </ul>
 
-View the <a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
+View an <a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
 
 Review the full list of <a href="http://www.idxbroker.com/idx_broker.php" target="_blank">IDX Broker features</a> available.
  
@@ -82,11 +82,11 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 = 1.3.5 =
 
-Small Patch to resove php error.  To add more reliability to the plugin we moved to an XML feed for custom links from our server.  As a result you may see duplicates in your pages generated from custom links.  Please remove the duplicates in your 'pages' admin and import your custom links again.
+Small Patch to resolve CID error check. 
 
 = 1.3.4 =
 
-Switched from web services to an xml feed for better reliability for custom link aquisition.  Highly recommended upgrade.
+Switched from web services to an xml feed for better reliability for custom link aquisition. In order to add reliability to custom link page generation, we moved your custom link feed to XML in v1.3.4. Fewer than 3% of clients using the plugin have reported duplicate page creation following the upgrade. If this occurs, please contact IDX, Inc. support to provide more information. 
 
 = 1.3.3 =
 
