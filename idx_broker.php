@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
 Description: The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.3.6
+Version: 1.3.7
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -766,16 +766,73 @@ function idx_getCustomLinks () {
 	}
  
 	$customLinks = array();
-	 
-	$xmlFile = 'http://idxco.com/services/wpSimple_1-0.php?cid='.get_option('idx_broker_cid');
-	$xml = simplexml_load_file($xmlFile);
-   
-	foreach ($xml->children() as $link)
+	
+	/**
+	 *	Try just file system access
+	 */
+	
+	$xmlFile = 'http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid');
+	
+	if (!$xmlFile)
 	{
-		 $name = (string) $link->name;
-		 $url = (string) $link->url;
-		 $customLinks[$name] = $url;
+	     	// Require the NuSOAP code
+		require_once('nusoap.php');
+		
+		// Create the client instance
+		$host = 'https://idxco.com/services/clientWSDL_1-3.php';
+		$client = new nusoap_client($host);
+		
+		// Call the SOAP method
+		$result = $client->call('listSavedSearches', array('cid' => get_option('idx_broker_cid'),'password' => get_option('idx_broker_pass')));
+		
+		// Check for a fault
+		if ($client->fault) {
+		       
+			
+		} else {
+			
+			// Check for errors
+			$err = $client->getError();
+			
+			if ($err) {
+				
+				// Display the error
+				echo '<div style="display:none; " id="web_services_error" class="error">IDX Broker web services is currently unavailable, click <a href="http://www.idxbroker.com/support/kb/questions/330/Cannot+connect+to+IDX+Web+Services/" target="_blank">here</a> for more information.</div>';
+				
+			} else {
+			 
+			       $lines = explode("\n", $result);
+			       
+			       foreach ($lines as $link) {
+			
+				      $li = explode("|", $link);
+				      
+				      $name = $li[0];
+				      $url = $li[1];
+				      $customLinks[$name] = $url;
+				}
+				
+				array_pop($customLinks);
+			}
+		}
 	}
+	else
+	{
+	       /**
+		*	so simple xml now
+		*/
+	       
+	       $xml = simplexml_load_file($xmlFile);
+	 
+	      foreach ($xml->children() as $link)
+	      {
+		       $name = (string) $link->name;
+		       $url = (string) $link->url;
+		       $customLinks[$name] = $url;
+	      }
+	}
+	
+	
 	
 	/*
 	*	Return our new array of custom links.
