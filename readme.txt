@@ -14,14 +14,14 @@ IDX Broker - The Original IDX/MLS Integration Solution
 <h3>Easy-to-Add, Fully-Functional IDX</h3>
 For IDX Broker subscribers only. The IDX Broker plugin adds MLS/IDX search page links to your menu and sidebar, and provides you with drag-and-drop MLS search Widgets for your sidebar. Each widget and link is updated nightly via your approved MLS/IDX feed.<br /><br />All IDX Broker pages are optimized to encourage indexing by search engines:
 <ul>
-<li>In August 2010, approximately 800k IDX Broker client pages were indexed. In October 2010, over 4 million pages have been indexed. An increase of over 400%. </li>
-<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags.</li>
+<li>Approximately 2 Million IDX pages are now indexed (variable). Up from about 800k indexed in August 2010.</li>
+<li><a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">A Custom Subdomain</a> (search.yoursite.com). For example, Google uses subdomains to integrate content across the Google domain..search.google.com, maps.google.com, etc.</li>
+<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags to listing details pages. You may also add custom title and description tags to any custom search links (neighborhood, schools, etc) that you create.</li>
 <li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap" target="_blank">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
-<li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you can add to your sidebar or blog posts.</li>
-<li><a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">A Custom Subdomain</a> (idx.mysite.com). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content.</li>
+<li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you may easily add to your sidebar or blog posts.</li>
 </ul>
 
-View the <a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
+View an <a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
 
 Review the full list of <a href="http://www.idxbroker.com/idx_broker.php" target="_blank">IDX Broker features</a> available.
  
@@ -33,7 +33,12 @@ View our <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank"
 
 Current IDX Broker clients; simply enter your IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. <a href="http://www.idxbroker.com/contact_idx.php">Contact us</a> if you don't know where to find this information. 
 
-Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and more.  
+Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPad & iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and more.  
+
+
+<h3>General Terms of Use</h3> 
+
+This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details page display and disclaimers. IDX, Inc. manages all the necessary MLS paperwork. IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
 
 
 <h3>General Terms of Use</h3> 
