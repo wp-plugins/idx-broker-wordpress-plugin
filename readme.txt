@@ -4,7 +4,7 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
-Tested up to: 3.0.1
+Tested up to: 3.1.1
 Stable tag: 1.3.8
 
 IDX Broker - The Original IDX/MLS Integration Solution 
@@ -33,13 +33,7 @@ View our <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank"
 
 Current IDX Broker clients; simply enter your IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. <a href="http://www.idxbroker.com/contact_idx.php">Contact us</a> if you don't know where to find this information. 
 
-Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPad & iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and more.  
-
-
-<h3>General Terms of Use</h3> 
-
-This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details page display and disclaimers. IDX, Inc. manages all the necessary MLS paperwork. IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
-
+Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and more.    
 
 <h3>General Terms of Use</h3> 
 
