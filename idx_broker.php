@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
 Description: The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.3.8
+Version: 1.3.9
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -582,7 +582,7 @@ function idxUpdateLinks() {
 				 */
 					
 					$label = "Agent Login";
-					$url = "http://".get_option('idx_broker_domain')."/idx/".get_option('idx_broker_cid')."/login.php";
+					$url = "http://".get_option('idx_broker_domain')."/mgmt/".get_option('idx_broker_cid')."/login.php";
 					break;
 			}
 			
@@ -766,14 +766,15 @@ function idx_getCustomLinks () {
 	}
  
 	$customLinks = array();
-	
+	$xml = false;
 	/**
 	 *	Try just file system access
 	 */
-	
-	$xmlFile = 'http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid');
-	$xml = simplexml_load_file($xmlFile);
-	
+	if(ini_get('allow_url_fopen')!=0){  /* DO NOT look for XML file if server settings won't allow for it */
+
+		$xmlFile = 'http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid');
+		$xml = simplexml_load_file($xmlFile);
+	}
 	if (!$xml)
 	{
 		
@@ -804,15 +805,25 @@ function idx_getCustomLinks () {
 			} else {
 			 
 			       $lines = explode("\n", $result);
-			       
-			       foreach ($lines as $link) {
+
+				   // if there's actually lines, do something with them
+				   if (sizeof($lines) > 0)
+				   {
+					   foreach ($lines as $link) {
+						   
+						   // make sure there's actually a link from the line
+						   if (empty($link))
+						   		continue;
 			
-				      $li = explode("|", $link);
-				      
-				      $name = $li[0];
-				      $url = $li[1];
-				      $customLinks[$name] = $url;
-				}
+				      		$li = explode("|", $link);
+				      		$name = $li[0];
+				      	  	$url = $li[1];
+				          	
+							$customLinks[$name] = $url;
+						}
+				   }
+			       
+			       
 				
 				array_pop($customLinks);
 			}
@@ -895,7 +906,7 @@ function errorCheck() {
 	*	it's comprized of 4 digits.
 	*/
 	
-	if (empty($cid) || !is_numeric($cid) ||  (strlen($cid) != 4)) {
+	if (empty($cid) || !is_numeric($cid)) {
 		
 		/*
 		*	Add a string to the error array as we have something wrong with the CID.
@@ -916,8 +927,9 @@ function errorCheck() {
 		*/
 		
 		$errors[] = "Please enter the full domain of IDX hosted pages in the IDX Broker Plugin Settings.";
-		
 	}
+		else { return false;
+		}
 	
 	/*
 	*	Loop over the errors array.
@@ -925,7 +937,7 @@ function errorCheck() {
 	
 	foreach ($errors as $error){
 		
-		$errorOutput .= "<div style='color: red; margin: 10px 0; font-weight: bold'>".$error."</div";
+		$errorOutput .= "<div style='color: red; margin: 10px 0; font-weight: bold'>".$error."</div>";
 		
 	}
 	
@@ -1062,13 +1074,15 @@ class widget_idxUserSignup extends WP_Widget {
 		
 		errorCheck();
 		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		
 		echo '<div id="idxUserSignup-admin-panel">';
 		echo '<p>Provides a widget that displays a form for leads to signup for email update services.</p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Widget Title:</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		echo '</div>';
 		
 	}
@@ -1119,61 +1133,61 @@ class widget_idxLinks extends WP_Widget {
 		echo $after_title;
 ?>
 <ul>
-  <?php if ($instance['basicSearch'] == 'on') { ?>
+ <?php if(!empty($instance['basicSearch']) == 'on'){ ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/basicSearch.php">Basic Search</a></li>
   <?php } ?>
-  <?php if ($instance['advancedSearch'] == 'on') { ?>
+  <?php if(!empty($instance['advancedSearch']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/advancedSearch.php">Advanced Search</a></li>
   <?php } ?>
-  <?php if ($instance['mapSearch'] == 'on') { ?>
+  <?php if(!empty($instance['mapSearch']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/mapSearch.php">Map Search</a></li>
   <?php } ?>
-  <?php if ($instance['addressSearch'] == 'on') { ?>
+  <?php if(!empty($instance['addressSearch']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/addressSearch.php">Address Search</a></li>
   <?php } ?>
-  <?php if ($instance['featured'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/featured.php">Featured Properties</a></li>
+  <?php if(!empty($instance['featured']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/featured.php">Our Featured Listings</a></li>
   <?php } ?>
-  <?php if ($instance['contact'] == 'on') { ?>
+  <?php if(!empty($instance['contact']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/contact.php">Contact Us</a></li>
   <?php } ?>
-  <?php if ($instance['userLogin'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userLogin.php">User Login</a></li>
+  <?php if(!empty($instance['userLogin']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userLogin.php">Listing Manager Login</a></li>
   <?php } ?>
-  <?php if ($instance['userSignup'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSignup.php">User Signup</a></li>
+  <?php if(!empty($instance['userSignup']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSignup.php">Listing Manager Signup</a></li>
   <?php } ?>
-  <?php if ($instance['emailUpdates'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSaveUpdates.php">Email Updates</a></li>
+  <?php if(!empty($instance['emailUpdates']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/userSaveUpdates.php">Email Updates Signup</a></li>
   <?php } ?>
-  <?php if ($instance['rosterPage'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Roster Page</a></li>
+  <?php if(!empty($instance['rosterPage']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/roster.php">Office Roster Page</a></li>
   <?php } ?>
-  <?php if ($instance['listingId'] == 'on') { ?>
+  <?php if(!empty($instance['listingId']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/listingIDSearch.php">Listing ID Search</a></li>
   <?php } ?>
-  <?php if ($instance['openHouses'] == 'on') { ?>
+  <?php if(!empty($instance['openHouses']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/featuredOpenHouses.php">Open Houses</a></li>
   <?php } ?>
-  <?php if ($instance['suppListings'] == 'on') { ?>
+  <?php if(!empty($instance['suppListings']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/supplemental.php">Supplemental Listings</a></li>
   <?php } ?>
-  <?php if ($instance['soldPend'] == 'on') { ?>
+  <?php if(!empty($instance['soldPend']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/soldPending.php">Sold/Pending Listings</a></li>
   <?php } ?>
-  <?php if ($instance['mortCalc'] == 'on') { ?>
+  <?php if(!empty($instance['mortCalc']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/mortgage.php">Mortgage Calculator</a></li>
   <?php } ?>
-  <?php if ($instance['homeVal'] == 'on') { ?>
+  <?php if(!empty($instance['homeVal']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/homeValue.php">Home Valuation Request</a></li>
   <?php } ?>
-  <?php if ($instance['agentLogin'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/login.php">Agent Login</a></li>
+  <?php if(!empty($instance['agentLogin']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/mgmt/<?php echo get_option('idx_broker_cid'); ?>/login.php">Agent Login</a></li>
   <?php } ?>
-  <?php if ($instance['idxSitemap'] == 'on') { ?>
-  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/sitemap.php">IDX Sitemap</a></li>
+  <?php if(!empty($instance['idxSitemap']) == 'on') { ?>
+  <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/sitemap.php">IDX/MLS Sitemap</a></li>
   <?php } ?>
-  <?php if ($instance['searchCity'] == 'on') { ?>
+  <?php if(!empty($instance['searchCity']) == 'on') { ?>
   <li><a href="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/searchByCity.php">Search by City</a></li>
   <?php } ?>
 </ul>
@@ -1190,109 +1204,111 @@ class widget_idxLinks extends WP_Widget {
 		
 		errorCheck();
 		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		
 		echo '<div id="idxQs-admin-panel">';
 		echo '<p>Click on the IDX Page Links that you wish to add to your sidebar. <br /><br />You cannot change the order in which these pages display in your sidebar.</p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Widget Title:</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		
 		
 		// featured properties
 		echo '<input type="checkbox" name="' . $this->get_field_name("featured") . '" id="' . $this->get_field_id("featured") . 'value="on" ';
-		if ($instance["featured"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["featured"]) && $instance["featured"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Featured Listings<br />';
 		
 			// user signup
 		echo '<input type="checkbox" name="' . $this->get_field_name("userSignup") . '" id="' . $this->get_field_id("userSignup") . 'value="on" ';
-		if ($instance["userSignup"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["userSignup"]) && $instance["userSignup"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Listing Manager Signup<br />';
 		
 		// email updates
 		echo '<input type="checkbox" name="' . $this->get_field_name("emailUpdates") . '" id="' . $this->get_field_id("emailUpdates") . 'value="on" ';
-		if ($instance["emailUpdates"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["emailUpdates"]) && $instance["emailUpdates"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Signup for Email Updates<br />';
 		
 			// open houses
 		echo '<input type="checkbox" name="' . $this->get_field_name("openHouses") . '" id="' . $this->get_field_id("openHouses") . 'value="on" ';
-		if ($instance["openHouses"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["openHouses"]) && $instance["openHouses"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Open Houses<br />';
 		
 		// basic search
 		echo '<input type="checkbox" name="' . $this->get_field_name("basicSearch") . '" id="' . $this->get_field_id("basicSearch") . 'value="on" ';
-		if ($instance["basicSearch"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["basicSearch"]) && $instance["basicSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Basic Search<br />';
 		
 		// advanced search
 		echo '<input type="checkbox" name="' . $this->get_field_name("advancedSearch") . '" id="' . $this->get_field_id("advancedSearch") . 'value="on" ';
-		if ($instance["advancedSearch"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["advancedSearch"]) && $instance["advancedSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Advanced Search<br />';
 		
 		// map search
 		echo '<input type="checkbox" name="' . $this->get_field_name("mapSearch") . '" id="' . $this->get_field_id("mapSearch") . 'value="on" ';
-		if ($instance["mapSearch"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["mapSearch"]) && $instance["mapSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Map Search<br />';
 		
 		// address search
 		echo '<input type="checkbox" name="' . $this->get_field_name("addressSearch") . '" id="' . $this->get_field_id("addressSearch") . 'value="on" ';
-		if ($instance["addressSearch"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["addressSearch"]) && $instance["addressSearch"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Address Search<br />';
 		
 		// listing id
 		echo '<input type="checkbox" name="' . $this->get_field_name("listingId") . '" id="' . $this->get_field_id("listingId") . 'value="on" ';
-		if ($instance["listingId"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["listingId"]) && $instance["listingId"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Listing ID Search<br />';
 		
 		
 		// search by city
 		echo '<input type="checkbox" name="' . $this->get_field_name("searchCity") . '" id="' . $this->get_field_id("searchCity") . 'value="on" ';
-		if ($instance["searchCity"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["searchCity"]) && $instance["searchCity"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Search by City<br />';
 		
 		// contact page
 		echo '<input type="checkbox" name="' . $this->get_field_name("contact") . '" id="' . $this->get_field_id("contact") . 'value="on" ';
-		if ($instance["contact"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["contact"]) && $instance["contact"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Contact Page<br />';
 		
 		// user login
 		echo '<input type="checkbox" name="' . $this->get_field_name("userLogin") . '" id="' . $this->get_field_id("userLogin") . 'value="on" ';
-		if ($instance["userLogin"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["userLogin"]) && $instance["userLogin"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Lead Login<br />';
 		
 		// roster page
 		echo '<input type="checkbox" name="' . $this->get_field_name("rosterPage") . '" id="' . $this->get_field_id("rosterPage") . 'value="on" ';
-		if ($instance["rosterPage"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["rosterPage"]) && $instance["rosterPage"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Roster Page<br />';
 		
 		// supplemental listings
 		echo '<input type="checkbox" name="' . $this->get_field_name("suppListings") . '" id="' . $this->get_field_id("suppListings") . 'value="on" ';
-		if ($instance["suppListings"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["suppListings"]) && $instance["suppListings"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Supplemental Listings<br />';
 		
 		// sold/pending 
 		echo '<input type="checkbox" name="' . $this->get_field_name("soldPend") . '" id="' . $this->get_field_id("soldPend") . 'value="on" ';
-		if ($instance["soldPend"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["soldPend"]) && $instance["soldPend"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Sold/Pending Listings<br />';
 		
 		// mortgage calculator
 		echo '<input type="checkbox" name="' . $this->get_field_name("mortCalc") . '" id="' . $this->get_field_id("mortCalc") . 'value="on" ';
-		if ($instance["mortCalc"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["mortCalc"]) && $instance["mortCalc"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Mortgage Calculator<br />';
 		
 		// home valuation
 		echo '<input type="checkbox" name="' . $this->get_field_name("homeVal") . '" id="' . $this->get_field_id("homeVal") . 'value="on" ';
-		if ($instance["homeVal"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["homeVal"]) && $instance["homeVal"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Home Valuation Request<br />';
 		
 		// agent login
 		echo '<input type="checkbox" name="' . $this->get_field_name("agentLogin") . '" id="' . $this->get_field_id("agentLogin") . 'value="on" ';
-		if ($instance["agentLogin"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["agentLogin"]) && $instance["agentLogin"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> Agent Login<br />';
 		
 		// idx sitemap
 		echo '<input type="checkbox" name="' . $this->get_field_name("idxSitemap") . '" id="' . $this->get_field_id("idxSitemap") . 'value="on" ';
-		if ($instance["idxSitemap"] == 'on' ) {echo "checked = 'checked'";}
+		if (!empty($instance["idxSitemap"]) && $instance["idxSitemap"] == 'on' ) {echo "checked = 'checked'";}
 		echo ' /> IDX Sitemap<br />';
 		
 		
@@ -1361,13 +1377,15 @@ class widget_idxSlideshow extends WP_Widget {
 		
 		errorCheck();
 		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		
 		echo '<div id="idxSlideshow-admin-panel">';
 		echo '<p>This is your Featured Slideshow. <br /><br />You may edit the featured slideshow from within the <a href="http://idxco.com/mgmt/slideshowMgmt.php" target="_blank">IDX Broker Control Panel</a>.</p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Widget Title:</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		echo '</div>';
 		
 	}
@@ -1420,17 +1438,17 @@ class widget_idxQs extends WP_Widget {
 			
 ?>
 <div style="margin: 0 auto; width: 210px;">
-<script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=92|34|22|100|0|0|100000|0&QS-maxPriceField=92|64|22|100|0|0|500000|0&QS-minSqftField=92|94|22|100|0|0|0|0&QS-minRoomsField=92|124|22|100|0|0|2|0&QS-minBathsField=92|154|22|100|0|0|0|0&QS-labelMaxPrice=12|67|22|70|0|0|Max Price:|0&QS-labelMinPrice=12|37|22|70|0|0|Min Price:|0&QS-labelMinSqft=12|97|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=12|127|22|70|0|0|Min Rooms:|0&QS-labelMinBaths=12|157|22|70|0|0|Min Baths:|0&QS-buttonSearch=70|217|27|70|0|0|Search|0&QS-labelFormTitle=42|11|22|150|0|0|Property Quick Search|0&QS-selectCityList=92|184|22|105|0|0|Property Quick Search|0&QS-labelCityList=12|187|22|100|0|0|Choose a City|0&formContainer=210|250&domain=&cid=<?php echo get_option('idx_broker_cid'); ?>"></script>
+<script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=92|34|22|100|0|0|100000|0&QS-maxPriceField=92|64|22|100|0|0|500000|0&QS-minSqftField=92|94|22|100|0|0|0|0&QS-minRoomsField=92|124|22|100|0|0|2|0&QS-minBathsField=92|154|22|100|0|0|0|0&QS-labelMaxPrice=12|67|22|70|0|0|Max Price:|0&QS-labelMinPrice=12|37|22|70|0|0|Min Price:|0&QS-labelMinSqft=12|97|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=12|127|22|70|0|0|Bedrooms:|0&QS-labelMinBaths=12|157|22|70|0|0|Min Baths:|0&QS-buttonSearch=70|217|27|70|0|0|Search|0&QS-labelFormTitle=42|11|22|150|0|0|Property Quick Search|0&QS-selectCityList=92|184|22|105|0|0|Property Quick Search|0&QS-labelCityList=12|187|22|100|0|0|Choose a City|0&formContainer=210|250&domain=&cid=<?php echo get_option('idx_broker_cid'); ?>"></script>
 <?php
 		} else if($instance['format'] == 'widest') {
 ?>
 <div style="margin: 0 auto; width: 490px;">
-<script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=105|6|22|100|0|0|200000|0&QS-maxPriceField=105|37|22|100|0|0|800000|0&QS-minSqftField=358|6|22|100|0|0|0|0&QS-minRoomsField=358|37|22|100|0|0|1|0&QS-minBathsField=105|65|22|100|0|0|0|0&QS-labelMaxPrice=25|39|22|70|0|0|Max Price:|0&QS-labelMinPrice=25|8|22|70|0|0|Min Price:|0&QS-labelMinSqft=278|8|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=278|39|22|70|0|0|Min Rooms:|0&QS-labelMinBaths=25|70|22|70|0|0|Min Baths:|0&QS-buttonSearch=209|94|27|70|0|0|Search|0&QS-selectCityList=358|65|22|105|0|0|Search|0&QS-labelCityList=278|70|22|100|0|0|Choose a City|0&formContainer=490|130&domain=&cid=<?php echo get_option('idx_broker_cid'); ?>"></script>
+<script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=105|6|22|100|0|0|200000|0&QS-maxPriceField=105|37|22|100|0|0|800000|0&QS-minSqftField=358|6|22|100|0|0|0|0&QS-minRoomsField=358|37|22|100|0|0|1|0&QS-minBathsField=105|65|22|100|0|0|0|0&QS-labelMaxPrice=25|39|22|70|0|0|Max Price:|0&QS-labelMinPrice=25|8|22|70|0|0|Min Price:|0&QS-labelMinSqft=278|8|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=278|39|22|70|0|0|Bedrooms:|0&QS-labelMinBaths=25|70|22|70|0|0|Min Baths:|0&QS-buttonSearch=209|94|27|70|0|0|Search|0&QS-selectCityList=358|65|22|105|0|0|Search|0&QS-labelCityList=278|70|22|100|0|0|Choose a City|0&formContainer=490|130&domain=&cid=<?php echo get_option('idx_broker_cid'); ?>"></script>
 <?php
 		} else {
 ?>
 <div style="margin: 0 auto; width: 130px;">
-  <script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=12|54|22|100|0|0|200000|0&QS-maxPriceField=12|104|22|100|0|0|800000|0&QS-minSqftField=12|154|22|100|0|0|0|0&QS-minRoomsField=12|204|22|100|0|0|1|0&QS-minBathsField=12|254|22|100|0|0|0|0&QS-labelMaxPrice=12|84|22|70|0|0|Max Price:|0&QS-labelMinPrice=12|34|22|70|0|0|Min Price:|0&QS-labelMinSqft=12|134|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=12|184|22|70|0|0|Min Rooms:|0&QS-labelMinBaths=12|234|22|70|0|0|Min Baths:|0&QS-buttonSearch=28|334|27|70|0|0|Search|0&QS-labelFormTitle=23|11|22|80|0|0|Quick Search|0&QS-selectCityList=12|304|22|105|0|0|Quick Search|0&QS-labelCityList=12|284|22|100|0|0|Choose a City|0&formContainer=130|370&domain=&cid=<?php echo get_option('idx_broker_cid'); ?>"></script>
+  <script type="text/javascript" src="http://<?php echo $domain; ?>/idx/<?php echo get_option('idx_broker_cid'); ?>/customSearchJS.php?QS-minPriceField=12|54|22|100|0|0|200000|0&QS-maxPriceField=12|104|22|100|0|0|800000|0&QS-minSqftField=12|154|22|100|0|0|0|0&QS-minRoomsField=12|204|22|100|0|0|1|0&QS-minBathsField=12|254|22|100|0|0|0|0&QS-labelMaxPrice=12|84|22|70|0|0|Max Price:|0&QS-labelMinPrice=12|34|22|70|0|0|Min Price:|0&QS-labelMinSqft=12|134|22|70|0|0|Min SQFT:|0&QS-labelMinRooms=12|184|22|70|0|0|Bedrooms:|0&QS-labelMinBaths=12|234|22|70|0|0|Min Baths:|0&QS-buttonSearch=28|334|27|70|0|0|Search|0&QS-labelFormTitle=23|11|22|80|0|0|Quick Search|0&QS-selectCityList=12|304|22|105|0|0|Quick Search|0&QS-labelCityList=12|284|22|100|0|0|Choose a City|0&formContainer=130|370&domain=&cid=<?php echo get_option('idx_broker_cid'); ?>"></script>
   <?php
 		}
 ?>
@@ -1449,19 +1467,21 @@ class widget_idxQs extends WP_Widget {
 		
 		errorCheck();
 		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		
 		echo '<div id="idxQs-admin-panel">';
 		echo '<p>Choose from a predefined Quick Search Template below, or add your own <a href="http://idxco.com/mgmt/quickSearch.php" target="_blank">Custom Quick Search</a> script using the Text Widget provided by WordPress.</p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Quick Search Title:</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		
-		if ($instance["format"] == 'narrow') {
+		if (isset($instance["format"]) && ($instance["format"]) == 'narrow') {
 			
 			$narrow = "selected='selected'";
 			
-		} else if($instance["format"] == 'wide') {
+		} else if(isset($instance["format"]) &&  ($instance["format"]) == 'wide') {
 			
 			$wide = "selected='selected'";
 			
@@ -1540,6 +1560,8 @@ class widget_idxFeatAgent extends WP_Widget {
 	function form($instance) {
 		
 		errorCheck();
+		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
 
 		echo '<div id="idxFeatAgent-admin-panel">';
 		echo '<p>The Featured Agent Widget randomly displays Agents in your sidebar.</p>';
@@ -1547,7 +1569,7 @@ class widget_idxFeatAgent extends WP_Widget {
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		echo '</div>';
 		
 	}
@@ -1614,6 +1636,9 @@ class widget_idxWildcardSearch extends WP_Widget {
 	function form($instance) {
 		
 		errorCheck();
+		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		$length = (isset($instance['length'])) ? $instance['length'] : '';
 
 		echo '<div id="idxWildcardSearch-admin-panel">';
 		echo '<p>The Wildcard Search Widget displays a wildcard search form.</p>';
@@ -1621,12 +1646,12 @@ class widget_idxWildcardSearch extends WP_Widget {
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		echo '<label for="' . $this->get_field_id("length") .'">Textbox Character Length (20-40 recommended):</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("length") . '" ';
 		echo 'id="' . $this->get_field_id("length") . '" ';
-		echo 'value="' . $instance["length"] . '" /><br /><br />';
+		echo 'value="' . $length . '" /><br /><br />';
 		echo '</div>';
 		
 	}
@@ -1707,13 +1732,20 @@ class widget_myAgentBadge extends WP_Widget {
 		
 		errorCheck();
 		
+		// Set the title variable
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		
 		echo '<div id="myAgentBadge-admin-panel">';
 		echo '<p>Promotes your myAgent iPhone/iPad app.</p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Widget Title:</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
+		
+		// error check
+		if (!isset($instance['type']))
+			$instance['type'] = 'vert';
 		
 		if ($instance["type"] == 'vert') {
 			
@@ -1724,6 +1756,10 @@ class widget_myAgentBadge extends WP_Widget {
 			$horz = "selected='selected'";
 			
 		}
+		
+		// error check
+		if (!isset($instance['color']))
+			$instance['color'] = 'red';
 		
 		switch ($instance["color"]) {
 			
@@ -1856,18 +1892,21 @@ class widget_idxLeadLogin extends WP_Widget {
 		
 		errorCheck();
 		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		$inputSize = (isset($instance['inputSize'])) ? $instance['inputSize'] : '';
+		
 		echo '<div id="idxLeadLogin-admin-panel">';
 		echo '<p>Provides a username/password form so your leads can login to IDX Broker.</p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Widget Title (e.g., My Listing Manager):</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		echo '<label for="' . $this->get_field_id("inputSize") .'">Textbox Character Length (20-40 recommended):</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("inputSize") . '" ';
 		echo 'id="' . $this->get_field_id("inputSize") . '" ';
-		echo 'value="' . $instance["inputSize"] . '" /><br /><br />';
+		echo 'value="' . $inputSize . '" /><br /><br />';
 		echo '</div>';
 		
 	}
@@ -1937,13 +1976,15 @@ class widget_idxCustomLinks extends WP_Widget {
 		
 		errorCheck();
 		
+		$title = (isset($instance['title'])) ? $instance['title'] : '';
+		
 		echo '<div id="idxLeadLogin-admin-panel">';
 		echo '<p>This will add any custom link pages that you have added using your IDX Broker plugin.</a></p>';
 		echo '<label for="' . $this->get_field_id("title") .'">Widget Title:</label>';
 		echo '<input type="text" ';
 		echo 'name="' . $this->get_field_name("title") . '" ';
 		echo 'id="' . $this->get_field_id("title") . '" ';
-		echo 'value="' . $instance["title"] . '" /><br /><br />';
+		echo 'value="' . $title . '" /><br /><br />';
 		echo '</div>';
 		
 	}
@@ -2031,7 +2072,7 @@ function idx_get_page_links_to_targets () {
 
 
 function idx_plt_save_meta_box( $post_ID ) {
-	if ( wp_verify_nonce( $_REQUEST['_idx_pl2_nonce'], 'idx_plt' ) ) {
+	if ( wp_verify_nonce( isset($_REQUEST['_idx_pl2_nonce']), 'idx_plt' ) ) {
 		if ( isset( $_POST['idx_links_to'] ) && strlen( $_POST['idx_links_to'] ) > 0 && $_POST['idx_links_to'] !== 'http://' ) {
 			$link = stripslashes( $_POST['idx_links_to'] );
 			if ( 0 === strpos( $link, 'www.' ) )
@@ -2059,9 +2100,9 @@ function idx_filter_links_to_pages ($link, $post) {
 	$page_links_to_cache = idx_get_page_links_to_meta();
 
 	// Really strange, but page_link gives us an ID and post_link gives us a post object
-	$id = ( $post->ID ) ? $post->ID : $post;
+	$id = isset( $post->ID ) ? $post->ID : $post;
 
-	if ( $page_links_to_cache[$id] )
+	if ( isset($page_links_to_cache[$id]) )
 		$link = esc_url( $page_links_to_cache[$id] );
 
 	return $link;
@@ -2111,7 +2152,7 @@ function idx_page_links_to_highlight_tabs( $pages ) {
 			$pages = str_replace( '<a href="' . $p . '" ', '<a href="' . $p . '" target="' . $t . '" ', $pages );
 		}
 	}
-
+    global $highlight;
 	if ( $highlight ) {
 		$pages = preg_replace( '| class="([^"]+)current_page_item"|', ' class="$1"', $pages ); // Kill default highlighting
 		$pages = preg_replace( '|<li class="([^"]+)"><a href="' . $current_page . '"|', '<li class="$1 current_page_item"><a href="' . $current_page . '"', $pages );

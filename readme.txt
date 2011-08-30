@@ -4,36 +4,37 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, broker
 Requires at least: 2.8.2
-Tested up to: 3.1.1
-Stable tag: 1.3.8
+Tested up to: 3.2.1
+Stable tag: 1.3.9
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
 == Description ==
 
-<h3>Easy-to-Add, Fully-Functional IDX</h3>
-For IDX Broker subscribers only. The IDX Broker plugin adds MLS/IDX search page links to your menu and sidebar, and provides you with drag-and-drop MLS search Widgets for your sidebar. Each widget and link is updated nightly via your approved MLS/IDX feed.<br /><br />All IDX Broker pages are optimized to encourage indexing by search engines:
+<h3>New - Updated for WP 3.2.1! Easy-to-Add, Fully-Indexable IDX</h3>
+For IDX Broker subscribers only. 
 <ul>
-<li>Approximately 2 Million IDX pages are now indexed (variable). Up from about 800k indexed in August 2010.</li>
-<li><a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">A Custom Subdomain</a> (search.yoursite.com). For example, Google uses subdomains to integrate content across the Google domain..search.google.com, maps.google.com, etc.</li>
+<li>Approximately 3 Million IDX pages are now indexed (variable). Up from a mere 800k in August 2010, several months after the initial plugin release.</li>
+<li>All pages match your website design, and you have the option to choose a <a href="http://www.idxbroker.com/features/Domain-Control" target="_blank">a custom subdomain</a> (search.yoursite.com) for your IDX pages. Google uses subdomains to integrate content across the Google network, e.g., search.google.com, maps.google.com, etc. All of these domains, including the default (idxco.com) domain provided with new accounts are 100% indexable.</li>
+<li>Lead Capture: Included in your value-priced monthly subscription is full lead capture functionality - request or force registration on photo gallery pages, details pages, results pages, or even on search. Lead forms may be customized, and so can the automated messages sent when a new lead signs up.
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags to listing details pages. You may also add custom title and description tags to any custom search links (neighborhood, schools, etc) that you create.</li>
 <li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap" target="_blank">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
 <li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you may easily add to your sidebar or blog posts.</li>
 </ul>
 
-View an <a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
+See a demo of an<a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
 
 Review the full list of <a href="http://www.idxbroker.com/idx_broker.php" target="_blank">IDX Broker features</a> available.
  
-View our <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank">MLS/IDX feed coverage</a> page to determine if IDX Broker services your board. If you don't see your MLS or board, simply provide your board's name when you sign up and we will add the IDX feed to IDX Broker (new MLS feeds may require 4-6 weeks for setup). 
+Over 400+ MLS/IDX feeds serviced. We are the largest provider by service coverage in the United States. View our <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank">MLS/IDX feed coverage</a> page to determine if IDX Broker services your board. If you don't see your MLS or board, simply provide your board's name when you sign up and we will add the IDX feed to IDX Broker. 
 
-<strong>Advanced Users:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/" target="_blank">Synchronize your IDX pages</a> with your WordPress theme, on every page load! This feature works with Genesis (AgentPress), Thesis, Atahualpa, and other popular themes/frameworks.        
+<strong>Advanced Users:</strong><a href="http://www.idxbroker.com/support/kb/questions/310/" target="_blank">Synchronize your IDX pages</a> with your WordPress theme, on every page load! This feature works with Genesis (AgentPress), Thesis, Atahualpa, and many other popular themes/frameworks. Our extensive knowledgebase is updated weekly, and will provide you or your Designer with most of the information that they need to know in order to setup dynamic integration. 
 
 <h3>Getting Started</h3>
 
 Current IDX Broker clients; simply enter your IDX Broker Client ID (CID), Password, and IDX subdomain (mysite.idxco.com or <a href="http://www.idxbroker.com/support/kb/questions/270/">custom domain</a>) to get started. <a href="http://www.idxbroker.com/contact_idx.php">Contact us</a> if you don't know where to find this information. 
 
-Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/idx_prices.php">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include unlimited searches, map search, an iPhone App, and more. Office accounts start at $78.99/month and include Agent bio pages, lead routing, roster pages, and more.    
+Non-IDX Broker clients will need to <a href="http://www.idxbroker.com/">signup for an IDX Broker account</a> to use the plugin. Agent accounts start at $39.99/month and include built-in lead capture, indexable pages, map search, an iPad App, and more. Office accounts start at $78.99/month and include all the features of an Agent account, along with Agent bio pages, lead routing, roster pages, and much more.    
 
 <h3>General Terms of Use</h3> 
 
@@ -78,6 +79,19 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.3.9 =
+
+Brought compatibility to 3.2+.
+Resolved false error codes and warnings that appear when server settings do not allow XML file access (custom links). 
+Fixed Agent URL bug. 
+Resolved JS errors that sometimes display when a Widget is first added to the sidebar. 
+Updated SOAP services files. 
+Resolved error when CID is more than four characters. 
+
+= 1.3.8 =
+
+Minor bug update.
 
 = 1.3.7 =
 
