@@ -11,7 +11,7 @@ IDX Broker - The Original IDX/MLS Integration Solution
 
 == Description ==
 
-<h3>New - Updated for WP 3.2.1! Easy-to-Add, Fully-Indexable IDX</h3>
+<h3>New - Updated for WP 3.2.1! Easy-to-Add, Fully-Indexable IDX</h3><br />
 For IDX Broker subscribers only. 
 <ul>
 <li>Approximately 3 Million IDX pages are now indexed (variable). Up from a mere 800k in August 2010, several months after the initial plugin release.</li>
@@ -82,12 +82,7 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 = 1.3.9 =
 
-Brought compatibility to 3.2+.
-Resolved false error codes and warnings that appear when server settings do not allow XML file access (custom links). 
-Fixed Agent URL bug. 
-Resolved JS errors that sometimes display when a Widget is first added to the sidebar. 
-Updated SOAP services files. 
-Resolved error when CID is more than four characters. 
+Brought compatibility to 3.2+. Resolved false error codes and warnings that appear when server settings do not allow XML file access (custom links). Fixed Agent URL bug. Resolved JS errors that sometimes display when a Widget is first added to the sidebar. Updated SOAP services files. Resolved error when CID is more than four characters. 
 
 = 1.3.8 =
 
