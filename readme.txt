@@ -22,7 +22,7 @@ For IDX Broker subscribers only.
 <li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you may easily add to your sidebar or blog posts.</li>
 </ul>
 
-See a demo of an<a href="http://greatpropertyforsale.com/" target="_blank">IDX Broker WordPress Plugin example website</a> 
+See a <a href="http://greatpropertyforsale.com/" target="_blank">demo of an IDX Broker integrated website</a> that uses the IDX Broker Plugin. <a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">Click here to view a showcase of clients that have built their own websites using the plugin, or that paid an IDX Broker Approved Reseller/Designer to build a WordPress website for them. 
 
 Review the full list of <a href="http://www.idxbroker.com/idx_broker.php" target="_blank">IDX Broker features</a> available.
  
@@ -149,9 +149,22 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 == Changelog ==
 
+= 1.3.9 =
+
+Brought compatibility to 3.2+. 
+Resolved false error codes and warnings that appear when server settings do not allow XML file access (custom links). 
+Fixed Agent URL bug. 
+Resolved JS errors that sometimes display when a Widget is first added to the sidebar. 
+Updated SOAP services files. 
+Resolved error when CID is more than four characters. 
+
+= 1.3.8 =
+
+Minor bug update.
+
 = 1.3.7 =
 
-Adding fallback to web services curl if simple xml fails.  Recommended upgrade.
+Adding fallback to web services curl if simple xml fails. Recommended upgrade.
 
 = 1.3.5 =
 
