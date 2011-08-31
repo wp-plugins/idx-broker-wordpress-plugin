@@ -22,7 +22,7 @@ For IDX Broker subscribers only.
 <li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you may easily add to your sidebar or blog posts.</li>
 </ul>
 
-See a <a href="http://greatpropertyforsale.com/" target="_blank">demo of an IDX Broker integrated website</a> that uses the IDX Broker Plugin. <a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">Click here to view a showcase of clients that have built their own websites using the plugin, or that paid an IDX Broker Approved Reseller/Designer to build a WordPress website for them. 
+See a <a href="http://greatpropertyforsale.com/" target="_blank">demo of an IDX Broker integrated website</a> that uses the IDX Broker Plugin. <a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">Click here</a> to view a showcase of clients that have built their own websites using the plugin, or that paid an IDX Broker Approved Reseller/Designer to build a WordPress website for them. 
 
 Review the full list of <a href="http://www.idxbroker.com/idx_broker.php" target="_blank">IDX Broker features</a> available.
  
