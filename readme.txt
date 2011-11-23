@@ -22,14 +22,14 @@ IDX Broker - The Original IDX/MLS Integration Solution
 
 </ul>
 
-This plugin is very simple. In fact, advanced users may not even need the plugin - just working knowledge of WordPress custom menus and the default text/HTML Widget. If you do need the plugin, here's how it works:
+This plugin is very simple. In fact, advanced users may not even need the plugin - working knowledge of WordPress custom menus and the default text/HTML Widget may be enough to integrate IDX Broker. If you do need the plugin, here's what you need to know about how it works:
 
 <ul>
 <li>Enter your client ID, subdomain, and password and this information will be stored by the plugin. The plugin will use these credentials to keep your custom link information (pulled from IDX Broker) up-to-date.</li>
 <li>Click a default page name (map search, basic search, etc.) and the plugin will add the link to your navigation.</li>
 <li>Build a custom neighborhood or other link in IDX Broker, and will let you add those to your navigation as well.</li>
 <li>Drag and drop various predefined Widgets into your sidebar.</li>
-
+</ul>
 <h3>Integrated IDX Examples</h3>
 
 <a href="http://greatpropertyforsale.com/" target="_blank">View an Integrated IDX website</a> that uses the IDX Broker Plugin. Note how the website uses www. as the custom subdomain. This is recommended for new websites only. Websites that already have a lot of pages indexed under the www. subdomain should use search., listings., or some other subdomain keyword.<br />
