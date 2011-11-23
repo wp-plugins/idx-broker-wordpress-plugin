@@ -14,9 +14,9 @@ IDX Broker - The Original IDX/MLS Integration Solution
 <h3>The easiest, most indexable IDX solution available today. Serving over 400 MLS markets nationwide</h3>
 
 <ul>
-<li>Get Indexed - Millions of client pages are indexed, and the number is growing.</li>
+<li>Get Indexed - Millions of client pages are indexed, and that number is growing daily.</li>
 <li>Get More Credit - Choose your custom subdomain to pass credit back to your primary domain. No other WordPress IDX provider gives you such flexibility.</li>
-<li>Capture More Leads - Some providers may compete against you for leads, or charge you extra for lead capture. IDX Broker offers this functionality at the same flat-rate cost.</li>
+<li>Capture More Leads - Some providers may compete against you for leads, or charge you extra for lead capture. IDX Broker offers sophisticated lead capture functionality, at a competitive price.</li>
 <li>Get More Help - The IDX Broker Support Team is highly trained and very technical. No other provider can offer you the same level of Support that is provided by IDX, Inc. <a href="http://www.idxbroker.com/idx_testimonials.php">Our testimonials</a> speak for themselves.</li>
 <li>Pay as you go - We're not going to lock you into a silly long-term contract when we are willing to earn your business each and every day. If an IDX vendor tries to lock you into a large contract, run away!</li> 
 
