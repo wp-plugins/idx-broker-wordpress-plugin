@@ -89,6 +89,10 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 == Upgrade Notice ==
 
+= 1.4.0 =
+
+Replaced deprecated WP function call. Error check to remove warning when no custom links created. Missing icons and logo from images folder. Moved custom links connection settings to work with WP API.Fixed bug that was dropping the last custom link from the array. 
+
 = 1.3.9 =
 
 Brought compatibility to 3.2+. Resolved false error codes and warnings that appear when server settings do not allow XML file access (custom links). Fixed Agent URL bug. Resolved JS errors that sometimes display when a Widget is first added to the sidebar. Updated SOAP services files. Resolved error when CID is more than four characters. 
