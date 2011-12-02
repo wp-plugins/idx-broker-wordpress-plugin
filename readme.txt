@@ -12,28 +12,30 @@ IDX Broker - The Original IDX/MLS Integration Solution
 == Description ==
 
 <h3>The easiest, most indexable IDX solution available today. Serving over 400 MLS markets nationwide</h3>
-<br />
+
 <ul>
-<li>Get Indexed - Millions of client pages are indexed, a number is growing daily.</li>
-<li>Get Link Credit - Choose your custom subdomain to pass credit back to your primary domain. No other WordPress IDX provider gives you such flexibility.</li>
-<li>Capture More Leads - Some providers may compete against you for leads, or charge you extra for lead capture. IDX Broker offers sophisticated lead capture functionality, at a competitive price.</li>
-<li>Get More Help - The IDX Broker Support Team is highly trained and very technical. No other provider can offer you the same level of Support. <a href="http://www.idxbroker.com/idx_testimonials.php">Our testimonials</a> speak for themselves.</li>
-<li>No Long-Term Contracts - We're not going to lock you into a long-term contract. The IDX Team is willing to earn your business each and every day.</li> 
+<li>Ignore reviews of previous versions of the plugin - 1.4.0 works great!</li>
+<li>No Programming - Works with ANY MLS system.</li>
+<li>More Leads - Tease your visitors with content available only through an IDX feed. What's the point of getting pages indexed if visitors provide their contact info to a different Realtor&reg;?</li>
+<li>Maximum Control - The IDX Broker control panel offers hundreds of customizations. Why add IDX services that force you to work with raw data/code all day? That's why plugins were invented!</li>
+<li>Excellent Support - The IDX Broker Support Team (800-421-9668) is highly trained and very technical. No other provider can offer you the same level of Support. <a href="http://www.idxbroker.com/idx_testimonials.php">View our testimonials.</a></li>
+<li>No Long-Term Contracts - We're not going to lock you into a long-term contract. The IDX Team is willing to earn your business each and every day!</li> 
 </ul>
 
 This plugin is very simple. 
 
 <ul>
-<li>Enter your client ID, subdomain, and password and this information will be stored by the plugin. The plugin will use these credentials to keep your custom link information (pulled from IDX Broker) up-to-date.</li>
-<li>Click a default page name (map search, basic search, etc.) and the plugin will add the link to your navigation.</li>
-<li>Build a custom neighborhood or other link in IDX Broker, and will let you add those to your navigation as well.</li>
-<li>Drag and drop various predefined Widgets into your sidebar.</li>
+<li>Enter your client ID, subdomain, and password and this information will be stored by the plugin. The plugin will use these credentials to keep your custom link information up-to-date.</li>
+<li>Click a default page name (map search, basic search, etc.), save, and the plugin will add those pages to your navigation.</li>
+<li>Build a custom neighborhood or other link in IDX Broker. Open your plugin admin screen and all of your links will automatically appear. Check the neighborhood pages that you wish to add.</li>
+<li>Drag and drop various predefined Widgets into your sidebar. Or, copy javascript from IDX Broker into your built-in WordPress HTML/text Widget to customize your sidebar Widgets.</li>
+<li>No Programming Required!</li>
 </ul>
 <h3>Integrated IDX Examples</h3>
 
 <a href="http://greatpropertyforsale.com/" target="_blank">View an Integrated IDX website</a> that uses the IDX Broker Plugin. Note how the website uses www. as the custom subdomain. This is recommended for new websites only. Websites that already have a lot of pages indexed under the www. subdomain should use search., listings., or some other subdomain keyword.<br />
 
-<a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">View additional WordPress examples</a>. These clients have chosen to purchase their site from an Approved Reseller/Designer, or they have built their own WordPress sit, some with, some without using the IDX Broker plugin. 
+<a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">View additional WordPress examples</a>. These clients have chosen to purchase their site from an Approved Reseller/Designer, or they have built their own WordPress site. 
 
 <h3>IDX Coverage</h3>
  
