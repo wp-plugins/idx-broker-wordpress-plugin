@@ -2,8 +2,8 @@
 /*
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
-Description: The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.3.9
+Description: A premium IDX WordPress plugin. The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
+Version: 1.4.0
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -73,15 +73,16 @@ function idx_broker_options_init(){
 	/*
 	 *	Next loop through each one and set up the option.
 	 */
-	
-	if (count($customLinks) > 0){
-	
+	  if (empty($customLinks)) {
+     return false;
+   }
+
 		foreach($customLinks as $linkName => $linkURL) {
 			
 			$tempName = 'idx_custom_'. $linkName;
 			register_setting( 'idx-settings-group', "$tempName" );
 			
-		}
+	
 		
 	}
 	
@@ -125,7 +126,7 @@ function idx_broker_admin_page() {
 	border-bottom: 1px solid #ccc;
 }
 #logo {
-	background-image: url(../wp-content/plugins/idx-broker-wordpress-plugin/images/logoSmEmail.png);
+	background-image: url(<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/images/logoSmEmail.png);
 	background-repeat: no-repeat;
 	background-position: bottom;
 	width: 100px;
@@ -133,13 +134,13 @@ function idx_broker_admin_page() {
 	float: right;
 }
 .helpIcon {
-	background-image: url(../wp-content/plugins/idx-broker-wordpress-plugin/images/helpIcon.png);
+	background-image: url(<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/images/helpIcon.png);
 	width: 14px;
 	height: 13px;
 	display:inline-block;
 }
 .ajax {
-	background-image: url(../wp-content/plugins/idx-broker-wordpress-plugin/images/ajax-loader.gif);
+	background-image: url(<?php bloginfo('wpurl'); ?>/wp-content/plugins/idx-broker-wordpress-plugin/images/ajax-loader.gif);
 	width: 15px;
 	height: 15px;
 	display:inline-block;
@@ -191,7 +192,9 @@ ul {
 	line-height:40px;
 }
 </style>
+<!-- IDX Broker WordPress Plugin v1.4.0 -->
 <div id="idxPluginWrap" class="wrap"> <br class="clear" />
+
   <a href="http://www.idxbroker.com" target="_blank">
   <div id="logo" style="padding-bottom:10px;"></div>
   </a>
@@ -298,23 +301,70 @@ ul {
     </ul>
     <br class="clear" />
     <div class="link_header" style="float: left;">Custom IDX Links<a href="http://www.idxbroker.com/support/kb/questions/329/" class="helpIcon" target="_blank"></a></div>
-    <div class="link_header" style="float: right; font-weight: bold;">
+    
+    <div class="link_header" style="float: right; font-weight: bold;
+    <?php 
+	$customLinks = idx_getCustomLinks();
+	if (empty($customLinks)) { ?>
+    display: none; <?php } ?>
+    
+    ">
       <input type="checkbox" name="idx_cl_group" id="idx_cl_group" />
-      <label for="idx_cl_group" class="link_label">Check/Uncheck All</label>
+     <label for="idx_cl_group" class="link_label">Check/Uncheck All</label>
     </div>
+    
+    
+    
     <br class="clear" />
-    <p>Add custom neighborhood, subdivision, and other special links to your website. To edit your saved links, login to IDX Broker and go to <a href="http://idxco.com/mgmt/savedLinks.php" target="_blank">Saved Links.</a> Your new links will appear below after you refresh this page.</p>
-    <ul class="custom_link_list" >
-      <?php
+    
+    
+    
+       <?php
 			/*
 			*	We want the client the ability to place any custom built links in the system
 			*	in the main navigation.  First lets grab them.
 			*/
 
-			$customLinks = idx_getCustomLinks();
 			
-			if(count($customLinks) > 0) {
-			
+			/*
+				*	Ther are no custom links in the system, so just display some text and a link to the admin to
+				*	add custom links.
+				*/
+		  if (empty($customLinks)) {
+    
+	?>
+      <div>
+        <p>You may create and save an unlimited number of Custom Links (e.g., neighborhood results, short sale results, etc). <br />
+          <br />
+          To create your custom links, login to IDX Broker and go to <a href="http://idxco.com/mgmt/customLinkMgmt.php" target="_blank">Custom Links.</a> Once you have built and saved your custom links, revisit this page and hit the refresh button. Your new links will automatically appear below. Simply choose the custom links that you wish to display in your theme header navigation and IDX Broker will add those pages and link to the corresponding IDX results.</p>
+      </div>
+      <br class="clear" />
+    <div class="save_footer"> <span class="status"></span>
+      <input type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" class="button-primary" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
+      <br class="clear" />
+    </div>
+    <?php settings_fields( 'idx-settings-group' ); ?>
+  </form>
+</div>
+        
+      
+      <?php
+	
+	
+	
+	 return false;
+   }
+    
+    ?>
+    
+   
+    <p>Add custom neighborhood, subdivision, and other special links to your website. To edit your saved links, login to IDX Broker and go to <a href="http://idxco.com/mgmt/savedLinks.php" target="_blank">Saved Links.</a> Your new links will appear below after you refresh this page.</p>
+    <ul class="custom_link_list" >
+   
+
+ 
+    
+    <?php		
 				/*
 				*	Now that we have seperated the list into individual array elements, we need to loop
 				*	over them and seperate again by the pipe character ->  link_name | http://link.tiny.url
@@ -334,26 +384,16 @@ ul {
       <li>
         <input type="checkbox" name="idx_custom_<? echo $linkName; ?>" id="idx_custom_<? echo $linkName; ?>" <? echo $checkOption; ?> class="customLink idx_cl" url="<? echo $linkURL; ?>" />
         <label for="idx_custom_<? echo $linkName; ?>" style="padding-left: 2px;">- <? echo str_replace('_', ' ', $linkName); ?></label>
-      </li>
+      </li>  
+      
+      
       <?php
-				}
+		
 				
-				/*
-				*	Ther are no custom links in the system, so just display some text and a link to the admin to
-				*	add custom links.
-				*/
-				
-			} else {
+	}			
+		
 ?>
-      <div>
-        <p>You may create and save an unlimited number of Custom Links (e.g., neighborhood results, short sale results, etc). <br />
-          <br />
-          To create your custom links, login to IDX Broker and go to <a href="http://idxco.com/mgmt/customLinkMgmt.php" target="_blank">Custom Links.</a> Once you have built and saved your custom links, revisit this page and hit the refresh button. Your new links will automatically appear below. Simply choose the custom links that you wish to display in your theme header navigation and IDX Broker will add those pages and link to the corresponding IDX results.</p>
-      </div>
-      <?php
-			}
-?>
-    </ul>
+  </ul>
     <br class="clear" />
     <div class="save_footer"> <span class="status"></span>
       <input type="submit" value="<?php _e('Save Changes') ?>" id="saveChanges" class="button-primary" ajax="<?php bloginfo('wpurl'); ?>/wp-admin/admin-ajax.php" />
@@ -767,12 +807,16 @@ function idx_getCustomLinks () {
  
 	$customLinks = array();
 	$xml = false;
+	if(ini_get('allow_url_fopen')!=0){ 
+	
+	
 	/**
 	 *	Try just file system access
 	 */
-	if(ini_get('allow_url_fopen')!=0){  /* DO NOT look for XML file if server settings won't allow for it */
-
-		$xmlFile = 'http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid');
+	  /* DO NOT look for XML file if server settings won't allow for it */
+//$request = new WP_Http;
+//$xmlFiles = $request->request('http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid'));
+		 $xmlFile = 'http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid');
 		$xml = simplexml_load_file($xmlFile);
 	}
 	if (!$xml)
@@ -787,7 +831,7 @@ function idx_getCustomLinks () {
 		
 		// Call the SOAP method
 		$result = $client->call('listSavedSearches', array('cid' => get_option('idx_broker_cid'),'password' => get_option('idx_broker_pass')));
-		
+		//print $result;
 		// Check for a fault
 		if ($client->fault) {
 		       
@@ -800,7 +844,7 @@ function idx_getCustomLinks () {
 			if ($err) {
 				
 				// Display the error
-				echo '<div style="display:none; " id="web_services_error" class="error">IDX Broker web services is currently unavailable, click <a href="http://www.idxbroker.com/support/kb/questions/330/Cannot+connect+to+IDX+Web+Services/" target="_blank">here</a> for more information.</div>';
+				echo '<div style="display:none; " id="web_services_error" class="error">IDX Broker web services is currently unavailable, click <a href="http://www.idxbroker.com/support/kb/questions/330/" target="_blank">here</a> for more information.</div>';
 				
 			} else {
 			 
@@ -825,7 +869,7 @@ function idx_getCustomLinks () {
 			       
 			       
 				
-				array_pop($customLinks);
+				//array_pop($customLinks);
 			}
 		}
 	}
@@ -836,8 +880,8 @@ function idx_getCustomLinks () {
 		*	so simple xml now
 		*/
 	       
-	      $xml = simplexml_load_file($xmlFile);
-	 
+	   //  $xml = simplexml_load_file($xmlFile);
+	 //print_r($xml);
 	      foreach ($xml->children() as $link)
 	      {
 		       $name = (string) $link->name;
@@ -851,7 +895,7 @@ function idx_getCustomLinks () {
 	/*
 	*	Return our new array of custom links.
 	*/
-	
+
 	return $customLinks;
 	
 }
@@ -2139,7 +2183,7 @@ function idx_page_links_to_highlight_tabs( $pages ) {
 		if ( isset( $page_links_to_target_cache[$id] ) )
 			$targets[$page] = $page_links_to_target_cache[$id];
 
-		if ( str_replace( 'http://www.', 'http://', $this_url ) == str_replace( 'http://www.', 'http://', $page ) || ( is_home() && str_replace( 'http://www.', 'http://', trailingslashit( get_bloginfo( 'home' ) ) ) == str_replace( 'http://www.', 'http://', trailingslashit( $page ) ) ) ) {
+		if ( str_replace( 'http://www.', 'http://', $this_url ) == str_replace( 'http://www.', 'http://', $page ) || ( is_home() && str_replace( 'http://www.', 'http://', trailingslashit( get_bloginfo( 'url' ) ) ) == str_replace( 'http://www.', 'http://', trailingslashit( $page ) ) ) ) {
 			$highlight = true;
 			$current_page = esc_url( $page );
 		}

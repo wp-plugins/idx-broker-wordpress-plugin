@@ -5,24 +5,23 @@ Author URL: http://www.idxbroker.com
 Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, idx broker, integrated idx
 Requires at least: 2.8.2
 Tested up to: 3.2.1
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
 == Description ==
 
 <h3>The easiest, most indexable IDX solution available today. Serving over 400 MLS markets nationwide</h3>
-
+<br />
 <ul>
-<li>Get Indexed - Millions of client pages are indexed, and that number is growing daily.</li>
-<li>Get More Credit - Choose your custom subdomain to pass credit back to your primary domain. No other WordPress IDX provider gives you such flexibility.</li>
+<li>Get Indexed - Millions of client pages are indexed, a number is growing daily.</li>
+<li>Get Link Credit - Choose your custom subdomain to pass credit back to your primary domain. No other WordPress IDX provider gives you such flexibility.</li>
 <li>Capture More Leads - Some providers may compete against you for leads, or charge you extra for lead capture. IDX Broker offers sophisticated lead capture functionality, at a competitive price.</li>
-<li>Get More Help - The IDX Broker Support Team is highly trained and very technical. No other provider can offer you the same level of Support that is provided by IDX, Inc. <a href="http://www.idxbroker.com/idx_testimonials.php">Our testimonials</a> speak for themselves.</li>
-<li>Pay as you go - We're not going to lock you into a silly long-term contract when we are willing to earn your business each and every day. If an IDX vendor tries to lock you into a large contract, run away!</li> 
-
+<li>Get More Help - The IDX Broker Support Team is highly trained and very technical. No other provider can offer you the same level of Support. <a href="http://www.idxbroker.com/idx_testimonials.php">Our testimonials</a> speak for themselves.</li>
+<li>No Long-Term Contracts - We're not going to lock you into a long-term contract. The IDX Team is willing to earn your business each and every day.</li> 
 </ul>
 
-This plugin is very simple. In fact, advanced users may not even need the plugin - working knowledge of WordPress custom menus and the default text/HTML Widget may be enough to integrate IDX Broker. If you do need the plugin, here's what you need to know about how it works:
+This plugin is very simple. 
 
 <ul>
 <li>Enter your client ID, subdomain, and password and this information will be stored by the plugin. The plugin will use these credentials to keep your custom link information (pulled from IDX Broker) up-to-date.</li>
