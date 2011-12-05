@@ -166,6 +166,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 == Changelog ==
 
+= 1.4.0 =
+
+Replaced deprecated WP function call. Error check to remove warning when no custom links created. Fixed URL in help icon CSS. Fixed bug that was dropping the last custom link from the array. 
+
 = 1.3.9 =
 
 Brought compatibility to 3.2+. 
