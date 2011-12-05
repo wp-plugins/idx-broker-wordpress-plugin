@@ -12,13 +12,16 @@ IDX Broker - The Original IDX/MLS Integration Solution
 == Description ==
 
 <h3>The easiest, most indexable IDX solution available today. Serving over 400 MLS markets nationwide</h3>
-
+<br />
 <ul>
-<li>Ignore reviews of previous versions of the plugin - 1.4.0 works great!</li>
-<li>No Programming - Works with ANY MLS system.</li>
-<li>More Leads - Tease your visitors with content available only through an IDX feed. What's the point of getting pages indexed if visitors provide their contact info to a different Realtor&reg;?</li>
-<li>Maximum Control - The IDX Broker control panel offers hundreds of customizations. Why add IDX services that force you to work with raw data/code all day? That's why plugins were invented!</li>
-<li>Excellent Support - The IDX Broker Support Team (800-421-9668) is highly trained and very technical. No other provider can offer you the same level of Support. <a href="http://www.idxbroker.com/idx_testimonials.php">View our testimonials.</a></li>
+<li>Works with <strong>every</strong> MLS system or MLS vendor.</li>
+<li>Simply setup a custom subdomain (search.mysite.com, etc.) and Google results will combine all of your WordPress pages with your IDX pages. It's that easy. Google does the same thing with their own subdomains (mail.google.com, search.google.com, etc.). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content.</li>
+<li>For one flat-rate monthly fee, you also get lead capture functionality and full IDX services. This translates into more leads because every indexed page also includes <strong>lead capture</strong>. If even one lead in a year converts, IDX Broker has paid for itself.</li>
+<li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags.</li>
+<li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap" target="_blank">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
+<li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you can add to your sidebar or blog posts.</li>
+<li>Maximum Control - The IDX Broker control panel offers hundreds of options. Custom CSS, custom maps, custom links, city list filters, customize the signup form questions, and much more!</li>
+<li>Excellent Support - The IDX Broker Support Team is very experienced. No other provider can offer you the same level of Support. <a href="http://www.idxbroker.com/idx_testimonials.php">View our testimonials.</a></li>
 <li>No Long-Term Contracts - We're not going to lock you into a long-term contract. The IDX Team is willing to earn your business each and every day!</li> 
 </ul>
 
@@ -29,7 +32,6 @@ This plugin is very simple.
 <li>Click a default page name (map search, basic search, etc.), save, and the plugin will add those pages to your navigation.</li>
 <li>Build a custom neighborhood or other link in IDX Broker. Open your plugin admin screen and all of your links will automatically appear. Check the neighborhood pages that you wish to add.</li>
 <li>Drag and drop various predefined Widgets into your sidebar. Or, copy javascript from IDX Broker into your built-in WordPress HTML/text Widget to customize your sidebar Widgets.</li>
-<li>No Programming Required!</li>
 </ul>
 <h3>Integrated IDX Examples</h3>
 
