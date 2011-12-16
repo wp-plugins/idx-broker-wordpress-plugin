@@ -2,9 +2,8 @@
 Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
-Tags: idx, real estate, search, widget, wordpress mls, wordpress idx, housing, RETS, MLS, idxbroker, idx feed, agent, idx broker, integrated idx
-Requires at least: 2.8.2
-Tested up to: 3.2.1
+Tags: idx, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, idx broker, integrated idx
+Tested up to: 3.3
 Stable tag: 1.4.0
 
 IDX Broker - The Original IDX/MLS Integration Solution 
@@ -14,7 +13,7 @@ IDX Broker - The Original IDX/MLS Integration Solution
 <h3>The easiest, most indexable IDX solution available today. Serving over 400 MLS markets nationwide</h3>
 <br />
 <ul>
-<li>Works with <strong>every</strong> MLS system or MLS vendor.</li>
+<li>Works with <strong>every</strong> MLS system and MLS vendor.</li>
 <li>Simply setup a custom subdomain (search.mysite.com, etc.) and Google results will combine all of your WordPress pages with your IDX pages. It's that easy. Google does the same thing with their own subdomains (mail.google.com, search.google.com, etc.). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content.</li>
 <li>For one flat-rate monthly fee, you also get lead capture functionality and full IDX services. This translates into more leads because every indexed page also includes <strong>lead capture</strong>. If even one lead in a year converts, IDX Broker has paid for itself.</li>
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags.</li>
