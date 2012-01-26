@@ -3,14 +3,14 @@ Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, idx broker, integrated idx
-Tested up to: 3.3
-Stable tag: 1.4.0
+Tested up to: 3.3.1
+Stable tag: 1.4.1
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
 == Description ==
 
-<h3>The easiest, most indexable IDX solution available today. Serving over 400 MLS markets nationwide</h3>
+<h3>The easiest, most indexable IDX solution available today. Serving over 450 MLS markets nationwide</h3>
 <br />
 <ul>
 <li>Works with <strong>every</strong> MLS system and MLS vendor.</li>
@@ -91,6 +91,10 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
+
+= 1.4.1 =
+
+Applied security fix to mysql queries. 
 
 = 1.4.0 =
 
