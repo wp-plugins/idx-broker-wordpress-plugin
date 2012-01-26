@@ -710,9 +710,9 @@ function idxUpdateCustomLinks () {
 	 *	Simplify the $_GET variable references.
 	 */
 	
-	$linkName = $_GET['name'];
-	$linkState = $_GET['state'];
-	$linkUrl = $_GET['url'];
+	$linkName = mysql_real_escape_string($_GET['name']);
+	$linkState = mysql_real_escape_string($_GET['state']);
+	$linkUrl = mysql_real_escape_string($_GET['url']);
 
 	/*
 	*	If we find a link whose checkbox value is set to true.
