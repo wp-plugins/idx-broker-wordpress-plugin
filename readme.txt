@@ -4,7 +4,7 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: idx, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, idx broker, integrated idx
 Tested up to: 3.3.1
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 
 IDX Broker - The Original IDX/MLS Integration Solution 
 
