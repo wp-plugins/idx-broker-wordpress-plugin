@@ -426,7 +426,7 @@ function idxUpdateLinks() {
 	*	 ajax call.  We build these out to easily loop through them all.
 	*/
 	
-	$links = array( 'basic' => mysql_real_escape_string($_GET['basicLink']),'advanced' => mysql_real_escape_string($_GET['advancedLink']), 'map' => mysql_real_escape_string($_GET['mapLink']), 'address' => mysql_real_escape_string($_GET['addressLink']), 'listing' => mysql_real_escape_string($_GET['listingLink']), 'featured' => mysql_real_escape_string($_GET['featuredLink']), 'soldPend' => mysql_real_escape_string($_GET['soldPendLink']), 'openHouse' => mysql_real_escape_string($_GET['openHouseLink']), 'contact' => mysql_real_escape_string($_GET['contactLink']), 'roster' => mysql_real_escape_string($_GET['rosterLink']), 'listingManager' => mysql_real_escape_string($_GET['listManLink']), 'homeValuation' => mysql_real_escape_string($_GET['homeValLink']), 'sitemap' => mysql_real_escape_string($_GET['sitemapLink']), 'userSignup' => mysql_real_escape_string($_GET['userSignupLink']), 'mortgageCalc' => mysql_real_escape_string($_GET['mortgageCalcLink']), 'suppListings' => mysql_real_escape_string($_GET['suppListingsLink']), 'agentLogin' => mysql_real_escape_string($_GET['agentLoginLink']) );
+	$links = array( 'basic' => $_GET['basicLink'],'advanced' => $_GET['advancedLink'], 'map' => $_GET['mapLink'], 'address' => $_GET['addressLink'], 'listing' => $_GET['listingLink'], 'featured' => $_GET['featuredLink'], 'soldPend' => $_GET['soldPendLink'], 'openHouse' => $_GET['openHouseLink'], 'contact' => $_GET['contactLink'], 'roster' => $_GET['rosterLink'], 'listingManager' => $_GET['listManLink'], 'homeValuation' => $_GET['homeValLink'], 'sitemap' => $_GET['sitemapLink'], 'userSignup' => $_GET['userSignupLink'], 'mortgageCalc' => $_GET['mortgageCalcLink'], 'suppListings' => $_GET['suppListingsLink'], 'agentLogin' => $_GET['agentLoginLink'] );
 
 	/*
 	*	Loop through all the link so we can manage them one by one.
@@ -2117,16 +2117,16 @@ function idx_get_page_links_to_targets () {
 
 function idx_plt_save_meta_box( $post_ID ) {
 	if ( wp_verify_nonce( isset($_REQUEST['_idx_pl2_nonce']), 'idx_plt' ) ) {
-		if ( isset( mysql_real_escape_string($_POST['idx_links_to']) ) && strlen( mysql_real_escape_string($_POST['idx_links_to']) ) > 0 && mysql_real_escape_string($_POST['idx_links_to']) !== 'http://' ) {
-			$link = stripslashes( mysql_real_escape_string($_POST['idx_links_to']) );
+		if ( isset( $_POST['idx_links_to'] ) && strlen( $_POST['idx_links_to'] ) > 0 && $_POST['idx_links_to'] !== 'http://' ) {
+			$link = stripslashes( $_POST['idx_links_to'] );
 			if ( 0 === strpos( $link, 'www.' ) )
 				$link = 'http://' . $link; // Starts with www., so add http://
 			update_post_meta( $post_ID, '_links_to', $link );
-			if ( isset( mysql_real_escape_string($_POST['idx_links_to_new_window']) ) )
+			if ( isset( $_POST['idx_links_to_new_window'] ) )
 				update_post_meta( $post_ID, '_links_to_target', '_blank' );
 			else
 				delete_post_meta( $post_ID, '_links_to_target' );
-			if ( isset( mysql_real_escape_string($_POST['idx_links_to_302']) ) )
+			if ( isset( $_POST['idx_links_to_302'] ) )
 				update_post_meta( $post_ID, '_links_to_type', '302' );
 			else
 				delete_post_meta( $post_ID, '_links_to_type' );
