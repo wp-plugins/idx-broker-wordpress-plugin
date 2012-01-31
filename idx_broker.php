@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
 Description: A premium IDX WordPress plugin. The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.4.2
+Version: 1.5.0
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -631,29 +631,83 @@ function idxUpdateLinks() {
 			*	 the link already exists in the table. If so, then we UPDATE, if not
 			*	 then we need to INSERT INTO.
 			*/
-			
-			$current = mysql_query( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$where' " );
-			$row = @mysql_fetch_array($current);
-			
-			/*
-			*	The number of rows returned is more than none, so we do an UPDATE. We need to
-			*	write into two tables as required by WP and our filter.
-			*/
-			
-			if(@mysql_num_rows($current) > 0){
+
+			if ($row = $wpdb->get_row("SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$where' ", ARRAY_A))
+			{
 				
-				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $where, $row[ID] ) );
-				$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $url, $row[ID] ) );
-			
+				// Update post
+				$wpdb->update(
+					$wpdb->posts, 
+					array(
+						'post_title' => $label,
+						'post_type' => 'page',
+						'post_name' => $where
+					),
+					array( 'ID' => $row['ID'] ),
+					array(
+						'%s',
+						'%s',
+						'%s'
+					),
+					array(
+						'%d'
+					)
+				);
+				
+				// Update postmeta
+				$wpdb->update(
+					$wpdb->postmeta,
+					array(
+						'meta_key' => '_links_to',
+						'meta_value' => $url,
+					),
+					array(
+						'post_id' => $row['ID']
+					),
+					array(
+						'%s',
+						'%s'
+					),
+					array(
+						'%d'
+					)
+				);
+
 			/*
 			* 	There are no rows returned, so the links don't exist yet, so we need to INSERT INTO.
 			*/
 			
 			} else {
 				
-				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $where ) );
-				$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $url, mysql_insert_id() ) );
+				// Insert into post
+				$wpdb->insert(
+					$wpdb->posts,
+					array(
+						'post_title' => $label,
+						'post_type' => 'page',
+						'post_name' => $where
+					),
+					array(
+						'%s',
+						'%s',
+						'%s'
+					)
+				);
 				
+				// Insert into post meta
+				$wpdb->insert(
+					$wpdb->postmeta,
+					array(
+						'meta_key' => '_links_to',
+						'meta_value' => $url,
+						'post_id' => $wpdb->insert_id						
+					),
+					array(
+						'%s',
+						'%s',
+						'%d'
+					)
+				);
 			}
 			
 		/*
@@ -664,22 +718,14 @@ function idxUpdateLinks() {
 		} else {
 			
 			/*
-			*	Query the table to see if the links already exist.
-			*/
-			
-			$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$where' " );
-			$row = @mysql_fetch_array($current);
-			
-			/*
 			*	If the link exists and the client has unchecked it then we know we
 			*	need to delete it from both tables.
 			*/
 			
-			if(@mysql_num_rows($current) > 0){
-				
-				mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
-				mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
-				
+			if ($row = $wpdb->get_row( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$where' ", ARRAY_A ))
+			{
+				$wpdb->query( "DELETE FROM ".$wpdb->posts." WHERE `ID` ='".$row['ID']."' LIMIT 1" );
+				$wpdb->query( "DELETE FROM ".$wpdb->postmeta." WHERE `post_id` ='".$row['ID']."' LIMIT 1" );
 			}
 		}
 	}
@@ -733,27 +779,91 @@ function idxUpdateCustomLinks () {
 		*	Now we need to look in the table and see if this entry already exists,
 		*	if it does then we just need to UPDATE, if not, then we INSERT.
 		*/
-		
-		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$linkName' " );
-		$row = @mysql_fetch_array($current);
-	
-		if(@mysql_num_rows($current) > 0){
 			
+		if ($row = $wpdb->get_row("SELECT ID FROM wp_posts WHERE post_name = '$linkName' ", ARRAY_A))	
+		{
 			/*
 			*	The entry already exists, so we can just UPDATE with the new information.
 			*/
+			$wpdb->update(
+				$wpdb->posts,
+				array(
+					'post_title' => $label,
+					'post_type' => 'page',
+					'post_name' => $linkName
+				),
+				array(
+					'ID' => $row['ID']
+				),
+				array(
+					'%s',
+					'%s',
+					'%s'
+				),
+				array(
+					'%d'
+				)
+			);
 			
-			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $linkName, $row[ID] ) );
-			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $linkUrl, $row[ID] ) );
+			$wpdb->update(
+				$wpdb->postmeta,
+				array(
+					'meta_key' => '_links_to',
+					'meta_value' => $linkUrl
+				),
+				array(
+					'post_id' => $row['ID']
+				),
+				array(
+					'%s',
+					'%s'
+				),
+				array(
+					'%d'
+				)
+			);
+			
+			
+#			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_title = %s, post_type='page', post_name=%s WHERE ID = %d", $label, $linkName, $row[ID] ) );
+#			$wpdb->query( $wpdb->prepare( "UPDATE $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s WHERE post_id = %d", $linkUrl, $row[ID] ) );
 			
 		} else {
 			
 			/*
 			*	The entry didn't exist, so we will need to INSERT the new entry.
 			*/
+			// Insert into post
+			$wpdb->insert(
+				$wpdb->posts,
+				array(
+					'post_title' => $label,
+					'post_type' => 'page',
+					'post_name' => $linkName
+				),
+				array(
+					'%s',
+					'%s',
+					'%s'
+				)
+			);
 			
-			$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $linkName ) );
-			$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $linkUrl, mysql_insert_id() ) );
+			// Insert into post meta
+			$wpdb->insert(
+				$wpdb->postmeta,
+				array(
+					'meta_key' => '_links_to',
+					'meta_value' => $linkUrl,
+					'post_id' => $wpdb->insert_id						
+				),
+				array(
+					'%s',
+					'%s',
+					'%d'
+				)
+			);
+		
+#			$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->posts SET post_title = %s, post_type='page', post_name=%s", $label, $linkName ) );
+#			$wpdb->query( $wpdb->prepare( "INSERT INTO $wpdb->postmeta SET meta_key = '_links_to', meta_value = %s, post_id = %d", $linkUrl, mysql_insert_id() ) );
 			
 		}
 		
@@ -763,27 +873,13 @@ function idxUpdateCustomLinks () {
 		
 	} else {
 		
-		/*
-		*	Lets look up the ID of the entry so we can delete it, if it exists.
-		*/
-		
-		$current = mysql_query( "SELECT ID FROM wp_posts WHERE post_name = '$linkName' " );
-		$row = @mysql_fetch_array($current);
-		
-		/*
-		*	We found a matching entry
-		*/
-		
-		if(@mysql_num_rows($current) > 0){
-			
-			/*
-			*	Delete the unwanted entry in the table.
-			*/
-			
-			mysql_query( "DELETE FROM wp_posts WHERE ID ='$row[ID]'" );
-			mysql_query( "DELETE FROM wp_postmeta WHERE post_id = '$row[ID]' " );
-	
-			
+		/**
+		 * If if it exists, remove it
+		 */
+		if ($row = $wpdb->get_row( "SELECT `ID` FROM `wp_posts` WHERE `post_name` = '$linkName' ", ARRAY_A ))
+		{
+			$wpdb->query( "DELETE FROM ".$wpdb->posts." WHERE `ID` ='".$row['ID']."' LIMIT 1" );
+			$wpdb->query( "DELETE FROM ".$wpdb->postmeta." WHERE `post_id` ='".$row['ID']."' LIMIT 1" );
 		}
 	}
 	
@@ -804,93 +900,17 @@ function idx_getCustomLinks () {
 	{
 		return false;
 	}
- 
+	
+	$request = new WP_Http;
+	$response = $request->request('http://idxco.com/services/wpSimple_1-2.php?cid='.get_option('idx_broker_cid'));
+	
+	$jsonData = json_decode($response['body'], true);
+	
 	$customLinks = array();
-	$xml = false;
-	if(ini_get('allow_url_fopen')!=0){ 
-	
-	
-	/**
-	 *	Try just file system access
-	 */
-	  /* DO NOT look for XML file if server settings won't allow for it */
-//$request = new WP_Http;
-//$xmlFiles = $request->request('http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid'));
-		 $xmlFile = 'http://idxco.com/services/wpSimple_1-1.php?cid='.get_option('idx_broker_cid');
-		$xml = simplexml_load_file($xmlFile);
-	}
-	if (!$xml)
-	{
-		
-	     	// Require the NuSOAP code
-		require_once('nusoap.php');
-		
-		// Create the client instance
-		$host = 'https://idxco.com/services/clientWSDL_1-3.php';
-		$client = new nusoap_client($host);
-		
-		// Call the SOAP method
-		$result = $client->call('listSavedSearches', array('cid' => get_option('idx_broker_cid'),'password' => get_option('idx_broker_pass')));
-		//print $result;
-		// Check for a fault
-		if ($client->fault) {
-		       
-			
-		} else {
-			
-			// Check for errors
-			$err = $client->getError();
-			
-			if ($err) {
-				
-				// Display the error
-				echo '<div style="display:none; " id="web_services_error" class="error">IDX Broker web services is currently unavailable, click <a href="http://www.idxbroker.com/support/kb/questions/330/" target="_blank">here</a> for more information.</div>';
-				
-			} else {
-			 
-			       $lines = explode("\n", $result);
 
-				   // if there's actually lines, do something with them
-				   if (sizeof($lines) > 0)
-				   {
-					   foreach ($lines as $link) {
-						   
-						   // make sure there's actually a link from the line
-						   if (empty($link))
-						   		continue;
-			
-				      		$li = explode("|", $link);
-				      		$name = $li[0];
-				      	  	$url = $li[1];
-				          	
-							$customLinks[$name] = $url;
-						}
-				   }
-			       
-			       
-				
-				//array_pop($customLinks);
-			}
-		}
-	}
-	else
-	{
-	 
-	       /**
-		*	so simple xml now
-		*/
-	       
-	   //  $xml = simplexml_load_file($xmlFile);
-	 //print_r($xml);
-	      foreach ($xml->children() as $link)
-	      {
-		       $name = (string) $link->name;
-		       $url = (string) $link->url;
-		       $customLinks[$name] = $url;
-	      }
-	}
-	
-	
+	if (is_array($jsonData) && sizeof($jsonData) > 0)
+		foreach ($jsonData as $link) 
+			$customLinks[$link['name']] = $link['url'];
 	
 	/*
 	*	Return our new array of custom links.

@@ -2,20 +2,21 @@
 Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
-Tags: idx, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, idx broker, integrated idx
+Tags: rets, ftp, idx, idx broker, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, integrated idx
 Tested up to: 3.3.1
-Stable tag: 1.4.2
+Stable tag: 1.5.0
 
-IDX Broker - The Original IDX/MLS Integration Solution 
+IDX Broker Plugin for Designers and REALTORS&reg;	 
 
 == Description ==
 
-<h3>The easiest, most indexable IDX solution available today. Serving over 450 MLS markets nationwide</h3>
+<h3>Add integrated IDX to your Real Estate Website and turn it into a direct lead generation powerhouse. We <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank">cover more MLS/IDX feeds</a> than any other provider - 450!</h3>
 <br />
 <ul>
-<li>Works with <strong>every</strong> MLS system and MLS vendor.</li>
-<li>Simply setup a custom subdomain (search.mysite.com, etc.) and Google results will combine all of your WordPress pages with your IDX pages. It's that easy. Google does the same thing with their own subdomains (mail.google.com, search.google.com, etc.). Google PageRank will pass between your primary domain and IDX subdomain - giving you credit for all of the IDX content.</li>
-<li>For one flat-rate monthly fee, you also get lead capture functionality and full IDX services. This translates into more leads because every indexed page also includes <strong>lead capture</strong>. If even one lead in a year converts, IDX Broker has paid for itself.</li>
+<li>New MLS/IDX feeds can be added in only 5 days!</li>
+<li>Tablet-friendly search forms and details - all hosted on your own custom subdomain. Get SEO credit by integrating a subdomain (search.mysite.com, etc) into all of your IDX pages. Google will credit your primary domain with subdomain links, display all links together in search results, and give you link credit between both domains.</li>
+<li>Lead-capture in the form of requested/forced registration - you control the settings for maximum lead generation. No other IDX solution provides this much value in one package.</li>
+<li>Raw traffic stats, property update view tracking, saved searches and user accounts for any of your leads. The possibilities are endless.</li> 
 <li>Dynamic Meta <a href="http://www.idxbroker.com/features/Dynamic-Title-Tags-on-Property-Detail-Pages" target="_blank">Title</a> and <a href="http://www.idxbroker.com/features/Dynamic-Meta-Description-Tags" target="_blank">Description</a> tags.</li>
 <li>A dynamic <a href="http://www.idxbroker.com/features/Offer-an-IDX-Sitemap" target="_blank">IDX Sitemap</a> page that includes search-friendly category and detail pages.</li> 
 <li><a href="http://www.idxbroker.com/support/kb/questions/29/" target="_blank">Search-friendly, custom IDX link</a> pages that you can add to your sidebar or blog posts.</li>
@@ -168,6 +169,14 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.5.0 =
+
+Major revision; moved queries to wpdb method, added version tracking to client header, moved to WP API http connect method. 
+
+= 1.4.1 =
+
+Security update
 
 = 1.4.0 =
 
