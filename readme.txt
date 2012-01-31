@@ -10,9 +10,11 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 == Description ==
 
-<h3>Add integrated IDX to your Real Estate Website and turn it into a direct lead generation powerhouse. We <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank">cover more MLS/IDX feeds</a> than any other provider - 450!</h3>
+<h3>REALTORS&reg; and their Designers; Quickly add integrated IDX (not framed!) to ANY Real Estate Website & turn it into a direct lead generation powerhouse.</h3>
 <br />
 <ul>
+<li>IDX Broker <a href="http://www.idxbroker.com/idx_mls_coverage.php" target="_blank">offers more MLS/IDX feeds</a> than any other provider - 450!</li>
+<li>Great for Designers/Developers - use CSS/HTML to quickly integrate IDX for your client; at a fraction of the cost of building out raw code for each MLS.</li>
 <li>New MLS/IDX feeds can be added in only 5 days!</li>
 <li>Tablet-friendly search forms and details - all hosted on your own custom subdomain. Get SEO credit by integrating a subdomain (search.mysite.com, etc) into all of your IDX pages. Google will credit your primary domain with subdomain links, display all links together in search results, and give you link credit between both domains.</li>
 <li>Lead-capture in the form of requested/forced registration - you control the settings for maximum lead generation. No other IDX solution provides this much value in one package.</li>
