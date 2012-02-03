@@ -4,7 +4,7 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: rets, ftp, idx, idx broker, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, integrated idx
 Tested up to: 3.3.1
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 
 IDX Broker Plugin for Designers and REALTORS&reg;	 
 
@@ -95,9 +95,17 @@ Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manage
 
 == Upgrade Notice ==
 
+= 1.5.1 =
+
+Switched custom link data pull so that it uses an object rather than array (limited).
+
+= 1.5.0 =
+
+Major revision; moved queries to wpdb method, added version tracking to client header, moved to WP API http connect method. 
+
 = 1.4.1 =
 
-Applied security fix to mysql queries. 
+Security update
 
 = 1.4.0 =
 
@@ -171,6 +179,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.5.1 =
+
+Switched custom link data pull so that it uses an object rather than array (limited).
 
 = 1.5.0 =
 
