@@ -904,14 +904,23 @@ function idx_getCustomLinks () {
 	$request = new WP_Http;
 	$response = $request->request('http://idxco.com/services/wpSimple_1-2.php?cid='.get_option('idx_broker_cid'));
 	
+	$customLinks = array(); 
+	  
+	// did it error out?
+   	if (is_object($response) && is_array($response->errors))
+	{
+		echo 'We could not connect to your custom links. Please email IDX Support at help@idxbroker.com and note that you received this error.';
+		// display an error message here
+	} 
+	elseif (is_array($response['body']))
+	{
+		 $jsonData = json_decode($response['body']);
+   		
+		if (sizeof($jsonData) > 0)
+			foreach ($jsonData as $link) 
+		   		$customLinks[$link->name] = $link->url;
+	}
 	
-	$jsonData = json_decode($response['body']);
-
-$customLinks = array();
-
-if (sizeof($jsonData) > 0)
-        foreach ($jsonData as $link) 
-                $customLinks[$link->name] = $link->url;
 	
 	/*
 	*	Return our new array of custom links.
