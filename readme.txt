@@ -4,7 +4,7 @@ Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: rets, ftp, idx, idx broker, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, integrated idx
 Tested up to: 3.3.1
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 
 IDX Broker Plugin for Designers and REALTORS&reg;	 
 
@@ -179,6 +179,10 @@ Allows automatic header and footer include generation for the IDX Broker system.
 
 
 == Changelog ==
+
+= 1.5.3 =
+
+Fixed similar error to v1.5.2 when WP cannot connect to pull in custom links. 
 
 = 1.5.2 =
 
