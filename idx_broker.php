@@ -3,7 +3,7 @@
 Plugin Name: IDX Broker
 Plugin URI: http://www.idxbroker.com/support/kb/categories/Wordpress+Plugin/
 Description: A premium IDX WordPress plugin. The IDX Broker plugin gives Realtors&reg; an easier way to add IDX Broker Widgets, Menu links, and Custom Links to any WordPress website. This plugin is designed exclusively for IDX Broker subscribers. 
-Version: 1.5.2
+Version: 1.5.3
 Author: IDX, Inc.
 Author URI: http://www.idxbroker.com/features/IDX-Wordpress-Plugin
 License: GPL
@@ -14,6 +14,22 @@ License: GPL
 
 add_action('admin_menu', 'idx_broker_menu');
 add_action('admin_menu', 'idx_broker_options_init' );
+
+
+//Adds a comment declaring the version of the WordPress.
+function displayWPVersion() {
+  echo "\n\n<!-- Wordpress Version ";
+  echo bloginfo('version');
+  echo " -->";
+}
+add_action('wp_head', 'displayWPVersion');
+
+
+//Adds a comment declaring the version of the IDX Broker plugin if it is activated.
+function idxBrokerActivated() {
+echo "\n<!-- IDX Broker WordPress Plugin v1.5.3 Activated -->\n\n";
+}
+add_action('wp_head', 'idxBrokerActivated');
 
 
 // The function below adds a settings link to the plugin page. 
@@ -903,24 +919,23 @@ function idx_getCustomLinks () {
 	
 	$request = new WP_Http;
 	$response = $request->request('http://idxco.com/services/wpSimple_1-2.php?cid='.get_option('idx_broker_cid'));
-	
+
 	$customLinks = array(); 
-	  
+		  
 	// did it error out?
    	if (is_object($response) && is_array($response->errors))
 	{
-		echo 'We could not connect to your custom links. Please email IDX Support at help@idxbroker.com and note that you received this error.';
-		// display an error message here
+		// echo 'whoops... theres and error connecting to idx';
+		// display an error message here  
 	} 
-	elseif (is_array($response['body']))
-	{
-		 $jsonData = json_decode($response['body']);
+	elseif (is_array($response['response']) && $response['response']['code'] == 200 && isset($response['body']))
+	{   
+		$jsonData = json_decode($response['body']);
    		
 		if (sizeof($jsonData) > 0)
 			foreach ($jsonData as $link) 
 		   		$customLinks[$link->name] = $link->url;
-	}
-	
+	}  
 	
 	/*
 	*	Return our new array of custom links.
