@@ -11,7 +11,7 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 == Description ==
 
 <h3>Powerful, integrated IDX search tools for REALTORS&reg; and their Designers.</h3>
-<br />
+
 <ul>
 <li>$39.99 a month (Agent License) includes full lead capture functionality. This plugin requires only one account, and one product; IDX Broker. Full IDX functionality at one low, flat-rate price!</li>
 <li>This is no iFrame search tool. Your IDX Broker pages are indexable and search engine friendly, out of the box! According to page 3 of the <a href=""http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf">Google Optimization Starter Guide</a>, <a href="http://www.idxbroker.com/support/kb/questions/278/IDX+Detail+Pages+-+Dynamic+Title+and+Meta+tags">Title Tags</a> rank as the <a href="http://www.seomoz.org/learn-seo/title-tag">#1 factor</a> to getting indexed. We've got 95% of this guide mastered for you - out of the box!</li>
