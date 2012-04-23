@@ -11,7 +11,7 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 == Description ==
 
 <h3>Powerful, IDX search tools for REALTORS&reg; and their Designers.</h3>
-
+<br />
 <ul>
 <li>Includes powerful lead capture functionality. <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">Request or force registration</a> on almost any page!</li>
 <li>IDX Broker lets you easily <a href="http://www.idxbroker.com/features/Featured-Listing-Showcase">add listing Widgets</a> directly to pages, posts, and your sidebar (via the Plugin).</li>
