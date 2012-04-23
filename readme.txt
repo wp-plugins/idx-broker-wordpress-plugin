@@ -10,21 +10,25 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 == Description ==
 
-<h3>Powerful, integrated IDX search tools for REALTORS&reg; and their Designers.</h3>
+<h3>Powerful, IDX search tools for REALTORS&reg; and their Designers.</h3>
 
 <ul>
-<li>$39.99 a month (Agent License) includes full lead capture functionality. This plugin requires only one account, and one product; IDX Broker. Full IDX functionality at one low, flat-rate price!</li>
-<li>This is no iFrame search tool. Your IDX Broker pages are indexable and search engine friendly, out of the box! According to page 3 of the <a href="http://static.googleusercontent.com/external_content/untrusted_dlcp/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf">Google Optimization Starter Guide</a>, <a href="http://www.idxbroker.com/support/kb/questions/278/IDX+Detail+Pages+-+Dynamic+Title+and+Meta+tags">Title Tags</a> rank as the <a href="http://www.seomoz.org/learn-seo/title-tag">#1 factor</a> to getting indexed. We've got 95% of this guide mastered for you - out of the box!</li>
-<li>Even better; we host for speed. Google Panda now weighs page speed above other criteria. This is why our details pages (with images) load at an average speed of < 2.2 seconds. Oh, and there's no additional bandwidth cost to you when bots hammer those IDX pages because the pages are all hosted.</li>
-<li>The Plugin automatically updates your links if you make changes - there's no real need to edit your theme, sidebar, etc. Just add navigation elements, widgets to your sidebar, and you're ready to promote your new integrated IDX website (or blog).</li>
-<li>Excellent Customer Support. Our online knowledgebase is powerful, but if you get stuck we're only an email or phone call away. Average turnaround time is < 2 hours!</li>
-<li>Maximum Control - The IDX Broker control panel offers hundreds of options. Custom CSS, custom maps, custom links, city list filters, customize the signup form questions, and much more. Nowhere else will you find the same toolset for a mere $39.99 a month.</li>
-<li>No Long-Term Contracts - We're not going to lock you into a long-term contract. The IDX Team is willing to earn your business each and every day!</li> 
+<li>Includes powerful lead capture functionality. <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">Request or force registration</a> on almost any page!</li>
+<li>IDX Broker lets you easily <a href="http://www.idxbroker.com/features/Featured-Listing-Showcase">add listing Widgets</a> directly to pages, posts, and your sidebar (via the Plugin).</li>
+<li>IDX Broker pages mirror the design of your website, on every page load. Only IDX Broker offers custom CSS and other options to further refine and finetune IDX search pages.</li>
+<li>Your IDX Broker pages are indexable and search-engine friendly, out of the box. Especially those <a href="http://www.idxbroker.com/features/Predefined-Subdivision" target="_blank">Custom IDX Links.</a> No complicated search results shortcodes to remember. Just perform a search, save, and update from your plugin!</li>
+<li>Post to Facebook, Pinterest and more - from any details page. <a href="http://www.idxbroker.com/features/Social-Media-Sharing-Tools">Share your listings</a> or let others share and use ShareThis to track results!</li>
+<li>Tablet-friendly search forms and details AND an <a href="http://www.idxbroker.com/features/Mobile-IDX-MLS-for-the-iPad-and-iPhone">iPhone/iPad App</a> that installs an icon onto your clients' iPhone or iPad so that they always know how to reach you!</li>  
+<li>Get SEO credit by integrating a subdomain (search.mysite.com, etc) into all of your IDX pages. Some clients have over 80,000 IDX pages indexed!</li>
+<li>Excellent Support. Just view some of our <a href="http://www.idxbroker.com/idx_testimonials.php">testimonials.</a></li>
+<li>All of it for $99 setup and $39.99 a month. Office accounts start at $78.99. All of our <strong>pricing</strong> is up-front, and month to month! </li>
 </ul>
 
 <h3>Integrated IDX Examples</h3>
 
-<a href"http://www.idxbroker.com/contact_idx.php">Contact us today</a> for a list of example sites and/or to access our Demo. 
+<a href="http://greatpropertyforsale.com/" target="_blank">View an Integrated IDX website</a> that uses the IDX Broker Plugin. Note how the website uses www. as the custom subdomain. This is recommended for new websites only. Websites that already have a lot of pages indexed under the www. subdomain should use search., listings., or some other subdomain keyword.<br />
+
+<a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">View additional WordPress examples</a>. These clients have chosen to purchase their site from an Approved Reseller/Designer, or they have built their own WordPress site. 
 
 <h3>This plugin is very simple.</h3> 
 
