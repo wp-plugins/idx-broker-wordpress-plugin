@@ -10,18 +10,20 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 == Description ==
 
-<h3>Powerful, IDX search tools for REALTORS&reg; and their Designers.</h3>
+<h3>Powerful, IDX search tools for REALTORS&reg; and IDX Developers.</h3>
 <br />
 <ul>
-<li>Includes powerful lead capture functionality. <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">Request or force registration</a> on almost any page!</li>
-<li>IDX Broker lets you easily <a href="http://www.idxbroker.com/features/Featured-Listing-Showcase">add listing Widgets</a> directly to pages, posts, and your sidebar (via the Plugin).</li>
-<li>IDX Broker pages mirror the design of your website, on every page load. Only IDX Broker offers custom CSS and other options to further refine and finetune IDX search pages.</li>
-<li>Your IDX Broker pages are indexable and search-engine friendly, out of the box. Especially those <a href="http://www.idxbroker.com/features/Predefined-Subdivision" target="_blank">Custom IDX Links.</a> No complicated search results shortcodes to remember. Just perform a search, save, and update from your plugin!</li>
-<li>Post to Facebook, Pinterest and more - from any details page. <a href="http://www.idxbroker.com/features/Social-Media-Sharing-Tools">Share your listings</a> or let others share and use ShareThis to track results!</li>
-<li>Tablet-friendly search forms and details AND an <a href="http://www.idxbroker.com/features/Mobile-IDX-MLS-for-the-iPad-and-iPhone">iPhone/iPad App</a> that installs an icon onto your clients' iPhone or iPad so that they always know how to reach you!</li>  
-<li>Get SEO credit by integrating a subdomain (search.mysite.com, etc) into all of your IDX pages. Some clients have over 80,000 IDX pages indexed!</li>
+<li><strong>Never framed, always indexable. The only Plugin that includes full IDX functionality including <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">sophisticated lead capture options.</a></strong></li> 
+<li>You will convert more sales with a <strong>professionally hosted</strong>IDX solution that supports your website content with the tools that you need to compete.</li>
+<li>We will never post a 301 redirect or any redirect on a live listing page. Ever. All IDX hosted pages are indexable and can be displayed on your own custom subdomain if you are worried about losing "credit" for the content.</li>
+<li>Includes custom links with unlimited keyword capabilities. IDX Broker doesn't restrict you to use the same results URL keywords as every other Agent or Broker using that Plugin. Create unique content around your IDX pages for better SEO!</li>
+<li>Works with all the major premium real estate themese and the majority of free themes as well.</li>
+<li>One click update. The IDX Broker Plugin will automatically pull in your custom IDX links.<li>
+<li>IDX Broker lets you easily add quick search, featured showcase, slideshows, lead logins, lead signup, custom links, and several more Widgets to your sidebar. Simply drag and drop!</li>
+<li>Copy and paste IDX Broker Widget script into any page or post in order to feature certain listings, areas, etc.</li>
+<li>Post to Facebook, Pinterest and more - from any details page. <a href="http://www.idxbroker.com/features/Social-Media-Sharing-Tools">Share your listings</a> or let others share and use ShareThis to track results.</li>
+<li>Install an mobile search icon onto your visitors' iOS mobile device when they download the <a href="http://www.idxbroker.com/features/Mobile-IDX-MLS-for-the-iPad-and-iPhone">iPhone/iPad App</a>.</li>  
 <li>Excellent Support. Just view some of our <a href="http://www.idxbroker.com/idx_testimonials.php">testimonials.</a></li>
-<li>All of it for $99 setup and $39.99 a month. Office accounts start at $78.99. All of our <strong>pricing</strong> is up-front, and month to month! </li>
 </ul>
 
 <h3>Integrated IDX Examples</h3>
