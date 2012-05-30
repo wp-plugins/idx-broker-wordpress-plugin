@@ -11,14 +11,14 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 == Description ==
 
 <h3>Powerful, IDX search tools for REALTORS&reg; and IDX Developers.</h3>
-<br />
+
 <ul>
-<li><strong>Never framed, always indexable. The only Plugin that includes full IDX functionality including <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">sophisticated lead capture options.</a></strong></li> 
-<li>You will convert more sales with a <strong>professionally hosted</strong>IDX solution that supports your website content with the tools that you need to compete.</li>
+<li><strong>Never framed, always indexable.</strong> The only Plugin that includes full IDX functionality including <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">sophisticated lead capture options.</a></li> 
+<li>You will convert more sales with a <strong>professionally hosted</strong> IDX solution that supports your website content with the tools that you need to compete.</li>
 <li>We will never post a 301 redirect or any redirect on a live listing page. Ever. All IDX hosted pages are indexable and can be displayed on your own custom subdomain if you are worried about losing "credit" for the content.</li>
 <li>Includes custom links with unlimited keyword capabilities. IDX Broker doesn't restrict you to use the same results URL keywords as every other Agent or Broker using that Plugin. Create unique content around your IDX pages for better SEO!</li>
 <li>Works with all the major premium real estate themese and the majority of free themes as well.</li>
-<li>One click update. The IDX Broker Plugin will automatically pull in your custom IDX links.<li>
+<li>One click update. The IDX Broker Plugin will automatically pull in your custom IDX links.</li>
 <li>IDX Broker lets you easily add quick search, featured showcase, slideshows, lead logins, lead signup, custom links, and several more Widgets to your sidebar. Simply drag and drop!</li>
 <li>Copy and paste IDX Broker Widget script into any page or post in order to feature certain listings, areas, etc.</li>
 <li>Post to Facebook, Pinterest and more - from any details page. <a href="http://www.idxbroker.com/features/Social-Media-Sharing-Tools">Share your listings</a> or let others share and use ShareThis to track results.</li>
