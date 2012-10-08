@@ -12,7 +12,7 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 <h3>Powerful, IDX search tools for REALTORS&reg; and IDX Developers.</h3>
 <br />
-<strong>NOTE: IDX Broker Platinum is now available in the US and Canada. This Plugin has been replaced by the new <a href="http://wordpress.org/extend/plugins/idx-broker-platinum/">IDX Broker Platinum Plugin.</a></strong>
+<strong>NOTE: IDX Broker Platinum is now available in the US and Canada. For clients using IDX Broker Platinum, please download the new <a href="http://wordpress.org/extend/plugins/idx-broker-platinum/">IDX Broker Platinum Plugin.</a></strong>
 <ul>
 <li><strong>Never framed, always indexable.</strong> The only Plugin that includes full IDX functionality including <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">sophisticated lead capture options.</a></li> 
 <li>You will convert more sales with a <strong>professionally hosted</strong> IDX solution that supports your website content with the tools that you need to compete.</li>
