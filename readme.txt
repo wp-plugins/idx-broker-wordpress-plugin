@@ -12,8 +12,8 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 <h3>Powerful, IDX search tools for REALTORS&reg; and IDX Developers.</h3>
 <br />
-<strong>NOTE: IDX Broker Platinum is now available in the US and Canada. The IDX Broker Platinum plugin page includes information for current users who are interested in upgrading to IDX Broker Platinum (no price increase).</strong>
-<br />
+<strong>NOTE: IDX Broker Platinum is now available to 500 markets in the US and Canada. <a href="http://wordpress.org/extend/plugins/idx-broker-platinum/">The IDX Broker Platinum plugin page</a> includes information for current users who are interested in upgrading to IDX Broker Platinum (same monthly price).</strong>
+<br /><br />
 For clients using IDX Broker Platinum currently, please download the new <a href="http://wordpress.org/extend/plugins/idx-broker-platinum/">IDX Broker Platinum Plugin.</a> and activate using the API key provided in your account setup email.  
 
 == Installation ==
