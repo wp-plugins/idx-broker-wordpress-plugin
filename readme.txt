@@ -1,6 +1,6 @@
 === IDX Broker Wordpress Plugin ===
 Author: IDX Broker
-Contributors: idxco
+Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
 Tags: rets, ftp, idx, idx broker, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, integrated idx
 Tested up to: 3.3.2
@@ -12,15 +12,48 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 <h3>Powerful, IDX search tools for REALTORS&reg; and IDX Developers.</h3>
 <br />
-<strong>NOTE: IDX Broker Platinum is now available to 500 markets in the US and Canada. <a href="http://wordpress.org/extend/plugins/idx-broker-platinum/">The IDX Broker Platinum plugin page</a> includes information for current users who are interested in upgrading to IDX Broker Platinum (same monthly price).</strong>
-<br /><br />
-For clients using IDX Broker Platinum currently, please download the new <a href="http://wordpress.org/extend/plugins/idx-broker-platinum/">IDX Broker Platinum Plugin.</a> and activate using the API key provided in your account setup email.  
+<ul>
+<li><strong>Never framed, always indexable.</strong> The only Plugin that includes full IDX functionality including <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">sophisticated lead capture options.</a></li> 
+<li>You will convert more sales with a <strong>professionally hosted</strong> IDX solution that supports your website content with the tools that you need to compete.</li>
+<li>We will never post a 301 redirect or any redirect on a live listing page. Ever. All IDX hosted pages are indexable and can be displayed on your own custom subdomain if you are worried about losing "credit" for the content.</li>
+<li>Includes custom links with unlimited keyword capabilities. IDX Broker doesn't restrict you to use the same results URL keywords as every other Agent or Broker using that Plugin. Create unique content around your IDX pages for better SEO!</li>
+<li>Works with all the major premium real estate themes and the majority of free themes as well.</li>
+<li>One click update. The IDX Broker Plugin will automatically pull in your custom IDX links.</li>
+<li>IDX Broker lets you easily add quick search, featured showcase, slideshows, lead logins, lead signup, custom links, and several more Widgets to your sidebar. Simply drag and drop!</li>
+<li>Copy and paste IDX Broker Widget script into any page or post in order to feature certain listings, areas, etc.</li>
+<li>Post to Facebook, Pinterest and more - from any details page. <a href="http://www.idxbroker.com/features/Social-Media-Sharing-Tools">Share your listings</a> or let others share and use ShareThis to track results.</li>
+<li>Install an mobile search icon onto your visitors' iOS mobile device when they download the <a href="http://www.idxbroker.com/features/Mobile-IDX-MLS-for-the-iPad-and-iPhone">iPhone/iPad App</a>.</li>  
+<li>Excellent Support. Just view some of our <a href="http://www.idxbroker.com/idx_testimonials.php">testimonials.</a></li>
+</ul>
+
+<h3>Integrated IDX Examples</h3>
+
+<a href="http://greatpropertyforsale.com/" target="_blank">View an Integrated IDX website</a> that uses the IDX Broker Plugin. Note how the website uses www. as the custom subdomain. This is recommended for new websites only. Websites that already have a lot of pages indexed under the www. subdomain should use search., listings., or some other subdomain keyword.<br />
+
+<a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">View additional WordPress examples</a>. These clients have chosen to purchase their site from an Approved Reseller/Designer, or they have built their own WordPress site. 
+
+<h3>This plugin is very simple.</h3> 
+
+<ul>
+<li>Enter your client ID, subdomain, and password and this information will be stored by the plugin. The plugin will use these credentials to keep your custom link information up-to-date.</li>
+<li>Click a default page name (map search, basic search, etc.), save, and the plugin will add those pages to your navigation.</li>
+<li>Build a custom neighborhood or other link in IDX Broker. Open your plugin admin screen and all of your links will automatically appear. Check the neighborhood pages that you wish to add.</li>
+<li>Drag and drop various predefined Widgets into your sidebar. Or, copy Widget javascript from IDX Broker into your built-in WordPress HTML/text Widget to customize your sidebar Widgets.</li>
+</ul>
+
+<h3>General Terms of Use</h3> 
+
+This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details page display and disclaimers. IDX, Inc. manages all the necessary MLS paperwork. IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
 
 == Installation ==
 
-== Frequently Asked Questions ==
+1. Download and extract the IDX Broker plugin. You may also install directly by going to your WP-Admin page and then Plugins > Add New. Search for 'idxbroker' under new plugins and click to install directly.
+2. Upload the uncompressed folder to your `/wp-content/plugins/` directory.
+3. Activate the plugin through the Plugins menu in WordPress.
+4. You will need to have an active <a href="http://www.idxbroker.com">IDX Broker</a> account for the Plugin to work. Once you do, go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
+5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links), and more.
 
-Applies to IDX Broker Platinum. 
+== Frequently Asked Questions ==
 
 = What is IDX? =
 Internet Data Exchange, or IDX, is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker&reg; connects to this data feed automatically, maps the necessary fields, and then adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
@@ -41,6 +74,14 @@ Features provided by this Plugin - Widgets, links, and custom links may be place
 Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manager page, a customizable sign up form, and provides you with 'teaser' registration options. 
  
 == Screenshots ==
+
+1. Search Link and iPhone App sidebar Widgets. - 'screenshot-1.png'
+2. Embedded Quick Search and Custom Link sidebar Widgets. - 'screenshot-2.png'
+3. Search Links Added to Navigation.  - 'screenshot-3.png'
+4. More Links Added to Navigation. - 'screenshot-4.png'
+5. Plugin Admin Page. 'screenshot-5.png'
+6. IDX Widget Admin - myAgent iPhone App. 'screenshot-6.png'
+7. Real-time Design Integration Setup. - 'screenshot-7.png'
 
 == Upgrade Notice ==
 
