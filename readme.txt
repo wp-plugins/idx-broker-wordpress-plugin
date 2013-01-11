@@ -13,7 +13,7 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 <h3>Powerful, IDX search tools for REALTORS&reg; and IDX Developers.</h3>
 <br />
 <ul>
-<li><strong>Never framed, always indexable.</strong> The only Plugin that includes full IDX functionality including <a href="http://www.idxbroker.com/features/Force-or-Request-Registration">sophisticated lead capture options.</a></li> 
+<li>Fully indexable <a href="http://www.idxbroker.com/support/kb/questions/270/Domain+Control">custom domain</a> feature. Subdomains are just as <strong>indexable</strong> as subfolders on your website, <a href="https://sites.google.com/site/webmasterhelpforum/en/faq--crawling--indexing---ranking#subfolder-subdomain">Just ask Google.</a></li>
 <li>You will convert more sales with a <strong>professionally hosted</strong> IDX solution that supports your website content with the tools that you need to compete.</li>
 <li>We will never post a 301 redirect or any redirect on a live listing page. Ever. All IDX hosted pages are indexable and can be displayed on your own custom subdomain if you are worried about losing "credit" for the content.</li>
 <li>Includes custom links with unlimited keyword capabilities. IDX Broker doesn't restrict you to use the same results URL keywords as every other Agent or Broker using that Plugin. Create unique content around your IDX pages for better SEO!</li>
