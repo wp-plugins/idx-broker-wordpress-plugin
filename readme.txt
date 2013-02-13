@@ -1,4 +1,4 @@
-=== IDX Broker Wordpress Plugin ===
+,=== IDX Broker Wordpress Plugin ===
 Author: IDX Broker
 Contributors: idxco, highjump76
 Author URL: http://www.idxbroker.com
@@ -28,9 +28,8 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 <h3>Integrated IDX Examples</h3>
 
-<a href="http://greatpropertyforsale.com/" target="_blank">View an Integrated IDX website</a> that uses the IDX Broker Plugin. Note how the website uses www. as the custom subdomain. This is recommended for new websites only. Websites that already have a lot of pages indexed under the www. subdomain should use search., listings., or some other subdomain keyword.<br />
 
-<a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">View additional WordPress examples</a>. These clients have chosen to purchase their site from an Approved Reseller/Designer, or they have built their own WordPress site. 
+<a href="http://www.idxbroker.com/idx_examples/idx-wordpress-examples.php" target="_blank">View WordPress examples</a>. These clients have chosen to purchase their site from an Approved Reseller/Designer, or they have built their own WordPress site. 
 
 <h3>This plugin is very simple.</h3> 
 
