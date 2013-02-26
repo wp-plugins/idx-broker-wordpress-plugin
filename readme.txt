@@ -1,4 +1,4 @@
-,=== IDX Broker Wordpress Plugin ===
+=== IDX Broker Wordpress Plugin ===
 Author: IDX Broker
 Contributors: idxco
 Author URL: http://www.idxbroker.com
