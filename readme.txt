@@ -1,12 +1,12 @@
-=== IDX Broker Wordpress Plugin ===
+=== IDX Broker Original Wordpress Plugin ===
 Author: IDX Broker
 Contributors: idxco
 Author URL: http://www.idxbroker.com
-Tags: rets, ftp, idx, idx broker, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, integrated idx
+Tags: rets, ftp, idx, idx broker, idx plugin, idx wordpress plugin, wordpress plugin, real estate wordpress, real estate, idx widget, wordpress mls, wordpress idx, RETS, MLS, idxbroker, idx feed, agent, integrated idx, idx broker original, idxbroker original
 Tested up to: 3.5.1
 Stable tag: 1.5.3
 
-IDX Broker Plugin for Designers and REALTORS&reg;	 
+IDX Broker Original Plugin for Designers and REALTORS&reg;
 
 == Description ==
 
@@ -18,7 +18,7 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 <li>We will never post a 301 redirect or any redirect on a live listing page. Ever. All IDX hosted pages are indexable and can be displayed on your own custom subdomain if you are worried about losing "credit" for the content.</li>
 <li>Includes custom links with unlimited keyword capabilities. IDX Broker doesn't restrict you to use the same results URL keywords as every other Agent or Broker using that Plugin. Create unique content around your IDX pages for better SEO!</li>
 <li>Works with all the major premium real estate themes and the majority of free themes as well.</li>
-<li>One click update. The IDX Broker Plugin will automatically pull in your custom IDX links.</li>
+<li>One click update. The IDX Broker Original Plugin will automatically pull in your custom IDX links.</li>
 <li>IDX Broker lets you easily add quick search, featured showcase, slideshows, lead logins, lead signup, custom links, and several more Widgets to your sidebar. Simply drag and drop!</li>
 <li>Copy and paste IDX Broker Widget script into any page or post in order to feature certain listings, areas, etc.</li>
 <li>Post to Facebook, Pinterest and more - from any details page. <a href="http://www.idxbroker.com/features/Social-Media-Sharing-Tools">Share your listings</a> or let others share and use ShareThis to track results.</li>
@@ -42,15 +42,15 @@ IDX Broker Plugin for Designers and REALTORS&reg;
 
 <h3>General Terms of Use</h3> 
 
-This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details page display and disclaimers. IDX, Inc. manages all the necessary MLS paperwork. IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
+This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs the IDX results and details page display and disclaimers. IDX, LLC manages all the necessary MLS paperwork. IDX Broker will automatically display the correct MLS/IDX disclaimers to ensure compliance with the MLS(s) & Board(s) that provides you with your IDX feed. 
 
 == Installation ==
 
-1. Download and extract the IDX Broker plugin. You may also install directly by going to your WP-Admin page and then Plugins > Add New. Search for 'idxbroker' under new plugins and click to install directly.
+1. Download and extract the IDX Broker Original Plugin. You may also install directly by going to your WP-Admin page and then Plugins > Add New. Search for 'idxbroker' under new plugins and click to install directly.
 2. Upload the uncompressed folder to your `/wp-content/plugins/` directory.
 3. Activate the plugin through the Plugins menu in WordPress.
-4. You will need to have an active <a href="http://www.idxbroker.com">IDX Broker</a> account for the Plugin to work. Once you do, go to the IDX Broker Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
-5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links), and more.
+4. You will need to have an active <a href="http://www.idxbroker.com">IDX Broker</a> account for the Plugin to work. Once you do, go to the IDX Broker Original Plugin page within WordPress. Enter your CID, Password, and IDX Broker Subdomain and click the 'Save Changes' button.
+5. Your plugin will now pull your IDX Broker account information into Wordpress. Use the IDX Broker Original Plugin Admin page to add Widgets, menu links, and neighborhood/subdivision landing pages (Custom Links), and more.
 
 == Frequently Asked Questions ==
 
@@ -58,20 +58,20 @@ This IDX plugin is supported by MLS/IDX feeds. This means that your MLS governs 
 Internet Data Exchange, or IDX, is a type of data feed provided by your MLS. This data feed typically (but not always) mirrors the data available on your MLS's website. IDX Broker&reg; connects to this data feed automatically, maps the necessary fields, and then adds forms, scripts, etc, giving you a way to add html links and widgets to you website(s). 
 
 = Do I need an IDX Broker account in order to use this plugin? =
-Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_mls_coverage.php">Read more about our MLS coverage.</a> Note that some MLS's may charge you a separate fee for access to your IDX feed. 
+Yes. IDX Broker manages your IDX feed by building forms, results, and property details pages that match your website or blog design. All IDX feeds require approval from a local board or MLS. If you are not a member of a local board or MLS, or your MLS does not provide an IDX data feed, then you will be unable to add IDX Broker Original Plugin functionality to your WordPress site. <a href="http://www.idxbroker.com/idx_mls_coverage.php">Read more about our MLS coverage.</a> Note that some MLS's may charge you a separate fee for access to your IDX feed. 
 
 = Does IDX Broker require a long-term contract? =
 No. IDX Broker requires a month-to-month agreement only. There are three monthly account levels - Agent ($39.99+), Team ($49.99+), and Office($78.99+). 
 
 = What can I expect if I decide to get my IDX feed through IDX Broker? =
-When you sign up for a new account, IDX, Inc sends you any necessary MLS paperwork (if required). Once you have signed the necessary paperwork, you will need to fax that back to us and we will then forward your paperwork to the MLS for approval. Approval can take anywhere from 3-10 days. Once approved, we will activate your account, integrate your site's design into IDX pages, and send you IDX Broker login credentials so that you can add links and Widgets to your site or blog.  
+When you sign up for a new account, IDX, LLC sends you any necessary MLS paperwork (if required). Once you have signed the necessary paperwork, you will need to fax that back to us and we will then forward your paperwork to the MLS for approval. Approval can take anywhere from 3-10 days. Once approved, we will activate your account, integrate your site's design into IDX pages, and send you IDX Broker login credentials so that you can add links and Widgets to your site or blog.  
 
 = How many blogs/websites can I integrate with IDX Broker? =
 Features provided by this Plugin - Widgets, links, and custom links may be placed onto any WordPress website or blog, regardless of MLS approval status. The reason for this is because all Widgets, links, and custom links point back to the original IDX-approved website. Each IDX Broker account requires MLS approval of one site for IDX display. Your search results and details pages must match this approved site. 
 
 = Does IDX Broker offer lead capture functionality? =
-Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manager page, a customizable sign up form, and provides you with 'teaser' registration options. 
- 
+Yes. IDX Broker provides you with a sign up Widget, sign up links, a lead manager page, a customizable sign up form, and provides you with 'teaser' registration options.
+
 == Screenshots ==
 
 1. Search Link and iPhone App sidebar Widgets. - 'screenshot-1.png'
@@ -148,7 +148,7 @@ Plugin has been streamlined and optimized after its initial development.  Wrappe
 
 Advanced feature now detects tags, read/write settings for folders, and provides copy/paste of header and footer content if security settings do not allow for the locally stored live wrapper files.
 
-<strong>Important Note to Advanced Developers: If you currently use the live wrapper files, all updates will force you to manually modify the CHMOD settings for your /wrapper/ folder and the header.php and footer.php files contained there. Please review <a href="http://www.idxbroker.com/support/kb/questions/301/">this knowledgebase article</a> for more information about how to manage live wrappers when you update the IDX Broker plugin. Note that this is due to WordPress security requirements. This logic applies to any plugin that writes files to your local WordPress installation. 
+<strong>Important Note to Advanced Developers: If you currently use the live wrapper files, all updates will force you to manually modify the CHMOD settings for your /wrapper/ folder and the header.php and footer.php files contained there. Please review <a href="http://www.idxbroker.com/support/kb/questions/301/">this knowledgebase article</a> for more information about how to manage live wrappers when you update the IDX Broker Original Plugin. Note that this is due to WordPress security requirements. This logic applies to any plugin that writes files to your local WordPress installation. 
 
 = 1.2.5 =
 
